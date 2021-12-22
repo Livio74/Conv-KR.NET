@@ -1,0 +1,1 @@
+Andiamo a tradurre la seguente cartella D:\Root\Computername\Kudapc\e\DOCUMENTI\myPrograms\Visual Basic 6\Kripter in Kudalpt2019

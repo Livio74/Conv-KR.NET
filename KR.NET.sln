@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KR.NET", "KR.NET.csproj", "{63ED52F9-805C-4243-9293-0879927F4CEB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7F96390D-79AA-4E19-ADE3-D3CAEB11648F}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.txt = Readme.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KRTest", "KRTest\KRTest.csproj", "{E4F14D77-E63A-414A-AAFD-5CFEA216B707}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63ED52F9-805C-4243-9293-0879927F4CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63ED52F9-805C-4243-9293-0879927F4CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63ED52F9-805C-4243-9293-0879927F4CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63ED52F9-805C-4243-9293-0879927F4CEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4F14D77-E63A-414A-AAFD-5CFEA216B707}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4F14D77-E63A-414A-AAFD-5CFEA216B707}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4F14D77-E63A-414A-AAFD-5CFEA216B707}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4F14D77-E63A-414A-AAFD-5CFEA216B707}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B66EBE42-C5AC-4F86-8574-285DED3255DA}
+	EndGlobalSection
+EndGlobal

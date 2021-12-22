@@ -3,6 +3,12 @@ using System.Runtime.InteropServices;
 using System.Reflection;
 using System.IO;
 
+// Conversione VB6 to C# di "D:\Root\Computername\Kudapc\e\DOCUMENTI\myPrograms\Visual Basic 6\Kripter\UTILS_SO.bas"
+// Ad eccezione di 
+//    strOut = strOut + strListLV1(i) & vbTab & strListFD(j) + vbTab + KritpStr2(strListFD(j), strChiave) + vbCrLf
+// che per ora è 
+//   strOut = strOut + strListLV1(i) & vbTab & strListFD(j) + vbTab + strListFD(j) + vbCrLf
+
 namespace KR.NET
 {
     public class MOD_UTILS_SO
@@ -86,22 +92,17 @@ namespace KR.NET
             WIN32_FIND_DATA lpDett = new WIN32_FIND_DATA(); IntPtr hSearch, hNext, lngLastErr;
             Boolean bolTrovatoFile = true; string strFile = "";
             intNum = 0;
-            lngLastErr = GetLastError();
             string lpFileNameString = @"\\?\" + strDir + @"\*";
             lpFileNameString = @"\\?\" + strDir;
 
             IntPtr lpFileName = Marshal.StringToHGlobalAuto(lpFileNameString);
 
-            byte[] lpFileNameArray = new byte[lpFileNameString.Length];
-            Marshal.Copy(lpFileName, lpFileNameArray, 0, lpFileNameString.Length);
             hSearch = FindFirstFile(lpFileName, ref lpDett);
-            ///hSearch = FindFirstFile(Marshal.StringToHGlobalAnsi(strDir + "\\*.*"), ref lpDett);
             //Correzione BUG che non c'era
             Int32 hSearchValue = hSearch.ToInt32();
             if (hSearchValue < 0)
             {
                 bolTrovatoFile = false;
-                IntPtr errPtr = GetLastError();
 
             } else if (hSearch == IntPtr.Zero)
             {

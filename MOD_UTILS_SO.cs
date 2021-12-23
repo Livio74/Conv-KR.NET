@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Reflection;
 using System.IO;
+using System.Collections.Generic;
 
 // Conversione VB6 to C# di "D:\Root\Computername\Kudapc\e\DOCUMENTI\myPrograms\Visual Basic 6\Kripter\UTILS_SO.bas"
 // Ad eccezione di 
@@ -54,16 +55,10 @@ namespace KR.NET
         }
 
         [DllImport("kernel32.dll")]
-        static extern IntPtr FindFirstFile(IntPtr lpfilename, ref WIN32_FIND_DATA findfiledata);
-
-        [DllImport("kernel32.dll")]
         static extern IntPtr FindClose(IntPtr pff);
 
         [DllImport("kernel32.dll")]
         static extern IntPtr GetLastError();
-
-        [DllImport("kernel32.dll")]
-        static extern IntPtr FindNextFile(IntPtr hFindFile, ref WIN32_FIND_DATA lpFindFileData);
 
         [DllImport("kernel32.dll")]
         static extern IntPtr SetFileTime(IntPtr hFile, IntPtr MullP, FILETIME lpLastWriteTime);
@@ -89,40 +84,22 @@ namespace KR.NET
 
         public static void ListaFileEDirs(string strDir , string[] strLista , out int intNum)
         {
-            WIN32_FIND_DATA lpDett = new WIN32_FIND_DATA(); IntPtr hSearch, hNext, lngLastErr;
-            Boolean bolTrovatoFile = true; string strFile = "";
             intNum = 0;
-            string lpFileNameString = @"\\?\" + strDir + @"\*";
-            lpFileNameString = @"\\?\" + strDir;
-
-            IntPtr lpFileName = Marshal.StringToHGlobalAuto(lpFileNameString);
-
-            hSearch = FindFirstFile(lpFileName, ref lpDett);
-            //Correzione BUG che non c'era
-            Int32 hSearchValue = hSearch.ToInt32();
-            if (hSearchValue < 0)
+            string strDirWithSlash = strDir;
+            if (strDirWithSlash[strDirWithSlash.Length - 1] != '\\')
             {
-                bolTrovatoFile = false;
-
-            } else if (hSearch == IntPtr.Zero)
-            {
-                bolTrovatoFile = false;
+                strDirWithSlash += '\\';
             }
-            //Fine correzione
-            if (bolTrovatoFile)
-            {
-                while (bolTrovatoFile)
+            IEnumerable<String> fileDirList = Directory.GetFileSystemEntries(strDir, "*.*", SearchOption.TopDirectoryOnly);
+            foreach(String fileDirItem in fileDirList) {
+                if (fileDirItem.IndexOf(strDirWithSlash) == 0)
                 {
-                    strFile = lpDett.cFileName;
+                    strLista[intNum] = fileDirItem.Substring(strDirWithSlash.Length);
                     intNum = intNum + 1;
-                    strLista[intNum] = strFile;
-                    hNext = FindNextFile(hSearch, ref lpDett);
-                    if (hNext == IntPtr.Zero)
-                    {
-                        bolTrovatoFile = false;
-                    }
+                } else
+                {
+                    throw new Exception("File/Dir " + fileDirItem + " not contain base dir " + strDir);
                 }
-                FindClose(hSearch);
             }
         }
 

@@ -15,73 +15,6 @@ namespace KR.NET
     public class MOD_UTILS_SO
     {
 
-        const int MAX_PATH = 260;
-
-        const int GENERIC_WRITE = 0x40000000;
-        const int FILE_SHARE_READ = 1;
-        const int FILE_SHARE_WRITE = 2;
-        const uint OPEN_EXISTING = 2;
-
-        struct FILETIME
-        {
-            public int dwLowDateTime;
-            public int dwHighDateTime;
-        }
-
-        struct WIN32_FIND_DATA
-        {
-            public int dwFileAttributes;
-            public FILETIME ftCreationTime;
-            public FILETIME ftLastAccessTime;
-            public FILETIME ftLastWriteTime;
-            public int nFileSizeHigh;
-            public int nFileSizeLow;
-            public int dwReserved0;
-            public int dwReserved1;
-            public string cFileName; //mite need marshalling, TCHAR size = MAX_PATH???
-            public string cAlternateFileName; //mite need marshalling, TCHAR size = 14
-        }
-
-        struct SYSTEMTIME
-        {
-            public int wYear;
-            public int wMonth;
-            public int wDayOfWeek;
-            public int wDay;
-            public int wHour;
-            public int wMinute;
-            public int wSecond;
-            public int wMillisecs;
-        }
-
-        [DllImport("kernel32.dll")]
-        static extern IntPtr FindClose(IntPtr pff);
-
-        [DllImport("kernel32.dll")]
-        static extern IntPtr GetLastError();
-
-        [DllImport("kernel32.dll")]
-        static extern IntPtr SetFileTime(IntPtr hFile, IntPtr MullP, FILETIME lpLastWriteTime);
-
-        [DllImport("kernel32.dll")]
-        static extern IntPtr SystemTimeToFileTime(SYSTEMTIME lpSystemTime, FILETIME lpLastWriteTime);
-
-        [DllImport("kernel32.dll")]
-        static extern IntPtr LocalFileTimeToFileTime(FILETIME lpLocalFileTime, FILETIME lpFileTime);
-
-        [DllImport("kernel32.dll")]
-        static extern IntPtr CloseHandle(IntPtr hObject);
-
-        [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
-        public static extern IntPtr CreateFileA(
-             [MarshalAs(UnmanagedType.LPStr)] string filename,
-             [MarshalAs(UnmanagedType.U4)] FileAccess access,
-             [MarshalAs(UnmanagedType.U4)] FileShare share,
-             IntPtr securityAttributes,
-             [MarshalAs(UnmanagedType.U4)] FileMode creationDisposition,
-             [MarshalAs(UnmanagedType.U4)] FileAttributes flagsAndAttributes,
-             IntPtr templateFile);
-
         public static void ListaFileEDirs(string strDir , string[] strLista , out int intNum)
         {
             intNum = 0;
@@ -192,47 +125,21 @@ namespace KR.NET
         public static Boolean SetFileDateTime(string FileName , string TheDate)
         {
             Boolean setIt = false;
-            IntPtr lFileHnd, lRet;
-            if ("".Equals(FileName)) return false;
-            if (!(IsDate(TheDate)))  return false;
-            FILETIME typFileTime = new FILETIME();
-            FILETIME typLocalTime = new FILETIME();
-            SYSTEMTIME typSystemTime = new SYSTEMTIME();
-            DateTime now = new DateTime();
-            typSystemTime.wYear = now.Year;
-            typSystemTime.wMonth = now.Month;
-            typSystemTime.wDay = now.Day;
-            DayOfWeek nowDayOfWeek = now.DayOfWeek;
-            typSystemTime.wDayOfWeek = (int) nowDayOfWeek;
-            typSystemTime.wHour = now.Hour;
-            if (File.Exists(FileName))
+            DateTime DateOut = new DateTime();
+            setIt = DateTime.TryParse(TheDate, out DateOut);
+            if (setIt)
             {
-                lRet = SystemTimeToFileTime(typSystemTime, typLocalTime);
-                if (!(lRet == IntPtr.Zero))
+                try
                 {
-                    lRet = LocalFileTimeToFileTime(typLocalTime, typFileTime);
-                    if (!(lRet == IntPtr.Zero))
-                    {
-                        lFileHnd = CreateFileA(FileName, FileAccess.Write, FileShare.Read | FileShare.Write, IntPtr.Zero, FileMode.Open, FileAttributes.Normal, IntPtr.Zero);
-                        if (!(lFileHnd == IntPtr.Zero))
-                        {
-                            lRet = SetFileTime(lFileHnd, IntPtr.Zero, typFileTime);
-                            if (!(lRet == IntPtr.Zero))
-                            {
-                                CloseHandle(lFileHnd);
-                                setIt = true;
-                            }
-                        }
-                    }
+                    File.SetLastWriteTime(FileName, DateOut);
+                    setIt = true;
+                }
+                catch
+                {
+                    setIt = false;
                 }
             }
             return setIt;
-        }
-
-        private static Boolean IsDate(string TheDate)
-        {
-            DateTime DateOut = new DateTime();
-            return DateTime.TryParse(TheDate, out DateOut);
         }
     }
 

@@ -122,6 +122,7 @@ namespace KR.NET
             }
             return exists;
         }
+        //TODO : si potrebbe trasformare string FileName , Datetime TheDate
         public static Boolean SetFileDateTime(string FileName , string TheDate)
         {
             Boolean setIt = false;

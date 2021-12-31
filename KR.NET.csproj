@@ -53,6 +53,7 @@
       <DependentUpon>frmkr.cs</DependentUpon>
     </Compile>
     <Compile Include="kr.cs" />
+    <Compile Include="MOD_PRG_UTILS.cs" />
     <Compile Include="MOD_UTILS_SO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

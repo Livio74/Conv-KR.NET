@@ -1,10 +1,6 @@
 ﻿using KR.NET;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 
 namespace KRTest
 {
@@ -14,12 +10,25 @@ namespace KRTest
         [TestMethod]
         public void TestMethodKriptp()
         {
+            string key = "LIVIO";
             string strDirBase = "D:\\Root\\Working\\Kudalpt2019\\KRTest";
-            MOD_PRG_UTILS.Kriptp(strDirBase + "\\Tampone COVID19 2021 Documento_sanitario_FRNLVI74L08C573W_20210829130444.pdf" , "LIVIO");
+            string clearFilePathToElab = strDirBase + "\\Tampone COVID19 2021 Documento_sanitario_FRNLVI74L08C573W_20210829130444.pdf";
+            string clearFilePathExpected = strDirBase + "\\CryptDecrypt\\Tampone COVID19 2021 Documento_sanitario_FRNLVI74L08C573W_20210829130444.pdf";
+            string cryptedFilePathToElab = strDirBase + "\\lrhqixs DZ9GV0M 9K98 CTEpcsgfi_eEkoorcgi_Xs8P9GLèPBN6B27l_9N60KN7V0U158è.qrw";
+            string cryptedFilePathExpected = strDirBase + "\\CryptCrypt\\lrhqixs DZ9GV0M 9K98 CTEpcsgfi_eEkoorcgi_Xs8P9GLèPBN6B27l_9N60KN7V0U158è.qrw";
+            string cryptedFilePathOut = clearFilePathToElab + ".krp";
+
+            MOD_PRG_UTILS.Kriptp(clearFilePathToElab, key);
+            Assert.IsTrue(TestUtils.FilesAreEqual(cryptedFilePathToElab, cryptedFilePathExpected), "File " + cryptedFilePathToElab + " are not equals " + cryptedFilePathExpected);
+            MOD_PRG_UTILS.Kriptp(cryptedFilePathToElab, key);
+            Assert.IsTrue(TestUtils.FilesAreEqual(clearFilePathToElab, clearFilePathExpected), "File " + clearFilePathToElab + " are not equals " + clearFilePathExpected);
+            MOD_PRG_UTILS.Kriptp(clearFilePathToElab, key, cryptedFilePathOut);
+            Assert.IsTrue(TestUtils.FilesAreEqual(cryptedFilePathOut, cryptedFilePathExpected), "File " + cryptedFilePathOut + " are not equals " + cryptedFilePathExpected);
+            File.Delete(cryptedFilePathOut);
         }
 
         [TestMethod]
-        public void TestMethod()
+        public void TestMethodKritpStr2()
         {
             string fileNameEncryptedExpected = "lrhqixs DZ9GV0M 9K98 CTEpcsgfi_eEkoorcgi_Xs8P9GLèPBN6B27l_9N60KN7V0U158è.qrw";
             string fileNameEncryptedActual = MOD_PRG_UTILS.KritpStr2("Tampone COVID19 2021 Documento_sanitario_FRNLVI74L08C573W_20210829130444.pdf" , "LIVIO");

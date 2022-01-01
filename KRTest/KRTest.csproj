@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestUtils.cs" />
     <Compile Include="UnitTestModPrgUtils.cs" />
     <Compile Include="UnitTestModUtilsSo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -11,16 +11,15 @@ namespace KRTest
         [TestMethod]
         public void TestMethodListaFileEDirs()
         {
-            string strDirBase = "D:\\Root\\Working\\Kudalpt2019\\KRTest";
+            string strDirBase = "D:\\Root\\Working\\Kudalpt2019\\KRTest\\CryptDecrypt";
             string[] strListFD = new string[5000]; int intNumLV1 = 0;
             MOD_UTILS_SO.ListaFileEDirs(strDirBase, strListFD, out intNumLV1);
             Console.Out.WriteLine("Inizio Dir List : " + strDirBase);
-            Assert.AreEqual(5 , intNumLV1);
-            Assert.AreEqual("Crypt", strListFD[0]);
-            Assert.AreEqual("out.txt", strListFD[1]);
-            Assert.AreEqual("outCfr.txt", strListFD[2]);
-            Assert.AreEqual("UnitTestModUtilsSo.cs", strListFD[3]);
-            Assert.AreEqual("Varie.txt", strListFD[4]);
+            Assert.AreEqual(4 , intNumLV1);
+            Assert.AreEqual("Dir1", strListFD[0]);
+            Assert.AreEqual("klog.txt", strListFD[1]);
+            Assert.AreEqual("ListaMovimenti (1).xlsx", strListFD[2]);
+            Assert.AreEqual("Tampone COVID19 2021 Documento_sanitario_FRNLVI74L08C573W_20210829130444.pdf", strListFD[3]);
             for (int i = 0; i < intNumLV1; i++)
             {
                 Console.Out.WriteLine(strListFD[i]);
@@ -33,12 +32,11 @@ namespace KRTest
         public void TestMethodSalvaListaFile()
         {
             string DirBase = "D:\\Root\\Working\\Kudalpt2019\\KRTest\\";
-            string FileOut = DirBase + "out.txt";
-            string FileOutCfr = DirBase + "outCfr.txt";
-            MOD_UTILS_SO.SalvaListaFile(FileOut, DirBase + "Crypt\\", "", "klog.txt");
-            string FileOutString = File.ReadAllText(FileOut);
-            string FileOutCfrString = File.ReadAllText(FileOutCfr);
-            Assert.AreEqual(FileOutCfrString, FileOutString);
+            string FileOut = DirBase + "CryptDecrypt_FileList.txt";
+            string FileOutCfr = DirBase + "CryptDecrypt_FileList_Expected.txt";
+            string Chiave = "LIVIO";
+            MOD_UTILS_SO.SalvaListaFile(FileOut, DirBase + "CryptDecrypt", Chiave, "klog.txt");
+            Assert.IsTrue(TestUtils.FilesAreEqual(FileOut, FileOutCfr), "File " + FileOutCfr + " are not equals " + FileOutCfr);
         }
 
         [TestMethod]

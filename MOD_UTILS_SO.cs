@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Reflection;
 using System.IO;
 using System.Collections.Generic;
+using System.Text;
 
 // Conversione VB6 to C# di "D:\Root\Computername\Kudapc\e\DOCUMENTI\myPrograms\Visual Basic 6\Kripter\UTILS_SO.bas"
 // Ad eccezione di 
@@ -53,6 +54,9 @@ namespace KR.NET
             string[] strListLV1 = new string[5000]; int intNumLV1 = 0;
             string[] strListLV2 = new string[5000]; int intNumLV2 = 0;
             string[] strListFD = new string[5000]; int intNums = 0;
+            byte[] strOutUnicodeBytes = new byte[6000];
+            byte[] strOutAsciiBytes = new byte[3000];
+            Encoding iso88591 = Encoding.GetEncoding("ISO-8859-1");
             // 1. Inizializzazione
             string strOut = ""; int i = 0, j = 0;
             if (File.Exists(strFile)) {
@@ -62,6 +66,7 @@ namespace KR.NET
             // 2. Per ogni directory di un certo livello vengono generate le sottodirectory
             // -. e inserite nella lista di uscita lstListaDir ->lstFile
             // -. poi viene riportata in lstListaDir per il loop successivo
+            FileStream inOutFile = File.Open(strFile, FileMode.Create, FileAccess.Write);
             while (intNumLV1 > 0)
             {
                 //2.1 Genera file e dirs per tutte le dir di un livello i (0,1,2,..)
@@ -84,9 +89,14 @@ namespace KR.NET
                             {
                                 if (!(strListFD[j].Equals(strFileLog)))
                                 {
-                                    strOut = strOut + strListLV1[i] + "\t" + strListFD[j] + "\t" + strListFD[j] + "\r\n";
-                                    //TODO: 
-                                    //strOut = strOut + strListLV1[i] + "\t" + strListFD[j] + "\t" + KritpStr2(strListFD(j), strChiave) + "\r\n";
+                                    if (strListLV1[i].Equals(strDir))
+                                    {
+                                        strOut = strOut + strListLV1[i] + "\\\t" + strListFD[j] + "\t" + MOD_PRG_UTILS.KritpStr2(strListFD[j], strChiave) + "\r\n";
+                                    }
+                                    else
+                                    {
+                                        strOut = strOut + strListLV1[i] + "\t" + strListFD[j] + "\t" + MOD_PRG_UTILS.KritpStr2(strListFD[j], strChiave) + "\r\n";
+                                    }
                                 }
                             }
                         }
@@ -95,7 +105,9 @@ namespace KR.NET
                 //2.2 Eventuale salvataggio
                 if (strOut.Length > 30000)
                 {
-                    File.AppendAllText(strFile, strOut); strOut = "";
+                    strOutUnicodeBytes = Encoding.UTF8.GetBytes(strOut);
+                    strOutAsciiBytes = Encoding.Convert(Encoding.UTF8, iso88591, strOutUnicodeBytes);
+                    inOutFile.Write(strOutAsciiBytes, 0 , 3000);
                 }
                 //2.3 SUCC (Copia della lista di output come lista di input per il loop successivo
                 for(i=0; i < intNumLV2; i++)
@@ -106,8 +118,11 @@ namespace KR.NET
             }
             if (strOut.Length > 0)
             {
-                File.AppendAllText(strFile, strOut); strOut = "";
+                strOutUnicodeBytes = Encoding.UTF8.GetBytes(strOut);
+                strOutAsciiBytes = Encoding.Convert(Encoding.UTF8, iso88591, strOutUnicodeBytes);
+                inOutFile.Write(strOutAsciiBytes, 0, strOut.Length);
             }
+            inOutFile.Close();
         }
 
         public static Boolean ExistsFile(string strFile , string strDir = "")

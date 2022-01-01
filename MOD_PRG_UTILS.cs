@@ -41,11 +41,14 @@ namespace KR.NET
             char Ch;
             byte V; byte intLngChiave = 0;
             string Chars; byte byt;
+
             Chars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890èà";
             Chiave = Encoding.ASCII.GetBytes(strChiave);
             intLngChiave = (byte)strChiave.Length;
             strOut = "";
-            for (int i = 0; i < strChiave.Length; i++)
+
+
+            for (int i = 0; i < strNomeFile.Length; i++)
             {
                 Ch = strNomeFile[i];
                 if (Chars.Contains(Ch))
@@ -121,7 +124,7 @@ namespace KR.NET
             byte byt; int intPos; DateTime dtDataMod;
             FileStream inOutFile = null;
             FileStream outputFile = null;
-            if (X < 0) X = 0;
+            if (X < 0) X = 1; else X++;
             // 1. Conversione TXT->BIN e calcolo della lunghezza
             Chiave = Encoding.ASCII.GetBytes(strChiave);
             intLngChiave = (byte)strChiave.Length;
@@ -159,10 +162,11 @@ namespace KR.NET
             {
                 for (int i = 0; i < bytesRead; i++)
                 {
-                    GA_Buffer[i] = Krpt(GA_Buffer[i] , Chiave , intLngChiave , i);
+                    GA_Buffer[i] = Krpt(GA_Buffer[i] , Chiave , intLngChiave , i + 1);
                 }
                 if (outputFile == null)
                 {
+                    inOutFile.Seek(-bytesRead, SeekOrigin.Current);
                     inOutStream.Write(GA_Buffer, 0, bytesRead);
                 } else
                 {

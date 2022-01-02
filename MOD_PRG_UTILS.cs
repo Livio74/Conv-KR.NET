@@ -111,6 +111,15 @@ namespace KR.NET
             return strK;
         }
 
+        public static void setKey(out string strK, string strChiave)
+        {
+            DateTime dateNow = DateTime.Now;
+            int first = dateNow.Year + Convert.ToInt32(dateNow.ToString("ddyyyymm"));
+            int second = dateNow.Day * dateNow.Month;
+            strK = dateNow.ToString("yyyymmdd") + first.ToString("X") + second.ToString("X");
+            strK = KritpStr(strK, strChiave);
+        }
+
         public static void Kriptp(string strNomeFile , string strChiave , string strOut = "")
         {
             byte[] Chiave = new byte[256];

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace KR.NET
 {
@@ -108,26 +109,163 @@ namespace KR.NET
 
         public static void SetStato(string strDir)
         {
-            throw new NotImplementedException();
+            if (bolEsisteLog)
+            {
+                if (strDir[strDir.Length - 1] == '\\') strDir = strDir.Substring(0, strDir.Length - 1);
+                for (int i = 0; i < intNumDir; i++)
+                {
+                    if (strListaDir[i].Substring(0, strDir.Length - 4).Equals(strDir))
+                    {
+                        if (strListaDir[i][strListaDir[i].Length - 1] == 'E')
+                        {
+                            if (strListaDir[i][strListaDir[i].Length - 2] != 'K')
+                            {
+                                strListaDir[i] = strListaDir[i][strListaDir[i].Length - 4] + ":KE";
+                            } else
+                            {
+                                strListaDir[i] = strListaDir[i][strListaDir[i].Length - 4] + ":_E";
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                strListaDir[intNumDir] = strDir = ":KE";
+                intNumDir++;
+            }
         }
 
-        public static void RigeneraLog(string strChiave , string strDirRadice , string strLogFile)
+        public static void RigeneraLog(string strChiave , string strDirRadice , string strLogFile, string Kr_dirRadice)
         {
-            throw new NotImplementedException();
+            string[] strListLV1 = new string[5000]; int intNumLV1 = 0; //Lista directory livello i-1
+            string[] strListLV2 = new string[5000]; int intNumLV2 = 0; //Lista directory livello i
+            string[] strListFD = new string[5000]; int intNums = 0; //Lista dei files e delle dirs per una dir
+            int intTipo = 0; //Tipo(File, Directory o altro) per strListFD(i)
+            int i = 0, j = 0; string strDir = ""; string strS = "";
+            int intNum1 = 0;
+            //1. Salva Vecchio caricato
+            if (strDir[strDirRadice.Length - 1] == '\\') strDirRadice = strDirRadice.Substring(0, strDirRadice.Length - 1);
+            for (i = 0; i < intNumDir; i++)
+            {
+                strListaDirOld[i] = strListaDir[i];
+            }
+            intNum1 = intNumDir;
+            intNumDir = 0;
+            //2. Rigenera Log e controlla nei vecchi
+            if ("".Equals(strListaDirOld[0])) {
+                strDir = "";
+            } else if (Kr_dirRadice.Equals(strListaDirOld[0].Substring(0 , strListaDirOld[0].Length - 4)))
+            {
+                strDir = strDirRadice;
+            } else
+            {
+                strDir = "";
+            }
+            strListLV1[0] = strDirRadice: intNumLV1 = 1;
+            // 2.1 Per ogni directory di un certo livello vengono generate le sottodirectory
+            // -.- e inserite nella lista di uscita lstListaDir ->lstFile
+            // -.- poi viene riportata in lstListaDir per il loop successivo
+            while (intNumLV1 > 0)
+            {
+                //2.1 Genera file e dirs per tutte le dir di un livello i (0,1,2,..)
+                intNumLV2 = 0;
+                for (i = 0; i < intNumLV1; i++)
+                {
+                    intNums = 0;
+                    MOD_UTILS_SO.ListaFileEDirs(strListLV1[i], strListFD, out intNums);
+                    for (j = 0; j < intNums; j++)
+                    {
+                        FileAttributes attr = File.GetAttributes(strListLV1[i] + "\\" + strListFD[j]);
+                        if (strListFD[j].IndexOf(".") != 0)
+                        {
+                            if (attr.HasFlag(FileAttributes.Directory))
+                            {
+                                strListLV2[intNumLV2] = strListLV1[i] + "\\" + strListFD[j];
+                                intNumLV2++;
+                            }
+                        }
+                    }
+                }
+                //2.2 SUCC (Copia della lista di output come lista di input per il loop successivo
+                for (i = 0; i < intNumLV2; i++)
+                {
+                    strListLV1[i] = strListLV2[i];
+                }
+                intNumLV1 = intNumLV2;
+            }
+            SalvaLogFile(strChiave, strLogFile);
+            CaricaLogFile(strChiave, strLogFile);
         }
 
-        public static void LoadIntoList(Object lst , string StatoE, string StatoK)
+        public static void LoadIntoList(ListBox lst , string StatoE, string StatoK)
         {
-            throw new NotImplementedException();
+            lst.Items.Clear();
+            for (int i = 0; i < intNumDir; i++)
+            {
+                if ("".Equals(StatoK) || StatoK.Equals(strListaDir[i].Substring(strListaDir[i].Length - 2, strListaDir[i].Length - 1)))
+                {
+                    if ("".Equals(StatoE) || StatoE.Equals(strListaDir[i].Substring(strListaDir[i].Length - 1, strListaDir[i].Length)))
+                    {
+                        lst.Items.Add(strListaDir[i]);
+                    }
+                }
+            }
         }
 
         public static void CambiaStato(string strStatoE , string strStatoK , string strStatoNuovo, string strSubDir = "")
         {
-            throw new NotImplementedException();
+            string strStato1=""; int i = 0;
+            if ("".Equals(strSubDir))
+            {
+                for (i = 0; i < intNumDir; i ++)
+                {
+                    if ("".Equals(strStatoK) || strStatoK.Equals(strListaDir[i].Substring(strListaDir[i].Length - 2 , strListaDir[i].Length - 1)))
+                    {
+                        if ("".Equals(strStatoE) || strStatoE.Equals(strListaDir[i].Substring(strListaDir[i].Length - 1 , strListaDir[i].Length)))
+                        {
+                            if ("".Equals(strStatoNuovo))
+                            {
+                                strStato1 = strListaDir[i].Substring(strListaDir[i].Length - 1, strListaDir[i].Length);
+                                if ("D".Equals(strStato1)) strStato1 = "E"; else strStato1 = "D";
+                            }
+                            else
+                            {
+                                strStato1 = strStatoNuovo;
+                            }
+                            strListaDir[i] = strListaDir[i].Substring(0, strListaDir[i].Length - 2) + strStato1;
+                        }
+                    }
+                }
+            } else
+            {
+                for (i = 0; i < intNumDir; i++)
+                {
+                    if (strListaDir[i].IndexOf(strSubDir) >= 0)
+                    {
+                        if ("".Equals(strStatoNuovo))
+                        {
+                            strStato1 = strListaDir[i].Substring(strListaDir[i].Length - 1, strListaDir[i].Length);
+                            if ("D".Equals(strStato1)) strStato1 = "E"; else strStato1 = "D";
+                        }
+                        else
+                        {
+                            strStato1 = strStatoNuovo;
+                        }
+                        strListaDir[i] = strListaDir[i].Substring(0, strListaDir[i].Length - 2) + strStato1;
+                    }
+                }
+            }
         }
         public static void SetNewStato(string strDir , string strStatoK, string strStatoE)
         {
-            throw new NotImplementedException();
+            for (int i=0; i < intNumDir; i++)
+            {
+                if (strListaDir[i].Substring(0, strDir.Length - 4).Equals(strDir))
+                {
+                    strListaDir[i] = strListaDir[i].Substring(0, strDir.Length - 3) + strStatoK + strStatoE;
+                }
+            }
         }
     }
 }

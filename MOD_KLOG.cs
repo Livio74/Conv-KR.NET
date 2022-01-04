@@ -145,7 +145,7 @@ namespace KR.NET
             int i = 0, j = 0; string strDir = ""; string strS = "";
             int intNum1 = 0;
             //1. Salva Vecchio caricato
-            if (strDir[strDirRadice.Length - 1] == '\\') strDirRadice = strDirRadice.Substring(0, strDirRadice.Length - 1);
+            if (strDirRadice[strDirRadice.Length - 1] == '\\') strDirRadice = strDirRadice.Substring(0, strDirRadice.Length - 1);
             for (i = 0; i < intNumDir; i++)
             {
                 strListaDirOld[i] = strListaDir[i];
@@ -162,7 +162,7 @@ namespace KR.NET
             {
                 strDir = "";
             }
-            strListLV1[0] = strDirRadice: intNumLV1 = 1;
+            strListLV1[0] = strDirRadice; intNumLV1 = 1;
             // 2.1 Per ogni directory di un certo livello vengono generate le sottodirectory
             // -.- e inserite nella lista di uscita lstListaDir ->lstFile
             // -.- poi viene riportata in lstListaDir per il loop successivo

@@ -35,6 +35,13 @@ namespace KRTest
             Assert.AreEqual(fileNameEncryptedExpected, fileNameEncryptedActual);
         }
 
-        
+        [TestMethod]
+        public void TestMethodgetKey()
+        {
+            string strKey = "LIVIO";
+            string strDirBase = "D:\\Root\\Working\\Kudalpt2019\\KRTest";
+            string strGet = MOD_PRG_UTILS.getKey(strDirBase + "\\CryptCrypt\\klog.txt", strKey);
+            Assert.AreEqual("2B9O0725MaB7161P082KD", strGet);
+        }
     }
 }

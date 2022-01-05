@@ -17,15 +17,15 @@ namespace KR.NET
             string Chars; byte byt;
             Chars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890èà";
             Chiave = Encoding.ASCII.GetBytes(strChiave);
-            intLngChiave = (byte) strChiave.Length; intLngChiave++;
+            intLngChiave = (byte) strChiave.Length;
             strOut = "";
-            for (int i=0; i < strChiave.Length; i++)
+            for (int i = 0; i < strNomeFile.Length; i++)
             {
                 Ch = strNomeFile[i];
                 if (Chars.Contains(Ch))
                 {
                     byt = (byte) Chars.IndexOf(Ch);
-                    V = Krpt(byt, Chiave, intLngChiave, i - 1, 63);
+                    V = Krpt(byt, Chiave, intLngChiave, i, 63);
                     strOut += Chars[V];
                 } else
                 {

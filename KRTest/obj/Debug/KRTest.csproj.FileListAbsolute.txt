@@ -10,7 +10,6 @@ D:\Root\Repositories\Git Client\KR.NET\KRTest\bin\Debug\Microsoft.VisualStudio.T
 D:\Root\Repositories\Git Client\KR.NET\KRTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 D:\Root\Repositories\Git Client\KR.NET\KRTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 D:\Root\Repositories\Git Client\KR.NET\KRTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
-D:\Root\Repositories\Git Client\KR.NET\KRTest\obj\Debug\KRTest.csprojAssemblyReference.cache
 D:\Root\Repositories\Git Client\KR.NET\KRTest\obj\Debug\KRTest.csproj.CoreCompileInputs.cache
 D:\Root\Repositories\Git Client\KR.NET\KRTest\obj\Debug\KRTest.csproj.CopyComplete
 D:\Root\Repositories\Git Client\KR.NET\KRTest\obj\Debug\KRTest.dll
@@ -18,3 +17,4 @@ D:\Root\Repositories\Git Client\KR.NET\KRTest\obj\Debug\KRTest.pdb
 D:\Root\Repositories\Git Client\KR.NET\KRTest\bin\Debug\KR.NET.exe
 D:\Root\Repositories\Git Client\KR.NET\KRTest\bin\Debug\KR.NET.pdb
 D:\Root\Repositories\Git Client\KR.NET\KRTest\bin\Debug\KR.NET.exe.config
+D:\Root\Repositories\Git Client\KR.NET\KRTest\obj\Debug\KRTest.csproj.AssemblyReference.cache

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace KR.NET
 {
-    class MOD_KLOG
+    public class MOD_KLOG
     {
         private static string[] strListaDir = new string[30000];
         private static string[] strListaDirOld = new string[30000];

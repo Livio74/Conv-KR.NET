@@ -110,7 +110,7 @@ namespace KR.NET
             string strOut = "";
             if (m_ind < m_cnt)
             {
-                strOut = m_List[lngInd]
+                strOut = m_List[lngInd];
             }
             if (strOut[0] == '.')
             {

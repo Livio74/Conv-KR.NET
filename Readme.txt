@@ -7,3 +7,7 @@ https://www.codeproject.com/Articles/19688/In-C-Use-Win32-API-to-Enumerate-File-
 Altri
 http://pinvoke.net/default.aspx/kernel32/FindFirstFile.html?diff=y
 https://www.it-swarm.it/it/c%23/conteggio-dei-file-da-una-cartella/968400040/
+
+2B9O0725MaB7161P082KD
+2B9O0N250Ià1CGàBD
+2B9O0060Oè34DNàFP

@@ -11,13 +11,14 @@ namespace KR.NET
     {
         public static string KritpStr(string strNomeFile , string strChiave)
         {
-            byte[] Chiave = new byte[256]; string strOut;
+            byte[] Chiave = null; string strOut;
             char Ch; int X = 0;
             byte V; byte intLngChiave;
             string Chars; byte byt;
             Chars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890èà";
-            Chiave = Encoding.ASCII.GetBytes(strChiave);
-            intLngChiave = (byte) strChiave.Length;
+            Chiave = Encoding.ASCII.GetBytes("0" + strChiave);
+            intLngChiave = (byte) strChiave.Length; intLngChiave++;
+            Chiave[0] = 0;
             strOut = "";
             for (int i = 0; i < strNomeFile.Length; i++)
             {
@@ -44,7 +45,7 @@ namespace KR.NET
 
             Chars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890èà";
             Chiave = Encoding.ASCII.GetBytes(strChiave);
-            intLngChiave = (byte)strChiave.Length;
+            intLngChiave = (byte)strChiave.Length; 
             strOut = "";
 
 
@@ -96,6 +97,11 @@ namespace KR.NET
         public static byte Krpt(byte bytV, byte[] Chiave , byte byLngChiave , long lngPos, byte just = 255)
         {
             int intOut = bytV ^ ((Chiave[lngPos % byLngChiave] & just));
+            /*
+            byte bytV2 = Chiave[lngPos % byLngChiave] ;
+            bytV2 = (byte) (bytV2 & just);
+            int intOut = bytV ^ bytV2;
+            */
             byte bytOut = (byte)intOut;
             return bytOut;
         }
@@ -104,9 +110,9 @@ namespace KR.NET
         {
             string strK; DateTime dateX;
             dateX = File.GetLastWriteTime(strFIleLog);
-            int first = dateX.Year + Convert.ToInt32(dateX.ToString("ddyyyymm"));
+            int first = dateX.Year;
             int second = dateX.Day * dateX.Month;
-            strK = dateX.ToString("yyyymmdd") + first.ToString("X") + second.ToString("X");
+            strK = dateX.ToString("yyyyMMdd") + first.ToString("X") + dateX.ToString("ddyyyyMM") + second.ToString("X");
             strK = KritpStr(strK, strChiave);
             return strK;
         }
@@ -114,9 +120,9 @@ namespace KR.NET
         public static void setKey(out string strK, string strChiave)
         {
             DateTime dateNow = DateTime.Now;
-            int first = dateNow.Year + Convert.ToInt32(dateNow.ToString("ddyyyymm"));
+            int first = dateNow.Year;
             int second = dateNow.Day * dateNow.Month;
-            strK = dateNow.ToString("yyyymmdd") + first.ToString("X") + second.ToString("X");
+            strK = dateNow.ToString("yyyymmdd") + first.ToString("X") + dateNow.ToString("ddyyyyMM") + second.ToString("X");
             strK = KritpStr(strK, strChiave);
         }
 

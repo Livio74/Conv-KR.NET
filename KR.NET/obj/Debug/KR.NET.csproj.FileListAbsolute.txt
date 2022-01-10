@@ -7,3 +7,12 @@ D:\Root\Repositories\Git Client\KR.NET\obj\Debug\KR.NET.csproj.CoreCompileInputs
 D:\Root\Repositories\Git Client\KR.NET\obj\Debug\KR.NET.exe
 D:\Root\Repositories\Git Client\KR.NET\obj\Debug\KR.NET.pdb
 D:\Root\Repositories\Git Client\KR.NET\obj\Debug\KR.NET.csproj.AssemblyReference.cache
+D:\Root\Repositories\Git Client\KR.NET\KR.NET\bin\Debug\KR.NET.exe.config
+D:\Root\Repositories\Git Client\KR.NET\KR.NET\bin\Debug\KR.NET.exe
+D:\Root\Repositories\Git Client\KR.NET\KR.NET\bin\Debug\KR.NET.pdb
+D:\Root\Repositories\Git Client\KR.NET\KR.NET\obj\Debug\KR.NET.csproj.AssemblyReference.cache
+D:\Root\Repositories\Git Client\KR.NET\KR.NET\obj\Debug\KR.NET.Properties.Resources.resources
+D:\Root\Repositories\Git Client\KR.NET\KR.NET\obj\Debug\KR.NET.csproj.GenerateResource.cache
+D:\Root\Repositories\Git Client\KR.NET\KR.NET\obj\Debug\KR.NET.csproj.CoreCompileInputs.cache
+D:\Root\Repositories\Git Client\KR.NET\KR.NET\obj\Debug\KR.NET.exe
+D:\Root\Repositories\Git Client\KR.NET\KR.NET\obj\Debug\KR.NET.pdb

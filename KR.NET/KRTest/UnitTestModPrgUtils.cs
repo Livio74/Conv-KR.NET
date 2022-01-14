@@ -12,12 +12,14 @@ namespace KRTest
         {
             string key = "LIVIO";
             string strDirBase = "D:\\Root\\Working\\Kudalpt2019\\KRTest";
+            string clearFilePathToElabOrig = strDirBase + "\\Resources\\Tampone COVID19 2021 Documento_sanitario_FRNLVI74L08C573W_20210829130444.pdf";
             string clearFilePathToElab = strDirBase + "\\Tampone COVID19 2021 Documento_sanitario_FRNLVI74L08C573W_20210829130444.pdf";
             string clearFilePathExpected = strDirBase + "\\CryptDecrypt\\Tampone COVID19 2021 Documento_sanitario_FRNLVI74L08C573W_20210829130444.pdf";
             string cryptedFilePathToElab = strDirBase + "\\lrhqixs DZ9GV0M 9K98 CTEpcsgfi_eEkoorcgi_Xs8P9GLèPBN6B27l_9N60KN7V0U158è.qrw";
             string cryptedFilePathExpected = strDirBase + "\\CryptCrypt\\lrhqixs DZ9GV0M 9K98 CTEpcsgfi_eEkoorcgi_Xs8P9GLèPBN6B27l_9N60KN7V0U158è.qrw";
             string cryptedFilePathOut = clearFilePathToElab + ".krp";
 
+            File.Copy(clearFilePathToElabOrig, clearFilePathToElab);
             MOD_PRG_UTILS.Kriptp(clearFilePathToElab, key);
             Assert.IsTrue(TestUtils.FilesAreEqual(cryptedFilePathToElab, cryptedFilePathExpected), "File " + cryptedFilePathToElab + " are not equals " + cryptedFilePathExpected);
             MOD_PRG_UTILS.Kriptp(cryptedFilePathToElab, key);

@@ -26,7 +26,7 @@ namespace KRTest
         }
 
         [TestMethod]
-        public void TestMethodsCambiaStato()
+        public void TestMethodCambiaStato()
         {
             MOD_KLOG.CambiaStato("" , "" , "D");
             MOD_KLOG.LoadIntoList(lst, "", "");
@@ -40,6 +40,12 @@ namespace KRTest
             MOD_KLOG.CambiaStato("D", "_", "E");
             MOD_KLOG.LoadIntoList(lst, "", "");
             Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\Resources\\CryptCrypt_klog.txt"), TestUtils.LastMessage);
+            MOD_KLOG.CambiaStato("", "", "D" , @"D:\Root\Working\Kudalpt2019\KRTest\Crypt\Dir1");
+            MOD_KLOG.LoadIntoList(lst, "", "");
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\Resources\\CryptCrypt_Dir1_klog.txt"), TestUtils.LastMessage);
+            MOD_KLOG.CambiaStato("", "", "");
+            MOD_KLOG.LoadIntoList(lst, "", "");
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\Resources\\CryptCrypt_Dir1_cambio_klog.txt"), TestUtils.LastMessage);
         }
     }
 }

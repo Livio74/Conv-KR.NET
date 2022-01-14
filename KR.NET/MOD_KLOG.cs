@@ -244,7 +244,7 @@ namespace KR.NET
                         {
                             if ("".Equals(strStatoNuovo))
                             {
-                                strStato1 = strListaDir[i].Substring(strListaDir[i].Length - 1, strListaDir[i].Length);
+                                strStato1 = strListaDir[i].Substring(strListaDir[i].Length - 1, 1);
                                 if ("D".Equals(strStato1)) strStato1 = "E"; else strStato1 = "D";
                             }
                             else

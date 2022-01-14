@@ -238,9 +238,9 @@ namespace KR.NET
             {
                 for (i = 0; i < intNumDir; i ++)
                 {
-                    if ("".Equals(strStatoK) || strStatoK.Equals(strListaDir[i].Substring(strListaDir[i].Length - 2 , strListaDir[i].Length - 1)))
+                    if ("".Equals(strStatoK) || strStatoK.Equals(strListaDir[i].Substring(strListaDir[i].Length - 2 , 1)))
                     {
-                        if ("".Equals(strStatoE) || strStatoE.Equals(strListaDir[i].Substring(strListaDir[i].Length - 1 , strListaDir[i].Length)))
+                        if ("".Equals(strStatoE) || strStatoE.Equals(strListaDir[i].Substring(strListaDir[i].Length - 1 , 1)))
                         {
                             if ("".Equals(strStatoNuovo))
                             {
@@ -251,7 +251,7 @@ namespace KR.NET
                             {
                                 strStato1 = strStatoNuovo;
                             }
-                            strListaDir[i] = strListaDir[i].Substring(0, strListaDir[i].Length - 2) + strStato1;
+                            strListaDir[i] = strListaDir[i].Substring(0, strListaDir[i].Length - 1) + strStato1;
                         }
                     }
                 }
@@ -263,14 +263,14 @@ namespace KR.NET
                     {
                         if ("".Equals(strStatoNuovo))
                         {
-                            strStato1 = strListaDir[i].Substring(strListaDir[i].Length - 1, strListaDir[i].Length);
+                            strStato1 = strListaDir[i].Substring(strListaDir[i].Length - 1, 1);
                             if ("D".Equals(strStato1)) strStato1 = "E"; else strStato1 = "D";
                         }
                         else
                         {
                             strStato1 = strStatoNuovo;
                         }
-                        strListaDir[i] = strListaDir[i].Substring(0, strListaDir[i].Length - 2) + strStato1;
+                        strListaDir[i] = strListaDir[i].Substring(0, strListaDir[i].Length - 1) + strStato1;
                     }
                 }
             }

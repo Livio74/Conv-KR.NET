@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows.Forms;
 
 namespace KRTest
 {
@@ -7,8 +8,13 @@ namespace KRTest
     {
         const int BYTES_TO_READ = sizeof(Int64);
 
+        private static string lastMessage = "";
+
+        public static string LastMessage { get => lastMessage; }
+
         public static bool FilesAreEqual(string firstFilePath, string secondFilePath)
         {
+            lastMessage = "";
             FileInfo first = new FileInfo(firstFilePath);
             FileInfo second = new FileInfo(secondFilePath);
             if (first.Length != second.Length)
@@ -33,6 +39,45 @@ namespace KRTest
                 }
             }
             return true;
+        }
+
+        public static bool CheckListBoxWithTextFile(ListBox lst , string comparingFilePath)
+        {
+            bool isEqual = false;
+            string [] fileLines = File.ReadAllLines(comparingFilePath);
+            if (fileLines.Length == lst.Items.Count)
+            {
+                int i = 0; isEqual = true;
+                string listItem = "";
+                while (i < fileLines.Length && isEqual)
+                {
+                    if (lst.Items[i] is String)
+                    {
+                        listItem = (string)lst.Items[i];
+                        if (listItem.Equals(fileLines[i]))
+                        {
+                            i++;
+                        }
+                        else
+                        {
+                            isEqual = false;
+                        }
+                    } else
+                    {
+                        listItem = "NOT STRING: " + lst.Items[i].ToString();
+                        isEqual = false;
+                    }
+                } 
+                if (!isEqual)
+                {
+                    lastMessage = String.Format("element {0} not equals between file line {1} and ListBox element {2}", i, fileLines[i], listItem);
+                }
+            } else
+            {
+                isEqual = false;
+                lastMessage = String.Format("listBox elements count {0} not equals to file lines count {1}" , lst.Items.Count, fileLines.Length);
+            }
+            return isEqual;
         }
     }
 }

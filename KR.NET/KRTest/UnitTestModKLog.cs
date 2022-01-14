@@ -7,18 +7,39 @@ namespace KRTest
     [TestClass]
     public class UnitTestModKLog
     {
-        [TestMethod]
-        public void TestMethodsLoadFileAndListBox() {
-            string key = "LIVIO";
-            string strDirBase = "D:\\Root\\Working\\Kudalpt2019\\KRTest";
-            ListBox lst = new ListBox();
+        string key = "LIVIO";
+        string strDirBase = "D:\\Root\\Working\\Kudalpt2019\\KRTest";
+        ListBox lst = new ListBox();
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
             string strkey = MOD_KLOG.CaricaLogFile(key, strDirBase + "\\CryptCrypt\\klog.txt");
             Assert.AreNotEqual("", strkey);
+        }
+
+        [TestMethod]
+        public void TestMethodsLoadFileAndListBox()
+        {
             MOD_KLOG.LoadIntoList(lst, "", "");
-            Assert.AreEqual(3, lst.Items.Count);
-            Assert.AreEqual(strDirBase + @"\Crypt:KE", lst.Items[0]);
-            Assert.AreEqual(strDirBase + @"\Crypt\Dir1:KE", lst.Items[1]);
-            Assert.AreEqual(strDirBase + @"\Crypt\Dir1\Dir2:KE", lst.Items[2]);
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\Resources\\CryptCrypt_klog.txt") , TestUtils.LastMessage);
+        }
+
+        [TestMethod]
+        public void TestMethodsCambiaStato()
+        {
+            MOD_KLOG.CambiaStato("" , "" , "D");
+            MOD_KLOG.LoadIntoList(lst, "", "");
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\Resources\\CryptCrypt_ALLD_klog.txt"), TestUtils.LastMessage);
+            MOD_KLOG.CambiaStato("D", "K", "E");
+            MOD_KLOG.LoadIntoList(lst, "", "");
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\Resources\\CryptCrypt_klog.txt"), TestUtils.LastMessage);
+            MOD_KLOG.CambiaStato("D", "K", "E");
+            MOD_KLOG.LoadIntoList(lst, "", "");
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\Resources\\CryptCrypt_klog.txt"), TestUtils.LastMessage);
+            MOD_KLOG.CambiaStato("D", "_", "E");
+            MOD_KLOG.LoadIntoList(lst, "", "");
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\Resources\\CryptCrypt_klog.txt"), TestUtils.LastMessage);
         }
     }
 }

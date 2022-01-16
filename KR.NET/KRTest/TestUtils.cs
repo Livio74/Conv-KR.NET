@@ -80,11 +80,5 @@ namespace KRTest
             }
             return isEqual;
         }
-
-        [TestInitialize]
-        static void Main()
-        {
-            Console.WriteLine("PROVA");
-        }
     }
 }

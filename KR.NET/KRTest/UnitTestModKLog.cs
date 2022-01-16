@@ -47,5 +47,13 @@ namespace KRTest
             MOD_KLOG.LoadIntoList(lst, "", "");
             Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\Resources\\CryptCrypt_Dir1_cambio_klog.txt"), TestUtils.LastMessage);
         }
+
+        [TestMethod]
+        public void TestMethodIsStato()
+        {
+            MOD_KLOG.LoadIntoList(lst, "", "");
+            string stato = MOD_KLOG.IsStato(@"D:\Root\Working\Kudalpt2019\KRTest\Crypt\Dir1");
+            Assert.AreEqual("E" ,stato);
+        }
     }
 }

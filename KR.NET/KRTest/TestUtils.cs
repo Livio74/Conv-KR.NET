@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -78,6 +79,12 @@ namespace KRTest
                 lastMessage = String.Format("listBox elements count {0} not equals to file lines count {1}" , lst.Items.Count, fileLines.Length);
             }
             return isEqual;
+        }
+
+        [TestInitialize]
+        static void Main()
+        {
+            Console.WriteLine("PROVA");
         }
     }
 }

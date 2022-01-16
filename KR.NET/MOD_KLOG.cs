@@ -113,7 +113,7 @@ namespace KR.NET
                 if (strDir[strDir.Length - 1] == '\\') strDir = strDir.Substring(0, strDir.Length - 1);
                 for (i = 0; i < intNumDir; i++)
                 {
-                    if (strListaDir[i].Substring(0 , strDir.Length - 4).ToUpper().Equals(strDir.ToUpper()) )
+                    if (strListaDir[i].Substring(0 , strListaDir[i].Length - 3).ToUpper().Equals(strDir.ToUpper()) )
                     {
                         strTemp = strListaDir[i].Substring(strListaDir[i].Length - 1);
                     }

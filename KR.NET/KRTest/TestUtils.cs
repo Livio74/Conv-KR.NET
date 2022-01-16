@@ -80,5 +80,105 @@ namespace KRTest
             }
             return isEqual;
         }
+
+        public static bool CopyDirectory(string sourceDir, string destinationDir, bool recursive)
+        {
+            // Get information about the source directory
+            var dir = new DirectoryInfo(sourceDir);
+
+            // Check if the source directory exists
+            if (!dir.Exists)
+                throw new DirectoryNotFoundException($"Source directory not found: {dir.FullName}");
+
+            // Cache directories before we start copying
+            DirectoryInfo[] dirs = dir.GetDirectories();
+
+            // Create the destination directory
+            Directory.CreateDirectory(destinationDir);
+
+            // Get the files in the source directory and copy to the destination directory
+            foreach (FileInfo file in dir.GetFiles())
+            {
+                string targetFilePath = Path.Combine(destinationDir, file.Name);
+                file.CopyTo(targetFilePath);
+            }
+
+            // If recursive and copying subdirectories, recursively call this method
+            if (recursive)
+            {
+                foreach (DirectoryInfo subDir in dirs)
+                {
+                    string newDestinationDir = Path.Combine(destinationDir, subDir.Name);
+                    CopyDirectory(subDir.FullName, newDestinationDir, true);
+                }
+            }
+            return true;
+        }
+
+        public static bool CopyDirectoryWithExclude(string sourceDir, string destinationDir, string exceptionList)
+        {
+            return CopyDirectoryWithExclude(sourceDir, destinationDir, exceptionList, sourceDir);
+        }
+        
+        private static bool CopyDirectoryWithExclude(string sourceDir, string destinationDir, string exceptionList, string sourceDirRoot)
+        {
+            // Get information about the source directory
+            var dir = new DirectoryInfo(sourceDir);
+
+            // Check if the source directory exists
+            if (!dir.Exists)
+                throw new DirectoryNotFoundException($"Source directory not found: {dir.FullName}");
+
+            // Cache directories before we start copying
+            DirectoryInfo[] dirs = dir.GetDirectories();
+
+            // Create the destination directory
+            Directory.CreateDirectory(destinationDir);
+
+            // Get the files in the source directory and copy to the destination directory
+            foreach (FileInfo file in dir.GetFiles())
+            {
+                string targetFilePath = Path.Combine(destinationDir, file.Name);
+                if (IsNotExcluded(file.FullName, exceptionList, sourceDirRoot)) file.CopyTo(targetFilePath);
+            }
+
+            // If recursive and copying subdirectories, recursively call this method
+            foreach (DirectoryInfo subDir in dirs)
+            {
+                string newDestinationDir = Path.Combine(destinationDir, subDir.Name);
+                if (IsNotExcluded(subDir.FullName, exceptionList, sourceDirRoot))
+                    CopyDirectoryWithExclude(subDir.FullName, newDestinationDir, exceptionList , sourceDirRoot);
+            }
+            return true;
+        }
+
+        private static bool IsNotExcluded(string fullpath, string exceptionList, string sourceDirRoot)
+        {
+            bool excluded = false;
+            foreach (string exceptionString in exceptionList.Split(','))
+            {
+                if (fullpath.IndexOf(sourceDirRoot + "\\" + exceptionString) == 0) excluded = true;
+            }
+            return !excluded;
+        }
+
+        public static string ProjectDir()
+        {
+            string workingDirectory = Environment.CurrentDirectory;
+            // or: Directory.GetCurrentDirectory() gives the same result
+
+            // This will get the current PROJECT bin directory (ie ../bin/)
+            string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
+
+            // This will get the current PROJECT directory
+            projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+
+            return projectDirectory;
+        }
+
+        public static string VB6ProjectDir()
+        {
+            return Directory.GetParent(ProjectDir()).FullName + "\\Kripter";
+        }
     }
 }

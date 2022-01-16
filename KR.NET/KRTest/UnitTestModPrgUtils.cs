@@ -14,7 +14,6 @@ namespace KRTest
         public void TestMethodKriptp()
         {
             string key = "LIVIO";
-            ///string strDirBase = "D:\\Root\\Working\\Kudalpt2019\\KRTest";
             string strDirBase = (string) TestContext.Properties["WorkTestRoot"];
             string clearFilePathToElabOrig = strDirBase + "\\Resources\\Tampone COVID19 2021 Documento_sanitario_FRNLVI74L08C573W_20210829130444.pdf";
             string clearFilePathToElab = strDirBase + "\\Tampone COVID19 2021 Documento_sanitario_FRNLVI74L08C573W_20210829130444.pdf";

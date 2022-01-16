@@ -160,6 +160,10 @@ Public Function ExistsFile(strFile As String, Optional strDir As String = "") As
     End If
 End Function
 
+Public Function ExistsDir(strDir As String) As Boolean
+    ExistsDir = Len(Dir(strDir + "\*.*")) > 0
+End Function
+
 Public Function SetFileDateTime(ByVal FileName As String, ByVal TheDate As String) As Boolean
     '************************************************
     'PURPOSE:    Set File Date (and optionally time)

@@ -1,14 +1,14 @@
 VERSION 5.00
 Begin VB.Form minKR 
    Caption         =   "KR"
-   ClientHeight    =   564
-   ClientLeft      =   48
-   ClientTop       =   336
-   ClientWidth     =   4764
+   ClientHeight    =   570
+   ClientLeft      =   45
+   ClientTop       =   330
+   ClientWidth     =   4770
    Icon            =   "minKR.frx":0000
    LinkTopic       =   "Form1"
-   ScaleHeight     =   564
-   ScaleWidth      =   4764
+   ScaleHeight     =   570
+   ScaleWidth      =   4770
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton btnEsci 
       Caption         =   "&Esci"
@@ -63,21 +63,34 @@ Private Sub btnVai_Click()
     EseguiConKLog
 End Sub
 
+Private Sub Form_Activate()
+    If txtChiave.Text <> "" Then
+        Esegui
+    End If
+End Sub
+
 Private Sub Form_Load()
     ManageControls False
+    If G_strChiave <> "" Then
+        txtChiave = G_strChiave
+    End If
 End Sub
 
 Private Sub txtChiave_KeyPress(KeyAscii As Integer)
     Dim strS As String
     If KeyAscii = 13 Then
-        strS = txtChiave
-        strS = CaricaLogFile(strS, G_strFileLog)
-        If Len(strS) > 0 Then
-            RigeneraLog strS, G_strDirRoot, G_strFileLog
-            EseguiConKLog
-        Else
-            MsgBox "Chiave inserita non corretta", vbCritical
-        End If
+        Esegui
+    End If
+End Sub
+
+Private Sub Esegui()
+    strS = txtChiave
+    strS = CaricaLogFile(strS, G_strFileLog)
+    If Len(strS) > 0 Then
+        RigeneraLog strS, G_strDirRoot, G_strFileLog
+        EseguiConKLog
+    Else
+        MsgBox "Chiave inserita non corretta", vbCritical
     End If
 End Sub
 

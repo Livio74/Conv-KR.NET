@@ -1,5 +1,5 @@
 Attribute VB_Name = "INVKEY"
-
+Public G_strErr As String
 
 Public Function reverseKey(strFileLog As String, bAdd64 As Boolean) As String
     Dim strK As String, dateX As Date, strCriptKey As String

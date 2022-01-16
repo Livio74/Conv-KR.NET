@@ -1,7 +1,11 @@
 Type=Exe
 Form=frmKrUtils.frm
-Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#C:\WINNT\system32\STDOLE2.TLB#OLE Automation
+Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\WINNT\system32\stdole2.tlb#OLE Automation
 Module=PRG_UTILS; PRG_UTILS.bas
+Module=INVKEY; INVKEY.bas
+Module=UTILS_SO; UTILS_SO.bas
+Module=XML; XML.bas
+IconForm="frmKrUtils"
 Startup="frmKrUtils"
 ExeName32="KR_UTILS.exe"
 Command32=""

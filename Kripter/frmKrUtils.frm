@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin VB.Form frmKrUtils 
    Caption         =   "KR Utility"
-   ClientHeight    =   984
-   ClientLeft      =   48
-   ClientTop       =   348
-   ClientWidth     =   10356
+   ClientHeight    =   990
+   ClientLeft      =   45
+   ClientTop       =   345
+   ClientWidth     =   10365
    LinkTopic       =   "Form1"
-   ScaleHeight     =   984
-   ScaleWidth      =   10356
+   ScaleHeight     =   990
+   ScaleWidth      =   10365
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton btnEsci 
       Caption         =   "&Esci"
@@ -62,6 +62,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+
 Private Sub btnEsci_Click()
     Unload Me
 End Sub
@@ -76,7 +77,7 @@ Private Sub btnOK_Click()
         Open strLog For Input As #1
         Line Input #1, strS
         Close #1
-        txtPWD.Text = InvKript(Format(dateM, "yyyymmdd") + Hex(Year(dateM)) + Format(dateM, "ddyyyymm") + Hex(Day(dateM) * Month(dateM)), strS)
+        txtPWD.Text = InvKript(Format(dateM, "yyyymmdd") + Hex(Year(dateM)) + Format(dateM, "ddyyyymm") + Hex(Day(dateM) * Month(dateM)), strS, False)
     Else
         MsgBox "Not KR", vbCritical
     End If

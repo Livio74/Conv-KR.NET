@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using KR.NET;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -179,6 +180,39 @@ namespace KRTest
         public static string VB6ProjectDir()
         {
             return Directory.GetParent(ProjectDir()).FullName + "\\Kripter";
+        }
+
+        public static bool copyKLog(string klogResourceFile , string klogDestinationFile , string rootDir, string dateKLog, string status, bool includeKriptedkey)
+        {
+            string[] klogResourcesList = File.ReadAllLines(klogResourceFile);
+            Assert.AreNotEqual(0, klogResourcesList.Length);
+            string[] klogFileList;
+            if (includeKriptedkey)
+                klogFileList = new string[klogResourcesList.Length];
+            else
+                klogFileList = new string[klogResourcesList.Length - 1];
+            for (int i = 0; i < klogResourcesList.Length; i++)
+            {
+                if (i == 0)
+                {
+                    if (includeKriptedkey)
+                        klogFileList[i] = "\"" + klogResourcesList[i] + "\"";
+                } else if (i == 1) { 
+                    if (includeKriptedkey)
+                        klogFileList[i] = "\"" + rootDir + ":" + status + "\"";
+                    else
+                        klogFileList[i - 1] = "\"" + rootDir + ":" + status + "\"";
+                } else
+                {
+                    if (includeKriptedkey)
+                        klogFileList[i] = "\"" + rootDir + klogResourcesList[i].Substring(1) + ":" + status + "\"";
+                    else
+                        klogFileList[i - 1] = "\"" + rootDir + klogResourcesList[i].Substring(1) + ":" + status + "\"";
+                }
+            }
+            File.WriteAllLines(klogDestinationFile, klogFileList);
+            bool setit = MOD_UTILS_SO.SetFileDateTime(klogDestinationFile, dateKLog);
+            return setit;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace KRTest
         string strDirBaseCrypt = null;
         string dateKLog = null;
         string testKey = null;
+        string klogKey = null;
 
         [TestInitialize]
         public void TestInitialize()
@@ -24,6 +25,7 @@ namespace KRTest
             strDirBaseCrypt = strDirBase + "\\CryptDir";
             dateKLog = (string)TestContext.Properties["klogDate"];
             testKey = (string)TestContext.Properties["testKey"];
+            klogKey = (string)TestContext.Properties["klogKey"];
         }
 
         [TestMethod]
@@ -61,7 +63,7 @@ namespace KRTest
         {
             string workKLog = strDirBase + "\\CryptDir\\klog.txt";
             string strGet = MOD_PRG_UTILS.getKey(workKLog, this.testKey);
-            Assert.AreEqual("2B9P1813MaV8761P9N150", strGet);
+            Assert.AreEqual(klogKey, strGet);
         }
     }
 }

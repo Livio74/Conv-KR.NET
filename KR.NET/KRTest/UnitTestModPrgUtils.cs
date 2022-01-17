@@ -31,21 +31,20 @@ namespace KRTest
         [TestMethod]
         public void TestMethodKriptp()
         {
-            string key = "LIVIO";
             string strDirBase = (string) TestContext.Properties["WorkTestRoot"];
-            string clearFilePathToElabOrig = strDirBase + "\\Resources\\Tampone COVID19 2021 Documento_sanitario_FRNLVI74L08C573W_20210829130444.pdf";
-            string clearFilePathToElab = strDirBase + "\\Tampone COVID19 2021 Documento_sanitario_FRNLVI74L08C573W_20210829130444.pdf";
-            string clearFilePathExpected = strDirBase + "\\CryptDecrypt\\Tampone COVID19 2021 Documento_sanitario_FRNLVI74L08C573W_20210829130444.pdf";
-            string cryptedFilePathToElab = strDirBase + "\\lrhqixs DZ9GV0M 9K98 CTEpcsgfi_eEkoorcgi_Xs8P9GLèPBN6B27l_9N60KN7V0U158è.qrw";
-            string cryptedFilePathExpected = strDirBase + "\\CryptCrypt\\lrhqixs DZ9GV0M 9K98 CTEpcsgfi_eEkoorcgi_Xs8P9GLèPBN6B27l_9N60KN7V0U158è.qrw";
+            string clearFilePathToElabOrig = strDirBase + "\\ClearDir\\KR.NET\\KR.NET.csproj";
+            string clearFilePathToElab = strDirBase + "\\KR.NET.csproj";
+            string clearFilePathExpected = clearFilePathToElabOrig;
+            string cryptedFilePathToElab = strDirBase + "\\Fx.8zl.reuhwu";
+            string cryptedFilePathExpected = strDirBase + "\\CryptDir\\KR.NET\\Fx.8zl.reuhwu";
             string cryptedFilePathOut = clearFilePathToElab + ".krp";
 
             File.Copy(clearFilePathToElabOrig, clearFilePathToElab);
-            MOD_PRG_UTILS.Kriptp(clearFilePathToElab, key);
+            MOD_PRG_UTILS.Kriptp(clearFilePathToElab, testKey);
             Assert.IsTrue(TestUtils.FilesAreEqual(cryptedFilePathToElab, cryptedFilePathExpected), "File " + cryptedFilePathToElab + " are not equals " + cryptedFilePathExpected);
-            MOD_PRG_UTILS.Kriptp(cryptedFilePathToElab, key);
+            MOD_PRG_UTILS.Kriptp(cryptedFilePathToElab, testKey);
             Assert.IsTrue(TestUtils.FilesAreEqual(clearFilePathToElab, clearFilePathExpected), "File " + clearFilePathToElab + " are not equals " + clearFilePathExpected);
-            MOD_PRG_UTILS.Kriptp(clearFilePathToElab, key, cryptedFilePathOut);
+            MOD_PRG_UTILS.Kriptp(clearFilePathToElab, testKey, cryptedFilePathOut);
             Assert.IsTrue(TestUtils.FilesAreEqual(cryptedFilePathOut, cryptedFilePathExpected), "File " + cryptedFilePathOut + " are not equals " + cryptedFilePathExpected);
             File.Delete(cryptedFilePathOut);
         }
@@ -53,15 +52,15 @@ namespace KRTest
         [TestMethod]
         public void TestMethodKritpStr2()
         {
-            string fileNameEncryptedExpected = "lrhqixs DZ9GV0M 9K98 CTEpcsgfi_eEkoorcgi_Xs8P9GLèPBN6B27l_9N60KN7V0U158è.qrw";
-            string fileNameEncryptedActual = MOD_PRG_UTILS.KritpStr2("Tampone COVID19 2021 Documento_sanitario_FRNLVI74L08C573W_20210829130444.pdf" , "LIVIO");
+            string fileNameEncryptedExpected = "Fx.8zl.reuhwu";
+            string fileNameEncryptedActual = MOD_PRG_UTILS.KritpStr2("KR.NET.csproj", "LIVIO");
             Assert.AreEqual(fileNameEncryptedExpected, fileNameEncryptedActual);
         }
 
         [TestMethod]
         public void TestMethodgetKey()
         {
-            string workKLog = strDirBase + "\\CryptDir\\klog.txt";
+            string workKLog = strDirBase + "\\klog.txt";
             string strGet = MOD_PRG_UTILS.getKey(workKLog, this.testKey);
             Assert.AreEqual(klogKey, strGet);
         }

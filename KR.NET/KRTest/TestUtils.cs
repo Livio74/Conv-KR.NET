@@ -182,32 +182,32 @@ namespace KRTest
             return Directory.GetParent(ProjectDir()).FullName + "\\Kripter";
         }
 
-        public static bool copyKLog(string klogResourceFile , string klogDestinationFile , string rootDir, string dateKLog, string status, bool includeKriptedkey)
+        public static bool copyKLog(string klogResourceFile , string klogDestinationFile , string rootDir, string dateKLog, string status, string klogdKey)
         {
             string[] klogResourcesList = File.ReadAllLines(klogResourceFile);
             Assert.AreNotEqual(0, klogResourcesList.Length);
             string[] klogFileList;
-            if (includeKriptedkey)
+            if ("".Equals(klogdKey))
                 klogFileList = new string[klogResourcesList.Length];
             else
-                klogFileList = new string[klogResourcesList.Length - 1];
+            {
+                klogFileList = new string[klogResourcesList.Length + 1];
+                klogFileList[0] = "\"" + klogdKey + "\"";
+            }
             for (int i = 0; i < klogResourcesList.Length; i++)
             {
                 if (i == 0)
                 {
-                    if (includeKriptedkey)
-                        klogFileList[i] = "\"" + klogResourcesList[i] + "\"";
-                } else if (i == 1) { 
-                    if (includeKriptedkey)
+                    if ("".Equals(klogdKey))
                         klogFileList[i] = "\"" + rootDir + ":" + status + "\"";
                     else
-                        klogFileList[i - 1] = "\"" + rootDir + ":" + status + "\"";
+                        klogFileList[i + 1] = "\"" + rootDir + ":" + status + "\"";
                 } else
                 {
-                    if (includeKriptedkey)
+                    if ("".Equals(klogdKey))
                         klogFileList[i] = "\"" + rootDir + klogResourcesList[i].Substring(1) + ":" + status + "\"";
                     else
-                        klogFileList[i - 1] = "\"" + rootDir + klogResourcesList[i].Substring(1) + ":" + status + "\"";
+                        klogFileList[i + 1] = "\"" + rootDir + klogResourcesList[i].Substring(1) + ":" + status + "\"";
                 }
             }
             File.WriteAllLines(klogDestinationFile, klogFileList);

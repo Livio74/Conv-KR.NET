@@ -4,6 +4,6 @@
     <Parameter name="WorkTestRoot" value="D:\Root\Working\Kudalpt2019\KRTest"/>
     <Parameter name="klogDate" value="16/01/2022"/>
     <Parameter name="testKey" value="LIVIO"/>
-    <Parameter name="klogKey" value="2B9P1813MaV8761P9N150"/>
+    <Parameter name="klogKey" value="2B9P1812MaV8661P9N151"/>
   </TestRunParameters>
 </RunSettings>

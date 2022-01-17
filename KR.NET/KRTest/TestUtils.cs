@@ -182,7 +182,7 @@ namespace KRTest
             return Directory.GetParent(ProjectDir()).FullName + "\\Kripter";
         }
 
-        public static bool copyKLog(string klogResourceFile , string klogDestinationFile , string rootDir, string dateKLog, string status, string klogdKey = "")
+        public static bool copyKLog(string klogResourceFile , string klogDestinationFile , string rootDir, string dateKLog, string status, string klogdKey = "", string status2 = "", string status3 = "", string status4 = "")
         {
             string[] klogResourcesList = File.ReadAllLines(klogResourceFile);
             Assert.AreNotEqual(0, klogResourcesList.Length);
@@ -196,18 +196,40 @@ namespace KRTest
             }
             for (int i = 0; i < klogResourcesList.Length; i++)
             {
-                if (i == 0)
+                if ("".Equals(status2))
                 {
-                    if ("".Equals(klogdKey))
-                        klogFileList[i] = rootDir + ":" + status;
+                    if (i == 0)
+                    {
+                        if ("".Equals(klogdKey))
+                            klogFileList[i] = rootDir + ":" + status;
+                        else
+                            klogFileList[i + 1] = "\"" + rootDir + ":" + status + "\"";
+                    }
                     else
-                        klogFileList[i + 1] = "\"" + rootDir + ":" + status + "\"";
+                    {
+                        if ("".Equals(klogdKey))
+                            klogFileList[i] = rootDir + klogResourcesList[i] + ":" + status;
+                        else
+                            klogFileList[i + 1] = "\"" + rootDir + klogResourcesList[i] + ":" + status + "\"";
+                    }
                 } else
                 {
+                    string newItem = klogResourcesList[i].Replace(":1", ":" + status);
+                    newItem = newItem.Replace(":2", ":" + status2);
+                    newItem = newItem.Replace(":3", ":" + status3);
+                    newItem = newItem.Replace(":4", ":" + status4);
+                    if (i == 0)
+                    {
+                        newItem = rootDir + newItem.Substring(1);
+                    } else
+                    {
+                        newItem = rootDir + newItem;
+
+                    }
                     if ("".Equals(klogdKey))
-                        klogFileList[i] = rootDir + klogResourcesList[i] + ":" + status;
+                        klogFileList[i] = newItem;
                     else
-                        klogFileList[i + 1] = "\"" + rootDir + klogResourcesList[i] + ":" + status + "\"";
+                        klogFileList[i + 1] = "\"" + newItem + "\"";
                 }
             }
             File.WriteAllLines(klogDestinationFile, klogFileList);

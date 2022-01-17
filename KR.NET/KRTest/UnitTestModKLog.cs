@@ -35,8 +35,8 @@ namespace KRTest
             string strkey = MOD_KLOG.CaricaLogFile(testKey, strDirBase + "\\klog.txt");
             Assert.AreNotEqual("", strkey);
             MOD_KLOG.LoadIntoList(lst, "", "");
-            createFileWithFSList(strDirBase + "\\klog_ALLE.txt", "_E");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLE.txt") , TestUtils.LastMessage);
+            createFileWithFSList(strDirBase + "\\klog_ALL_E.txt", "_E");
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALL_E.txt") , TestUtils.LastMessage);
         }
 
         [TestMethod]
@@ -46,23 +46,23 @@ namespace KRTest
             Assert.AreNotEqual("", strkey);
             MOD_KLOG.CambiaStato("" , "" , "D");
             MOD_KLOG.LoadIntoList(lst, "", "");
-            createFileWithFSList(strDirBase + "\\klog_ALLD.txt", "KD");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLD.txt"), TestUtils.LastMessage);
+            createFileWithFSList(strDirBase + "\\klog_ALLKD.txt", "KD");
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLKD.txt"), TestUtils.LastMessage);
             MOD_KLOG.CambiaStato("D", "K", "E");
             MOD_KLOG.LoadIntoList(lst, "", "");
-            createFileWithFSList(strDirBase + "\\klog_ALLE.txt", "KE");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLE.txt"), TestUtils.LastMessage);
-            /*
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\Resources\\CryptCrypt_klog.txt"), TestUtils.LastMessage);
+            createFileWithFSList(strDirBase + "\\klog_ALLKE.txt", "KE");
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLKE.txt"), TestUtils.LastMessage);
             MOD_KLOG.CambiaStato("D", "K", "E");
             MOD_KLOG.LoadIntoList(lst, "", "");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\Resources\\CryptCrypt_klog.txt"), TestUtils.LastMessage);
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLKE.txt"), TestUtils.LastMessage);
             MOD_KLOG.CambiaStato("D", "_", "E");
             MOD_KLOG.LoadIntoList(lst, "", "");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\Resources\\CryptCrypt_klog.txt"), TestUtils.LastMessage);
-            MOD_KLOG.CambiaStato("", "", "D" , @"D:\Root\Working\Kudalpt2019\KRTest\Crypt\Dir1");
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLKE.txt"), TestUtils.LastMessage);
+            MOD_KLOG.CambiaStato("", "", "D" , strDirBaseCrypt + "\\KR.NET\\KRTest");
             MOD_KLOG.LoadIntoList(lst, "", "");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\Resources\\CryptCrypt_Dir1_klog.txt"), TestUtils.LastMessage);
+            createFileWithFSList_status("klog_dir1.txt" , strDirBase + "\\klog_dir1.txt", "KE", "KD");
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_dir1.txt"), TestUtils.LastMessage);
+            /*
             MOD_KLOG.CambiaStato("", "", "");
             MOD_KLOG.LoadIntoList(lst, "", "");
             Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\Resources\\CryptCrypt_Dir1_cambio_klog.txt"), TestUtils.LastMessage);
@@ -82,6 +82,14 @@ namespace KRTest
             if (!File.Exists(klogOut))
             {
                 TestUtils.copyKLog(strDirBase + "\\ClearDir\\KR.NET\\KRTest\\Resources\\klog.txt", klogOut, strDirBaseCrypt, dateKLog, status);
+            }
+        }
+
+        private void createFileWithFSList_status(string klogName , string klogOut, string status, string status2, string status3 = "" , string status4 = "")
+        {
+            if (!File.Exists(klogOut))
+            {
+                TestUtils.copyKLog(strDirBase + "\\ClearDir\\KR.NET\\KRTest\\Resources\\" + klogName, klogOut, strDirBaseCrypt, dateKLog, status, "" , status2, status3, status4);
             }
         }
     }

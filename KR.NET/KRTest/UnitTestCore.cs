@@ -14,6 +14,7 @@ namespace KRTest
         public void First()
         {
             string strDirBase = (string)TestContext.Properties["WorkTestRoot"];
+            Assert.AreNotEqual("", strDirBase, "E' possibile che non sia stato associato il corretto test setting file");
             string strProjectDir = TestUtils.ProjectDir();
             string strDirBaseCrypt = strDirBase + "\\CryptDir";
             string dateKLog = (string)TestContext.Properties["klogDate"];

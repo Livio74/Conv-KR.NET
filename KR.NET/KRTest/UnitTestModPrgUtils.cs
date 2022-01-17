@@ -10,6 +10,22 @@ namespace KRTest
 
         public TestContext TestContext { get; set; }
 
+        string strDirBase = null;
+        string strProjectDir = null;
+        string strDirBaseCrypt = null;
+        string dateKLog = null;
+        string testKey = null;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            strDirBase = (string)TestContext.Properties["WorkTestRoot"];
+            strProjectDir = TestUtils.ProjectDir();
+            strDirBaseCrypt = strDirBase + "\\CryptDir";
+            dateKLog = (string)TestContext.Properties["klogDate"];
+            testKey = (string)TestContext.Properties["testKey"];
+        }
+
         [TestMethod]
         public void TestMethodKriptp()
         {
@@ -43,10 +59,9 @@ namespace KRTest
         [TestMethod]
         public void TestMethodgetKey()
         {
-            string strKey = "LIVIO";
-            string strDirBase = "D:\\Root\\Working\\Kudalpt2019\\KRTest";
-            string strGet = MOD_PRG_UTILS.getKey(strDirBase + "\\CryptCrypt\\klog.txt", strKey);
-            Assert.AreEqual("2B9O0725MaB7161P082KD", strGet);
+            string workKLog = strDirBase + "\\CryptDir\\klog.txt";
+            string strGet = MOD_PRG_UTILS.getKey(workKLog, this.testKey);
+            Assert.AreEqual("2B9P1813MaV8761P9N150", strGet);
         }
     }
 }

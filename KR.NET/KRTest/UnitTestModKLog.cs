@@ -62,18 +62,17 @@ namespace KRTest
             MOD_KLOG.LoadIntoList(lst, "", "");
             createFileWithFSList_status("klog_dir1.txt" , strDirBase + "\\klog_dir1.txt", "KE", "KD");
             Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_dir1.txt"), TestUtils.LastMessage);
-            /*
             MOD_KLOG.CambiaStato("", "", "");
             MOD_KLOG.LoadIntoList(lst, "", "");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\Resources\\CryptCrypt_Dir1_cambio_klog.txt"), TestUtils.LastMessage);
-            */
+            createFileWithFSList_status("klog_dir1.txt", strDirBase + "\\klog_dir1_cambio.txt", "KD", "KE");
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_dir1_cambio.txt"), TestUtils.LastMessage);
         }
 
         [TestMethod]
         public void TestMethodIsStato()
         {
             MOD_KLOG.LoadIntoList(lst, "", "");
-            string stato = MOD_KLOG.IsStato(@"D:\Root\Working\Kudalpt2019\KRTest\Crypt\Dir1");
+            string stato = MOD_KLOG.IsStato(strDirBaseCrypt + "\\KR.NET\\KRTest");
             Assert.AreEqual("E" ,stato);
         }
 

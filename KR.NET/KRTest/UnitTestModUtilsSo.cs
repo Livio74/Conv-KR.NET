@@ -8,6 +8,26 @@ namespace KRTest
     [TestClass]
     public class UnitTestModUtilsSo
     {
+        public TestContext TestContext { get; set; }
+
+        string strDirBase = null;
+        string strProjectDir = null;
+        string strDirBaseCrypt = null;
+        string dateKLog = null;
+        string testKey = null;
+        string klogKey = null;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            strDirBase = (string)TestContext.Properties["WorkTestRoot"];
+            strProjectDir = TestUtils.ProjectDir();
+            strDirBaseCrypt = strDirBase + "\\CryptDir";
+            dateKLog = (string)TestContext.Properties["klogDate"];
+            testKey = (string)TestContext.Properties["testKey"];
+            klogKey = (string)TestContext.Properties["klogKey"];
+        }
+
         [TestMethod]
         public void TestMethodListaFileEDirs()
         {
@@ -42,8 +62,8 @@ namespace KRTest
         [TestMethod]
         public void TestMethodsSetFileDateTime()
         {
-            string DirBase = "D:\\Root\\Working\\Kudalpt2019\\KRTest\\";
-            string FileOut = DirBase + "out.txt";
+            string FileOut = strDirBase + "out.txt";
+            createFileWithFSList(FileOut, "KE");
             DateTime dateFileOutBefore = File.GetLastWriteTime(FileOut);
             DateTime now = DateTime.Now;
             String nowString = now.ToLongDateString() + " " + now.ToLongTimeString();
@@ -54,5 +74,13 @@ namespace KRTest
             TimeSpan dateDiff = dateFileOutAfter.Subtract(now);
             Assert.IsTrue(dateDiff.TotalSeconds < 1 ,"Date not modified : diff to high");
        }
+
+        private void createFileWithFSList(string klogOut, string status)
+        {
+            if (!File.Exists(klogOut))
+            {
+                TestUtils.copyKLog(strDirBase + "\\ClearDir\\KR.NET\\KRTest\\Resources\\klog.txt", klogOut, strDirBaseCrypt, dateKLog, status);
+            }
+        }
     }
 }

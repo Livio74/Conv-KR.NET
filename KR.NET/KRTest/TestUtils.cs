@@ -205,9 +205,9 @@ namespace KRTest
                 } else
                 {
                     if ("".Equals(klogdKey))
-                        klogFileList[i] = rootDir + klogResourcesList[i].Substring(1) + ":" + status;
+                        klogFileList[i] = rootDir + klogResourcesList[i] + ":" + status;
                     else
-                        klogFileList[i + 1] = "\"" + rootDir + klogResourcesList[i].Substring(1) + ":" + status + "\"";
+                        klogFileList[i + 1] = "\"" + rootDir + klogResourcesList[i] + ":" + status + "\"";
                 }
             }
             File.WriteAllLines(klogDestinationFile, klogFileList);

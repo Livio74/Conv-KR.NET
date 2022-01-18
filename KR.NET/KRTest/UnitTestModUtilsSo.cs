@@ -41,18 +41,17 @@ namespace KRTest
         [TestMethod]
         public void TestMethodSalvaListaFile()
         {
-            string DirBase = "D:\\Root\\Working\\Kudalpt2019\\KRTest\\";
-            string FileOut = DirBase + "CryptDecrypt_FileList.txt";
-            string FileOutCfr = DirBase + "CryptDecrypt_FileList_Expected.txt";
-            string Chiave = "LIVIO";
-            MOD_UTILS_SO.SalvaListaFile(FileOut, DirBase + "CryptDecrypt", Chiave, "klog.txt");
-            Assert.IsTrue(TestUtils.FilesAreEqual(FileOut, FileOutCfr), "File " + FileOutCfr + " are not equals " + FileOutCfr);
+            string FileOut = strDirBase + "\\CryptDir_FileList.txt";
+            string FileOutCfr = strDirBase + "\\CryptDir_FileList_Expected.txt";
+            TestUtils.copyCryptFileList(strDirBase + "\\ClearDir\\KR.NET\\KRTest\\Resources\\CryptDir_FileList.txt", FileOutCfr, strDirBase + "\\CryptDir");
+            MOD_UTILS_SO.SalvaListaFile(FileOut, strDirBase + "\\CryptDir", testKey, "klog.txt");
+            Assert.IsTrue(TestUtils.TextFilesAreEqual(FileOut, FileOutCfr, "ISO-8859-1"), TestUtils.LastMessage);
         }
 
         [TestMethod]
         public void TestMethodsSetFileDateTime()
         {
-            string FileOut = strDirBase + "out.txt";
+            string FileOut = strDirBase + "\\out.txt";
             createFileWithFSList(FileOut, "KE");
             DateTime dateFileOutBefore = File.GetLastWriteTime(FileOut);
             DateTime now = DateTime.Now;

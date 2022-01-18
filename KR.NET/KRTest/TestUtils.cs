@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Linq;
+using System.Text;
 
 namespace KRTest
 {
@@ -59,6 +60,29 @@ namespace KRTest
             string messageItemNotEqual = "element {0} not equals between array element {1} and file line {2}";
             string messageCountNotEqual = "Array elements count {0} not equals to file lines count {1}";
             return Check2StringArraysEquals(stringArray, fileLines, messageItemNotEqual, messageCountNotEqual, length);
+        }
+
+        public static bool TextFilesAreEqual(string sourceTextFile, string destinationTextFile, string encodingSourceString = "", string encodingDestinationString = "")
+        {
+            string[] textFileLine1 = null;
+            if ("".Equals(encodingSourceString))
+                textFileLine1 = File.ReadAllLines(sourceTextFile);
+            else
+            {
+                Encoding encodingSource = Encoding.GetEncoding(encodingSourceString);
+                textFileLine1 = File.ReadAllLines(sourceTextFile, encodingSource);
+            }
+            string[] textFileLine2 = null;
+            if ("".Equals(encodingDestinationString))
+                textFileLine2 = File.ReadAllLines(destinationTextFile);
+            else
+            {
+                Encoding encodingDestination = Encoding.GetEncoding(encodingDestinationString);
+                textFileLine2 = File.ReadAllLines(sourceTextFile, encodingDestination);
+            }
+            string messageItemNotEqual = "element {0} not equals between text file line 1 {1} and text file line 2 {2}";
+            string messageCountNotEqual = "text file 1 line count {0} not equals to text file 1 line count 2 {1}";
+            return Check2StringArraysEquals(textFileLine1, textFileLine2, messageItemNotEqual, messageCountNotEqual);
         }
 
         public static bool Check2StringArraysEquals(string[] stringArray1 , string[] stringArray2, string messageItemNotEqual, string messageCountNotEqual, int length1 = -1, int length2 = -1)
@@ -246,6 +270,26 @@ namespace KRTest
             File.WriteAllLines(klogDestinationFile, klogFileList);
             bool setit = MOD_UTILS_SO.SetFileDateTime(klogDestinationFile, dateKLog);
             return setit;
+        }
+
+        public static bool copyCryptFileList(string cryptFileSource, string cryptFileDestination, string rootDir)
+        {
+            string[] cryptFileSourceList = File.ReadAllLines(cryptFileSource);
+            string[] cryptFileDestinationList = new string[cryptFileSourceList.Length];
+            Assert.AreNotEqual(0, cryptFileSourceList.Length);
+            for (int i = 0; i < cryptFileSourceList.Length; i++)
+            {
+                if (cryptFileSourceList[i].IndexOf("\\\t") == 0)
+                {
+                    cryptFileDestinationList[i] = rootDir + cryptFileSourceList[i].Substring(1);
+                }
+                else
+                {
+                    cryptFileDestinationList[i] = rootDir + "\\" + cryptFileSourceList[i].Substring(1);
+                }
+            }
+            File.WriteAllLines(cryptFileDestination, cryptFileDestinationList);
+            return true;
         }
     }
 }

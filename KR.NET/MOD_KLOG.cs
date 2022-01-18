@@ -283,9 +283,12 @@ namespace KR.NET
         {
             for (int i=0; i < intNumDir; i++)
             {
-                if (strListaDir[i].Substring(0, strDir.Length - 4).Equals(strDir))
+                if (strDir.Length <= strListaDir[i].Length - 3)
                 {
-                    strListaDir[i] = strListaDir[i].Substring(0, strDir.Length - 3) + strStatoK + strStatoE;
+                    if (strListaDir[i].Substring(0, strListaDir[i].Length - 3).Equals(strDir))
+                    {
+                        strListaDir[i] = strListaDir[i].Substring(0, strListaDir[i].Length - 2) + strStatoK + strStatoE;
+                    }
                 }
             }
         }

@@ -268,7 +268,9 @@ namespace KRTest
                 }
             }
             File.WriteAllLines(klogDestinationFile, klogFileList);
-            bool setit = MOD_UTILS_SO.SetFileDateTime(klogDestinationFile, dateKLog);
+            bool setit = true;
+            if (!"".Equals(dateKLog))
+                MOD_UTILS_SO.SetFileDateTime(klogDestinationFile, dateKLog);
             return setit;
         }
 

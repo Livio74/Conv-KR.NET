@@ -60,11 +60,11 @@ namespace KRTest
             Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLKE.txt"), TestUtils.LastMessage);
             MOD_KLOG.CambiaStato("", "", "D" , strDirBaseCrypt + "\\KR.NET\\KRTest");
             MOD_KLOG.LoadIntoList(lst, "", "");
-            createFileWithFSList_status("klog_dir1.txt" , strDirBase + "\\klog_dir1.txt", "KE", "KD");
+            createFileWithFSList_status("klog_dir1.txt" , strDirBase + "\\klog_dir1.txt", "KE", "KD", dateKLog);
             Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_dir1.txt"), TestUtils.LastMessage);
             MOD_KLOG.CambiaStato("", "", "");
             MOD_KLOG.LoadIntoList(lst, "", "");
-            createFileWithFSList_status("klog_dir1.txt", strDirBase + "\\klog_dir1_cambio.txt", "KD", "KE");
+            createFileWithFSList_status("klog_dir1.txt", strDirBase + "\\klog_dir1_cambio.txt", "KD", "KE", dateKLog);
             Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_dir1_cambio.txt"), TestUtils.LastMessage);
         }
 
@@ -83,8 +83,21 @@ namespace KRTest
             Assert.AreNotEqual("", strkey);
             MOD_KLOG.SetStato(strDirBaseCrypt + "\\KR.NET\\KRTest");
             MOD_KLOG.LoadIntoList(lst, "", "");
-            createFileWithFSList_status("klog_dir1.txt", strDirBase + "\\klog_SetStato.txt", "_E", "KE");
+            createFileWithFSList_status("klog_dir1.txt", strDirBase + "\\klog_SetStato.txt", "_E", "KE", dateKLog);
             TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_SetStato.txt");
+        }
+
+        [TestMethod]
+        public void TestMethodSetNewStato()
+        {
+            string strkey = MOD_KLOG.CaricaLogFile(testKey, strDirBase + "\\klog.txt");
+            Assert.AreNotEqual("", strkey);
+            MOD_KLOG.SetNewStato(strDirBaseCrypt + "\\KR.NET\\KRTest", "K" , "D");
+            MOD_KLOG.SetNewStato(strDirBaseCrypt + "\\KR.NET\\KRTest\\Properties", "K", "D");
+            MOD_KLOG.SetNewStato(strDirBaseCrypt + "\\KR.NET\\KRTest\\Resources", "K", "D");
+            MOD_KLOG.LoadIntoList(lst, "", "");
+            createFileWithFSList_status("klog_dir1.txt", strDirBase + "\\klog_SetNewStato.txt", "", "_E", "KD");
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_SetNewStato.txt"), TestUtils.LastMessage);
         }
 
         private void createFileWithFSList(string klogOut , string status)
@@ -95,11 +108,11 @@ namespace KRTest
             }
         }
 
-        private void createFileWithFSList_status(string klogName , string klogOut, string status, string status2, string status3 = "" , string status4 = "")
+        private void createFileWithFSList_status(string klogName , string klogOut, string dateKLogToSet, string status, string status2, string status3 = "" , string status4 = "")
         {
             if (!File.Exists(klogOut))
             {
-                TestUtils.copyKLog(strDirBase + "\\ClearDir\\KR.NET\\KRTest\\Resources\\" + klogName, klogOut, strDirBaseCrypt, dateKLog, status, "" , status2, status3, status4);
+                TestUtils.copyKLog(strDirBase + "\\ClearDir\\KR.NET\\KRTest\\Resources\\" + klogName, klogOut, strDirBaseCrypt, dateKLogToSet, status, "" , status2, status3, status4);
             }
         }
     }

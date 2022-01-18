@@ -132,16 +132,20 @@ namespace KR.NET
                 if (strDir[strDir.Length - 1] == '\\') strDir = strDir.Substring(0, strDir.Length - 1);
                 for (int i = 0; i < intNumDir; i++)
                 {
-                    if (strListaDir[i].Substring(0, strDir.Length - 4).Equals(strDir))
+                    if (strDir.Length < strListaDir[i].Length - 4)
                     {
-                        if (strListaDir[i][strListaDir[i].Length - 1] == 'E')
+                        if (strListaDir[i].Substring(0, strDir.Length - 4).Equals(strDir))
                         {
-                            if (strListaDir[i][strListaDir[i].Length - 2] != 'K')
+                            if (strListaDir[i][strListaDir[i].Length - 1] == 'E')
                             {
-                                strListaDir[i] = strListaDir[i][strListaDir[i].Length - 4] + ":KE";
-                            } else
-                            {
-                                strListaDir[i] = strListaDir[i][strListaDir[i].Length - 4] + ":_E";
+                                if (strListaDir[i][strListaDir[i].Length - 2] != 'K')
+                                {
+                                    strListaDir[i] = strListaDir[i].Substring(0, strDir.Length - 4) + ":KE";
+                                }
+                                else
+                                {
+                                    strListaDir[i] = strListaDir[i].Substring(0, strDir.Length - 4) + ":_E";
+                                }
                             }
                         }
                     }
@@ -149,7 +153,7 @@ namespace KR.NET
             }
             else
             {
-                strListaDir[intNumDir] = strDir = ":KE";
+                strListaDir[intNumDir] = strDir + ":KE";
                 intNumDir++;
             }
         }

@@ -68,6 +68,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\CleanDir_KR.NET.txt" />
     <Content Include="Resources\klog.txt" />
     <Content Include="Resources\klog_dir1.txt" />
   </ItemGroup>

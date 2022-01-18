@@ -1,0 +1,13 @@
+﻿App.config
+frmkr.cs
+frmkr.Designer.cs
+kr.cs
+KR.NET.csproj
+KR.NET.csproj.user
+KR.NET.sln
+KRTest
+MOD_FILE_LIST.cs
+MOD_KLOG.cs
+MOD_PRG_UTILS.cs
+MOD_UTILS_SO.cs
+Properties

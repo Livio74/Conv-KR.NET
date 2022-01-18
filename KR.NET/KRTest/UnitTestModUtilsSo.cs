@@ -31,21 +31,11 @@ namespace KRTest
         [TestMethod]
         public void TestMethodListaFileEDirs()
         {
-            string strDirBase = "D:\\Root\\Working\\Kudalpt2019\\KRTest\\CryptDecrypt";
+            string dirToList = strDirBase + "\\ClearDir\\KR.NET";
             string[] strListFD = new string[5000]; int intNumLV1 = 0;
-            MOD_UTILS_SO.ListaFileEDirs(strDirBase, strListFD, out intNumLV1);
-            Console.Out.WriteLine("Inizio Dir List : " + strDirBase);
-            Assert.AreEqual(4 , intNumLV1);
-            Assert.AreEqual("Dir1", strListFD[0]);
-            Assert.AreEqual("klog.txt", strListFD[1]);
-            Assert.AreEqual("ListaMovimenti (1).xlsx", strListFD[2]);
-            Assert.AreEqual("Tampone COVID19 2021 Documento_sanitario_FRNLVI74L08C573W_20210829130444.pdf", strListFD[3]);
-            for (int i = 0; i < intNumLV1; i++)
-            {
-                Console.Out.WriteLine(strListFD[i]);
-            }
-            Console.Out.WriteLine("Fine Dir List : " + strDirBase);
-
+            MOD_UTILS_SO.ListaFileEDirs(dirToList, strListFD, out intNumLV1);
+            bool isEqual = TestUtils.CheckStringArrayWithTextFile(strListFD, strDirBase + @"\\clearDir\KR.NET\KRTest\Resources\CleanDir_KR.NET.txt", intNumLV1);
+            Assert.IsTrue(isEqual, TestUtils.LastMessage);
         }
 
         [TestMethod]

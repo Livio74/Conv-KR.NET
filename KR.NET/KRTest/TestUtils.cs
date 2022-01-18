@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace KRTest
 {
@@ -45,39 +46,49 @@ namespace KRTest
 
         public static bool CheckListBoxWithTextFile(ListBox lst , string comparingFilePath)
         {
-            bool isEqual = false;
             string [] fileLines = File.ReadAllLines(comparingFilePath);
-            if (fileLines.Length == lst.Items.Count)
+            string[] lstStringArray = lst.Items.OfType<string>().ToArray();
+            string messageItemNotEqual = "element {0} not equals between ListBox element {1} and file line {2}";
+            string messageCountNotEqual = "listBox elements count {0} not equals to file lines count {1}";
+            return Check2StringArraysEquals(lstStringArray, fileLines, messageItemNotEqual, messageCountNotEqual);
+        }
+
+        public static bool CheckStringArrayWithTextFile(string[] stringArray , string comparingFilePath, int length = -1)
+        {
+            string[] fileLines = File.ReadAllLines(comparingFilePath);
+            string messageItemNotEqual = "element {0} not equals between array element {1} and file line {2}";
+            string messageCountNotEqual = "Array elements count {0} not equals to file lines count {1}";
+            return Check2StringArraysEquals(stringArray, fileLines, messageItemNotEqual, messageCountNotEqual, length);
+        }
+
+        public static bool Check2StringArraysEquals(string[] stringArray1 , string[] stringArray2, string messageItemNotEqual, string messageCountNotEqual, int length1 = -1, int length2 = -1)
+        {
+            bool isEqual = false;
+            if (length1 < 0) length1 = stringArray1.Length;
+            if (length2 < 0) length2 = stringArray2.Length;
+            if (length1 == length2)
             {
                 int i = 0; isEqual = true;
-                string listItem = "";
-                while (i < fileLines.Length && isEqual)
+                while (i < length2 && isEqual)
                 {
-                    if (lst.Items[i] is String)
+                    if (stringArray1[i].Equals(stringArray2[i]))
                     {
-                        listItem = (string)lst.Items[i];
-                        if (listItem.Equals(fileLines[i]))
-                        {
-                            i++;
-                        }
-                        else
-                        {
-                            isEqual = false;
-                        }
-                    } else
+                        i++;
+                    }
+                    else
                     {
-                        listItem = "NOT STRING: " + lst.Items[i].ToString();
                         isEqual = false;
                     }
-                } 
+                }
                 if (!isEqual)
                 {
-                    lastMessage = String.Format("element {0} not equals between file line {1} and ListBox element {2}", i, fileLines[i], listItem);
+                    lastMessage = String.Format(messageItemNotEqual, i, stringArray1[i], stringArray2[i]);
                 }
-            } else
+            }
+            else
             {
                 isEqual = false;
-                lastMessage = String.Format("listBox elements count {0} not equals to file lines count {1}" , lst.Items.Count, fileLines.Length);
+                lastMessage = String.Format(messageCountNotEqual, length1, length2);
             }
             return isEqual;
         }

@@ -60,11 +60,11 @@ namespace KRTest
             Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLKE.txt"), TestUtils.LastMessage);
             MOD_KLOG.CambiaStato("", "", "D" , strDirBaseCrypt + "\\KR.NET\\KRTest");
             MOD_KLOG.LoadIntoList(lst, "", "");
-            createFileWithFSList_status("klog_dir1.txt" , strDirBase + "\\klog_dir1.txt", "KE", "KD", dateKLog);
+            createFileWithFSList_status("klog_dir1.txt" , strDirBase + "\\klog_dir1.txt", "", "KE", "KD");
             Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_dir1.txt"), TestUtils.LastMessage);
             MOD_KLOG.CambiaStato("", "", "");
             MOD_KLOG.LoadIntoList(lst, "", "");
-            createFileWithFSList_status("klog_dir1.txt", strDirBase + "\\klog_dir1_cambio.txt", "KD", "KE", dateKLog);
+            createFileWithFSList_status("klog_dir1.txt", strDirBase + "\\klog_dir1_cambio.txt", "", "KD", "KE");
             Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_dir1_cambio.txt"), TestUtils.LastMessage);
         }
 
@@ -104,6 +104,7 @@ namespace KRTest
         public void TestMethodRigeneraLog()
         {
             string strkey = MOD_KLOG.CaricaLogFile(testKey, strDirBaseCrypt + "\\klog.txt");
+            File.Copy(strDirBaseCrypt + "\\klog.txt", strDirBase + "\\klog_SAVE.txt");
             string dirProva = strDirBaseCrypt + "\\Prova";
             Directory.CreateDirectory(dirProva);
             File.WriteAllText(dirProva + "\\Prova.txt", "File di Prova");
@@ -111,6 +112,10 @@ namespace KRTest
             MOD_KLOG.LoadIntoList(lst, "", "");
             createFileWithFSList_status("klog_ConProva.txt", strDirBase + "\\klog_ConProva.txt", "", "KE", "_E");
             Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ConProva.txt"), TestUtils.LastMessage);
+            File.Delete(strDirBaseCrypt + "\\klog.txt");
+            File.Move(strDirBase + "\\klog_SAVE.txt" , strDirBaseCrypt + "\\klog.txt");
+            File.Delete(dirProva + "\\Prova.txt");
+            Directory.Delete(dirProva);
         }
 
         private void createFileWithFSList(string klogOut , string status)

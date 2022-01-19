@@ -21,58 +21,51 @@ namespace KR.NET
             long i; long j; long i1; string strGet;
             string strD; string strCriptKey = "";
             intNumDir = 0;
-            try
-            {
-                strGet = MOD_PRG_UTILS.getKey(strFileLog, strKey);
-                Encoding iso88591 = Encoding.GetEncoding("ISO-8859-1");
-                StreamReader streamFileLog = new StreamReader(strFileLog, iso88591, false);
-                strCriptKey = streamFileLog.ReadLine();
-                strCriptKey = EventuallyRemoveDoubleQuotes(strCriptKey);
-                if ("".Equals(strCriptKey)) {
+            strGet = MOD_PRG_UTILS.getKey(strFileLog, strKey);
+            Encoding iso88591 = Encoding.GetEncoding("ISO-8859-1");
+            StreamReader streamFileLog = new StreamReader(strFileLog, iso88591, false);
+            strCriptKey = streamFileLog.ReadLine();
+            strCriptKey = EventuallyRemoveDoubleQuotes(strCriptKey);
+            if ("".Equals(strCriptKey)) {
+                streamFileLog.Close();
+                return "";
+            }
+            else {
+                if (!strGet.Equals(strCriptKey))
+                {
                     streamFileLog.Close();
                     return "";
                 }
-                else {
-                    if (!strGet.Equals(strCriptKey))
-                    {
-                        streamFileLog.Close();
-                        return "";
-                    }
-                }
-                while (streamFileLog.Peek() >= 0)
+            }
+            while (streamFileLog.Peek() >= 0)
+            {
+                strListaDir[intNumDir] = streamFileLog.ReadLine();
+                strListaDir[intNumDir] = EventuallyRemoveDoubleQuotes(strListaDir[intNumDir]);
+                intNumDir++;
+            }
+            streamFileLog.Close();
+            bolEsisteLog = true;
+            for (i = 0; i < intNumDir; i++)
+            {
+                i1 = strListaDir[i].IndexOf(':');
+                if (i1 < 0)
                 {
-                    strListaDir[intNumDir] = streamFileLog.ReadLine();
-                    strListaDir[intNumDir] = EventuallyRemoveDoubleQuotes(strListaDir[intNumDir]);
-                    intNumDir++;
+                    bolErrLog = true; return "";
                 }
-                streamFileLog.Close();
-                bolEsisteLog = true;
-                for (i = 0; i < intNumDir; i++)
+                //questa parte non me la ricordo , forse è per disabilitare le sottodirectory
+                if (strListaDir[i][strListaDir[i].Length - 1] == 'F')
                 {
-                    i1 = strListaDir[i].IndexOf(':');
-                    if (i1 < 0)
+                    strD = strListaDir[i].Substring(0, (int) i1);
+                    for (j = 0; j < intNumDir; i++)
                     {
-                        bolErrLog = true; return "";
-                    }
-                    //questa parte non me la ricordo , forse è per disabilitare le sottodirectory
-                    if (strListaDir[i][strListaDir[i].Length - 1] == 'F')
-                    {
-                        strD = strListaDir[i].Substring(0, (int) i1);
-                        for (j = 0; j < intNumDir; i++)
+                        if (strD.Equals(strListaDir[j].Substring(0, (int)i1)))
                         {
-                            if (strD.Equals(strListaDir[j].Substring(0, (int)i1)))
-                            {
-                                strListaDir[j] = strListaDir[j].Substring(0, strListaDir[j].Length - 1) + 'D';
-                            }
+                            strListaDir[j] = strListaDir[j].Substring(0, strListaDir[j].Length - 1) + 'D';
                         }
                     }
                 }
-                return strGet;
-            } catch
-            {
-                bolEsisteLog = false;
-                return "";
             }
+            return strGet;
         }
 
         private static string EventuallyRemoveDoubleQuotes(string inString)

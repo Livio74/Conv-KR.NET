@@ -52,4 +52,5 @@
 \KR.NET\KRTest\Properties	GeRsvWWzGbww.Et	AssemblyInfo.cs
 \KR.NET\KRTest\Resources	PazqsJgc_GsWxSoif.fWo	CryptDir_FileList.txt
 \KR.NET\KRTest\Resources	PWxrbJgc_Ak.Ack.fef	CleanDir_KR.NET.txt
+\KR.NET\KRTest\Resources	RWTi_PwgJdtYE.snf	klog_ConProva.txt
 \KR.NET\KRTest\Resources	RWTi_qgc0.oRl	klog_dir1.txt

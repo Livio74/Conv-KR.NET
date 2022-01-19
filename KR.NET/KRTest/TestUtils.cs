@@ -81,7 +81,7 @@ namespace KRTest
                 textFileLine2 = File.ReadAllLines(sourceTextFile, encodingDestination);
             }
             string messageItemNotEqual = "element {0} not equals between text file line 1 {1} and text file line 2 {2}";
-            string messageCountNotEqual = "text file 1 line count {0} not equals to text file 1 line count 2 {1}";
+            string messageCountNotEqual = "text file 1 line count {0} not equals to text file 2 line count {1}";
             return Check2StringArraysEquals(textFileLine1, textFileLine2, messageItemNotEqual, messageCountNotEqual);
         }
 

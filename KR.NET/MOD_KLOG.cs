@@ -97,10 +97,10 @@ namespace KR.NET
             Encoding iso88591 = Encoding.GetEncoding("ISO-8859-1");
             MOD_PRG_UTILS.setKey(out strK, strChiave);
             StreamWriter streamFileLog = new StreamWriter(strFileLog, false, iso88591);
-            streamFileLog.WriteLine(strK);
+            streamFileLog.WriteLine("\"" + strK + "\"");
             for (long i = 0; i < intNumDir; i++)
             {
-                streamFileLog.WriteLine(strListaDir[i]);
+                streamFileLog.WriteLine("\"" + strListaDir[i] + "\"");
             }
             streamFileLog.Close();
         }
@@ -177,7 +177,7 @@ namespace KR.NET
             //2. Rigenera Log e controlla nei vecchi
             if ("".Equals(strListaDirOld[0])) {
                 strDir = "";
-            } else if (Kr_dirRadice.Equals(strListaDirOld[0].Substring(0 , strListaDirOld[0].Length - 4)))
+            } else if (Kr_dirRadice.Equals(strListaDirOld[0].Substring(0 , strListaDirOld[0].Length - 3)))
             {
                 strDir = strDirRadice;
             } else
@@ -188,6 +188,7 @@ namespace KR.NET
             // 2.1 Per ogni directory di un certo livello vengono generate le sottodirectory
             // -.- e inserite nella lista di uscita lstListaDir ->lstFile
             // -.- poi viene riportata in lstListaDir per il loop successivo
+
             while (intNumLV1 > 0)
             {
                 //2.1 Genera file e dirs per tutte le dir di un livello i (0,1,2,..)
@@ -195,6 +196,24 @@ namespace KR.NET
                 for (i = 0; i < intNumLV1; i++)
                 {
                     intNums = 0;
+                    strListaDir[intNumDir] = strListLV1[i] + ":_E";
+                    if (!"".Equals(strDir))
+                    {
+                        strS = strListaDirOld[0].Substring(0, strListaDirOld[0].Length - 3);
+                        strS += strListLV1[i].Substring(strDir.Length);
+                    }
+                    for (j = 0; j < intNum1; j++)
+                    {
+                        if (strListLV1[i].Equals(strListaDirOld[j].Substring(0, strListaDirOld[j].Length - 3)))
+                        {
+                            strListaDir[intNumDir] = strListaDirOld[j];
+                        }
+                        else if (strS.Equals(strListaDirOld[j].Substring(0, strListaDirOld[j].Length - 3)))
+                        {
+                            strListaDir[intNumDir] = strListLV1[i] + strListaDirOld[j].Substring(strListaDirOld[j].Length - 2);
+                        }
+                    }
+                    intNumDir++;
                     MOD_UTILS_SO.ListaFileEDirs(strListLV1[i], strListFD, out intNums);
                     for (j = 0; j < intNums; j++)
                     {

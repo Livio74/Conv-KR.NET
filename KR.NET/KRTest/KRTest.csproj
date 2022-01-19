@@ -71,6 +71,7 @@
     <Content Include="Resources\CleanDir_KR.NET.txt" />
     <Content Include="Resources\CryptDir_FileList.txt" />
     <Content Include="Resources\klog.txt" />
+    <Content Include="Resources\klog_ConProva.txt" />
     <Content Include="Resources\klog_dir1.txt" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

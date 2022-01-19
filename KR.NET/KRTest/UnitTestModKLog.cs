@@ -100,6 +100,19 @@ namespace KRTest
             Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_SetNewStato.txt"), TestUtils.LastMessage);
         }
 
+        [TestMethod]
+        public void TestMethodRigeneraLog()
+        {
+            string strkey = MOD_KLOG.CaricaLogFile(testKey, strDirBaseCrypt + "\\klog.txt");
+            string dirProva = strDirBaseCrypt + "\\Prova";
+            Directory.CreateDirectory(dirProva);
+            File.WriteAllText(dirProva + "\\Prova.txt", "File di Prova");
+            MOD_KLOG.RigeneraLog(testKey, strDirBaseCrypt, strDirBaseCrypt + "\\klog.txt", strDirBaseCrypt);
+            MOD_KLOG.LoadIntoList(lst, "", "");
+            createFileWithFSList_status("klog_ConProva.txt", strDirBase + "\\klog_ConProva.txt", "", "KE", "_E");
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ConProva.txt"), TestUtils.LastMessage);
+        }
+
         private void createFileWithFSList(string klogOut , string status)
         {
             if (!File.Exists(klogOut))

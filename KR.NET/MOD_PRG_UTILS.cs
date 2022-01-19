@@ -122,7 +122,7 @@ namespace KR.NET
             DateTime dateNow = DateTime.Now;
             int first = dateNow.Year;
             int second = dateNow.Day * dateNow.Month;
-            strK = dateNow.ToString("yyyymmdd") + first.ToString("X") + dateNow.ToString("ddyyyyMM") + second.ToString("X");
+            strK = dateNow.ToString("yyyyMMdd") + first.ToString("X") + dateNow.ToString("ddyyyyMM") + second.ToString("X");
             strK = KritpStr(strK, strChiave);
         }
 

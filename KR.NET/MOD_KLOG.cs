@@ -132,19 +132,19 @@ namespace KR.NET
                 if (strDir[strDir.Length - 1] == '\\') strDir = strDir.Substring(0, strDir.Length - 1);
                 for (int i = 0; i < intNumDir; i++)
                 {
-                    if (strDir.Length < strListaDir[i].Length - 4)
+                    if (strDir.Length <= strListaDir[i].Length - 3)
                     {
-                        if (strListaDir[i].Substring(0, strDir.Length - 4).Equals(strDir))
+                        if (strListaDir[i].Substring(0, strDir.Length).Equals(strDir))
                         {
                             if (strListaDir[i][strListaDir[i].Length - 1] == 'E')
                             {
                                 if (strListaDir[i][strListaDir[i].Length - 2] != 'K')
                                 {
-                                    strListaDir[i] = strListaDir[i].Substring(0, strDir.Length - 4) + ":KE";
+                                    strListaDir[i] = strListaDir[i].Substring(0, strListaDir[i].Length - 3) + ":KE";
                                 }
                                 else
                                 {
-                                    strListaDir[i] = strListaDir[i].Substring(0, strDir.Length - 4) + ":_E";
+                                    strListaDir[i] = strListaDir[i].Substring(0, strListaDir[i].Length - 3) + ":_E";
                                 }
                             }
                         }

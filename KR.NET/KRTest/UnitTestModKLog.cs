@@ -83,8 +83,8 @@ namespace KRTest
             Assert.AreNotEqual("", strkey);
             MOD_KLOG.SetStato(strDirBaseCrypt + "\\KR.NET\\KRTest");
             MOD_KLOG.LoadIntoList(lst, "", "");
-            createFileWithFSList_status("klog_dir1.txt", strDirBase + "\\klog_SetStato.txt", "_E", "KE", dateKLog);
-            TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_SetStato.txt");
+            createFileWithFSList_status("klog_dir1.txt", strDirBase + "\\klog_SetStato.txt", "", "KE", "_E");
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_SetStato.txt"), TestUtils.LastMessage);
         }
 
         [TestMethod]

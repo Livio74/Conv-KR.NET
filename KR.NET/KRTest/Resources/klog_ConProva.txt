@@ -1,0 +1,8 @@
+﻿\:1
+\KR.NET:1
+\Kripter:1
+\Prova:2
+\KR.NET\KRTest:1
+\KR.NET\Properties:1
+\KR.NET\KRTest\Properties:1
+\KR.NET\KRTest\Resources:1

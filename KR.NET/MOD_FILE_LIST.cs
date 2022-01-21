@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KR.NET
 {
-    class MOD_FILE_LIST
+    public class MOD_FILE_LIST
     {
         const int MAX_PATH1 = 5000;
         const long MAX_PATH2 = 32267;
@@ -39,7 +39,7 @@ namespace KR.NET
             string[] strListFD = new string[MAX_PATH1]; int intNums = 0; //Lista dei files e delle dirs per una dir
             string strErr = ""; string strS = ""; int i = 0; int j = 0;
             if (strDirRadice[strDirRadice.Length - 1] == '\\') strDirRadice = strDirRadice.Substring(0, strDirRadice.Length - 1);
-            string strFileLogName = strFileLog.Substring(strDirRadice.Length + 1, strFileLog.Length - strDirRadice.Length);
+            string strFileLogName = strFileLog.Substring(strDirRadice.Length + 1);
             strListLV1[0] = strDirRadice; intNumLV1 = 1;
             // 1 Per ogni directory di un certo livello vengono generate le sottodirectory
             // -.- e inserite nella lista di uscita lstListaDir ->lstFile
@@ -58,9 +58,9 @@ namespace KR.NET
                         for (j = 0; j < intNums; j++)
                         {
                             FileAttributes attr = File.GetAttributes(strListLV1[i] + "\\" + strListFD[j]);
-                            if (strListFD[j].IndexOf(".") != 0)
+                            if (attr.HasFlag(FileAttributes.Directory))
                             {
-                                if (attr.HasFlag(FileAttributes.Directory))
+                                if (strListFD[j].IndexOf(".") != 0)
                                 {
                                     strListLV2[intNumLV2] = strListLV1[i] + "\\" + strListFD[j];
                                     intNumLV2++;

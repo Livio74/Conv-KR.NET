@@ -273,21 +273,66 @@ namespace KRTest
                 MOD_UTILS_SO.SetFileDateTime(klogDestinationFile, dateKLog);
             return setit;
         }
+        public static bool copyFileListByCryptFileList(string cryptFileSource, string cryptFileDestination, string rootDir , int fileColumns)
+        {
+            return copyFileByCryptFileList(cryptFileSource, cryptFileDestination, rootDir, fileColumns);
+        }
 
         public static bool copyCryptFileList(string cryptFileSource, string cryptFileDestination, string rootDir)
+        {
+            return copyFileByCryptFileList(cryptFileSource, cryptFileDestination, rootDir);
+        }
+
+        private static bool copyFileByCryptFileList(string cryptFileSource, string cryptFileDestination, string rootDir, int fileColumns = -1)
         {
             string[] cryptFileSourceList = File.ReadAllLines(cryptFileSource);
             string[] cryptFileDestinationList = new string[cryptFileSourceList.Length];
             Assert.AreNotEqual(0, cryptFileSourceList.Length);
             for (int i = 0; i < cryptFileSourceList.Length; i++)
             {
-                if (cryptFileSourceList[i].IndexOf("\\\t") == 0)
+                if (fileColumns < 0 )
                 {
-                    cryptFileDestinationList[i] = rootDir + cryptFileSourceList[i].Substring(1);
-                }
-                else
+                    if (cryptFileSourceList[i].IndexOf("\\\t") == 0)
+                    {
+                        cryptFileDestinationList[i] = rootDir + cryptFileSourceList[i].Substring(1);
+                    }
+                    else
+                    {
+                        cryptFileDestinationList[i] = rootDir + "\\" + cryptFileSourceList[i].Substring(1);
+                    }
+                } else
                 {
-                    cryptFileDestinationList[i] = rootDir + "\\" + cryptFileSourceList[i].Substring(1);
+                    string dir;
+                    string file1;
+                    string file2 = "";
+                    int firstTab = cryptFileSourceList[i].IndexOf("\t");
+                    if (firstTab >= 0)
+                    {
+                        dir = cryptFileSourceList[i].Substring(0, firstTab);
+                        file1 = cryptFileSourceList[i].Substring(firstTab + 1);
+                        int SecondTab = cryptFileSourceList[i].IndexOf("\t", firstTab + 1);
+                        if (SecondTab >= 0)
+                        {
+                            file1 = cryptFileSourceList[i].Substring(firstTab + 1, SecondTab - firstTab - 1);
+                            file2 = cryptFileSourceList[i].Substring(SecondTab + 1);
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception(" Row " + cryptFileSourceList[i] + " not properly formatted");
+                    }
+                    if ("\\".Equals(dir))
+                    {
+                        cryptFileDestinationList[i] = rootDir + dir.Substring(1) + "\\";
+                    }
+                    else
+                    {
+                        cryptFileDestinationList[i] = rootDir + "\\" + dir.Substring(1) + "\\";
+                    }
+                    if (fileColumns == 1)
+                        cryptFileDestinationList[i] += file1;
+                    else if (fileColumns == 2)
+                        cryptFileDestinationList[i] += file2;
                 }
             }
             File.WriteAllLines(cryptFileDestination, cryptFileDestinationList);

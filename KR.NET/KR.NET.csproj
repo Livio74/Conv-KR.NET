@@ -72,10 +72,12 @@
     </Compile>
     <Compile Include="kr.cs" />
     <Compile Include="MOD_FILE_LIST.cs" />
+    <Compile Include="MOD_INVKEY.cs" />
     <Compile Include="MOD_KLOG.cs" />
     <Compile Include="MOD_PRG_UTILS.cs" />
     <Compile Include="MOD_UTILS_SO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="STATICUTILS.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

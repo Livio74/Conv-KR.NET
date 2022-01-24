@@ -25,7 +25,7 @@ namespace KR.NET
             Encoding iso88591 = Encoding.GetEncoding("ISO-8859-1");
             StreamReader streamFileLog = new StreamReader(strFileLog, iso88591, false);
             strCriptKey = streamFileLog.ReadLine();
-            strCriptKey = EventuallyRemoveDoubleQuotes(strCriptKey);
+            strCriptKey = STATICUTILS.EventuallyRemoveDoubleQuotes(strCriptKey);
             if ("".Equals(strCriptKey)) {
                 streamFileLog.Close();
                 return "";
@@ -40,7 +40,7 @@ namespace KR.NET
             while (streamFileLog.Peek() >= 0)
             {
                 strListaDir[intNumDir] = streamFileLog.ReadLine();
-                strListaDir[intNumDir] = EventuallyRemoveDoubleQuotes(strListaDir[intNumDir]);
+                strListaDir[intNumDir] = STATICUTILS.EventuallyRemoveDoubleQuotes(strListaDir[intNumDir]);
                 intNumDir++;
             }
             streamFileLog.Close();
@@ -66,22 +66,6 @@ namespace KR.NET
                 }
             }
             return strGet;
-        }
-
-        private static string EventuallyRemoveDoubleQuotes(string inString)
-        {
-            string outstring = inString;
-            if (inString.Length > 1)
-            {
-                if (inString[0] == '\"')
-                {
-                    if (inString[inString.Length - 1] == '\"')
-                    {
-                        outstring = inString.Substring(1, inString.Length - 2);
-                    }
-                }
-            }
-            return outstring;
         }
 
         public static void SalvaLogFile(string strChiave , string strFileLog)

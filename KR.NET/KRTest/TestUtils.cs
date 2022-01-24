@@ -8,7 +8,7 @@ using System.Text;
 
 namespace KRTest
 {
-    class TestUtils
+    public class TestUtils
     {
         const int BYTES_TO_READ = sizeof(Int64);
 

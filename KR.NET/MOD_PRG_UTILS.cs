@@ -97,11 +97,6 @@ namespace KR.NET
         public static byte Krpt(byte bytV, byte[] Chiave , byte byLngChiave , long lngPos, byte just = 255)
         {
             int intOut = bytV ^ ((Chiave[lngPos % byLngChiave] & just));
-            /*
-            byte bytV2 = Chiave[lngPos % byLngChiave] ;
-            bytV2 = (byte) (bytV2 & just);
-            int intOut = bytV ^ bytV2;
-            */
             byte bytOut = (byte)intOut;
             return bytOut;
         }

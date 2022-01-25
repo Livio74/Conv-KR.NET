@@ -33,5 +33,14 @@ namespace KRTest
             string outReverse = MOD_INVKEY.reverseKey(strDirBase + "\\klog.txt", true);
             Assert.AreEqual("[64]" + testKey , outReverse.Substring(0, testKey.Length + 4));
         }
+
+        [TestMethod]
+        public void TestMethodInvKript()
+        {
+            string fileClearName = "UnitTestModUtilsSo.cs";
+            string fileCryptname = "Lkkfkgel7iqHlgRiLT.Qi";
+            string outInvKript = MOD_INVKEY.InvKript(fileClearName, fileCryptname, true);
+            Assert.AreEqual(testKey, outInvKript.Substring(0, testKey.Length));
+        }
     }
 }

@@ -130,69 +130,88 @@ namespace KR.NET
             long j; byte V; long lngLngFile;
             byte[] GA_Buffer = new byte[3000];
             string Chars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890èà";
-            int X = strNomeFile.LastIndexOf('\\');
-            byte byt; int intPos; DateTime dtDataMod;
-            FileStream inOutFile = null;
             FileStream outputFile = null;
-            if (X < 0) X = 1; else X++;
-            // 1. Conversione TXT->BIN e calcolo della lunghezza
-            Chiave = Encoding.ASCII.GetBytes(strChiave);
-            intLngChiave = (byte)strChiave.Length;
-            // 2. Kritp nome file
-            strNomeFileK = strNomeFile.Substring(0, X);
-            for (int i = X; i < strNomeFile.Length; i++)
+            FileStream inOutFile = null;
+            try
             {
-                Ch = strNomeFile[i];
-                if (Chars.Contains(Ch))
+                int X = strNomeFile.LastIndexOf('\\');
+                byte byt; int intPos; DateTime dtDataMod;
+                if (X < 0) X = 1; else X++;
+                // 1. Conversione TXT->BIN e calcolo della lunghezza
+                Chiave = Encoding.ASCII.GetBytes(strChiave);
+                intLngChiave = (byte)strChiave.Length;
+                // 2. Kritp nome file
+                strNomeFileK = strNomeFile.Substring(0, X);
+                for (int i = X; i < strNomeFile.Length; i++)
                 {
-                    byt = (byte)Chars.IndexOf(Ch);
-                    V = Krpt(byt, Chiave, intLngChiave, i - X, 63);
-                    strNomeFileK += Chars[V];
+                    Ch = strNomeFile[i];
+                    if (Chars.Contains(Ch))
+                    {
+                        byt = (byte)Chars.IndexOf(Ch);
+                        V = Krpt(byt, Chiave, intLngChiave, i - X, 63);
+                        strNomeFileK += Chars[V];
+                    }
+                    else
+                    {
+                        strNomeFileK += Ch;
+                    }
+                }
+                intPos = 2;
+                dtDataMod = File.GetLastWriteTime(strNomeFile);
+                Stream outputFileStream = null;
+                if (strOut.Length == 0)
+                {
+                    inOutFile = File.Open(strNomeFile, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 }
                 else
                 {
-                    strNomeFileK += Ch;
+                    inOutFile = File.Open(strNomeFile, FileMode.Open, FileAccess.Read);
+                    outputFile = File.Open(strOut, FileMode.Create, FileAccess.Write);
+                    outputFileStream = outputFile;
                 }
-            }
-            intPos = 2;
-            dtDataMod = File.GetLastWriteTime(strNomeFile);
-            Stream outputFileStream = null;
-            if (strOut.Length == 0)
-            {
-                inOutFile = File.Open(strNomeFile, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            } else
-            {
-                inOutFile = File.Open(strNomeFile, FileMode.Open, FileAccess.Read);
-                outputFile = File.Open(strOut, FileMode.Create, FileAccess.Write);
-                outputFileStream = outputFile;
-            }
-            Stream inOutStream = (Stream)inOutFile;
-            int bytesRead = 0;
-            while ((bytesRead = inOutStream.Read(GA_Buffer, 0, GA_Buffer.Length)) > 0)
-            {
-                for (int i = 0; i < bytesRead; i++)
+                Stream inOutStream = (Stream)inOutFile;
+                int bytesRead = 0;
+                while ((bytesRead = inOutStream.Read(GA_Buffer, 0, GA_Buffer.Length)) > 0)
                 {
-                    GA_Buffer[i] = Krpt(GA_Buffer[i] , Chiave , intLngChiave , i + 1);
+                    for (int i = 0; i < bytesRead; i++)
+                    {
+                        GA_Buffer[i] = Krpt(GA_Buffer[i], Chiave, intLngChiave, i + 1);
+                    }
+                    if (outputFile == null)
+                    {
+                        inOutFile.Seek(-bytesRead, SeekOrigin.Current);
+                        inOutStream.Write(GA_Buffer, 0, bytesRead);
+                    }
+                    else
+                    {
+                        outputFileStream.Write(GA_Buffer, 0, bytesRead);
+                    }
                 }
+                inOutFile.Close();
+                inOutFile = null;
                 if (outputFile == null)
                 {
-                    inOutFile.Seek(-bytesRead, SeekOrigin.Current);
-                    inOutStream.Write(GA_Buffer, 0, bytesRead);
-                } else
-                {
-                    outputFileStream.Write(GA_Buffer, 0, bytesRead);
+                    File.Move(strNomeFile, strNomeFileK);
+                    MOD_UTILS_SO.SetFileDateTime(strNomeFileK, dtDataMod.ToString("dd/MM/yyyy HH:mm:ss"));
                 }
-            }
-            inOutFile.Close();
-            if (outputFile == null)
+                else
+                {
+                    outputFile.Close();
+                    outputFile = null;
+                }
+                //TODO: Gestione errore con variabile globale stringa errore
+            } catch (Exception e)
             {
-                File.Move(strNomeFile, strNomeFileK);
-                MOD_UTILS_SO.SetFileDateTime(strNomeFileK, dtDataMod.ToString("dd/MM/yyyy HH:mm:ss"));
-            } else
+                MOD_MAIN.G_strErr = "<EXCEPTION ID = \"0\" IDREF=\"" + e.GetHashCode() + "\" DESCRIPTION=\"" + MOD_XML.ConvToXML(e.Message) + "\" SOURCE=\"";
+                MOD_MAIN.G_strErr += e.Source + "\" DATETIME=\"" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "\">";
+                MOD_MAIN.G_strErr += "<DETAILS><FILE>" + MOD_XML.ConvToXML(strNomeFile, 1) + "</FILE></DETAILS></EXCEPTION>\r\n";
+            } finally
             {
-                outputFile.Close();
+                if (outputFile != null)
+                    outputFile.Close();
+                if (inOutFile != null)
+                    inOutFile.Close();
             }
-            //TODO: Gestione errore con variabile globale stringa errore
         }
     }
 }

@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>KR.NET.kr</StartupObject>
+    <StartupObject>KR.NET.MOD_MAIN</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -64,13 +64,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmkr.cs">
+    <Compile Include="kr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmkr.Designer.cs">
-      <DependentUpon>frmkr.cs</DependentUpon>
+    <Compile Include="kr.Designer.cs">
+      <DependentUpon>kr.cs</DependentUpon>
     </Compile>
-    <Compile Include="kr.cs" />
+    <Compile Include="MOD_MAIN.cs" />
     <Compile Include="MOD_FILE_LIST.cs" />
     <Compile Include="MOD_INVKEY.cs" />
     <Compile Include="MOD_KLOG.cs" />

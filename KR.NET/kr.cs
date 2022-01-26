@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KR.NET
 {
-    static class kr
+    public partial class kr : Form
     {
-        /// <summary>
-        /// Punto di ingresso principale dell'applicazione.
-        /// </summary>
-        [STAThread]
-        static void Main()
+        public kr()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmkr());
+            InitializeComponent();
         }
     }
 }

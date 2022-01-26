@@ -1,6 +1,6 @@
 ﻿namespace KR.NET
 {
-    partial class frmkr
+    partial class kr
     {
         /// <summary>
         /// Variabile di progettazione necessaria.

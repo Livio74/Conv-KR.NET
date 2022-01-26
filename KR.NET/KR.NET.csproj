@@ -79,6 +79,9 @@
     <Compile Include="MOD_XML.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="STATICUTILS.cs" />
+    <EmbeddedResource Include="kr.resx">
+      <DependentUpon>kr.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

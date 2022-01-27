@@ -4,6 +4,7 @@ using System.Reflection;
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 // Conversione VB6 to C# di "D:\Root\Computername\Kudapc\e\DOCUMENTI\myPrograms\Visual Basic 6\Kripter\UTILS_SO.bas"
 // Ad eccezione di 
@@ -39,17 +40,17 @@ namespace KR.NET
 
         public static void ErrorLog(string strS)
         {
-            string appPath = Assembly.GetExecutingAssembly().Location;
+            string appPath = Application.StartupPath;
             File.WriteAllText(appPath + "\\ErrorLog.xml" , strS);
         }
 
         public static void WriteErrorLog(string strS)
         {
-            string appPath = Assembly.GetExecutingAssembly().Location;
+            string appPath = Application.StartupPath;
             File.AppendAllText(appPath + "\\ErrorLog.txt", strS);
         }
 
-        public static void SalvaListaFile(string strFile , string strDir , string strChiave , string strFileLog)
+        public static string SalvaListaFile(string strFile , string strDir , string strChiave , string strFileLog)
         {
             string[] strListLV1 = new string[5000]; int intNumLV1 = 0;
             string[] strListLV2 = new string[5000]; int intNumLV2 = 0;
@@ -123,6 +124,7 @@ namespace KR.NET
                 inOutFile.Write(strOutAsciiBytes, 0, strOut.Length);
             }
             inOutFile.Close();
+            return "";
         }
 
         public static Boolean ExistsFile(string strFile , string strDir = "")

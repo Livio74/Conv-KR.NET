@@ -3,18 +3,210 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
+using Application = System.Windows.Forms.Application;
+using MessageBox = System.Windows.MessageBox;
+using MessageBoxButtons = System.Windows.MessageBoxButton;
+using MessageBoxIcon = System.Windows.Forms.MessageBoxIcon;
 
 namespace KR.NET
 {
     public partial class kr : Form
     {
+
+        string strFileLog = "";
+
         public kr()
         {
             InitializeComponent();
+        }
+
+        private void drv_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dirRadice.Path  = drv.Drive.Substring(0,2) + "\\";
+            strFileLog = dirRadice.Text + "\\klog.txt";
+        }
+
+        private void drv_SelectedValueChanged(object sender, EventArgs e)
+        {
+            dirRadice.Path = drv.Drive.Substring(0, 2) + "\\";
+            strFileLog = dirRadice.Text + "\\klog.txt";
+        }
+
+        private void kr_Load(object sender, EventArgs e)
+        {
+            if ("".Equals(MOD_MAIN.G_strDirRoot))
+            {
+                drv.Drive = "C:";
+                dirRadice.Path = "C:\\";
+                MOD_MAIN.G_lng_NumFiles = 0;
+            }
+            else
+            {
+                drv.Drive = MOD_MAIN.G_strDirRoot.Substring(0,2);
+                dirRadice.Path = MOD_MAIN.G_strDirRoot;
+                chkBlock.Checked = false;
+                MOD_MAIN.G_lng_NumFiles = 0;
+            }
+            strFileLog = dirRadice.Path + "\\klog.txt";
+            MOD_MAIN.G_bolEsisteLog = false;
+        }
+
+        private void kr_Activated(object sender, EventArgs e)
+        {
+            txtChiave.Focus();
+        }
+
+        private void btnCreaFileList_Click(object sender, EventArgs e)
+        {
+            string strS = "";
+            if ("".Equals(txtFileList.Text))
+            {
+                MessageBox.Show("Non è possibile creare il file \"Lista file\"", "Creazione lista file", MessageBoxButtons.OK , MessageBoxImage.Exclamation);
+                return;
+            }
+            if (MOD_UTILS_SO.ExistsFile(txtFileList.Text))
+            {
+                MessageBoxResult overwrite = MessageBox.Show("Vuoi sovrascrivere il file esistente?", "Creazione lista file", MessageBoxButtons.YesNo, MessageBoxImage.Question);
+                if (overwrite.Equals(MessageBoxResult.No))
+                {
+                    return;
+                }
+            }
+            lblStato.Text = "Stato: Generazione della lista di file ....";
+            lblStato.Refresh();
+            strS = MOD_UTILS_SO.SalvaListaFile(txtFileList.Text, dirRadice.Path, txtChiave.Text, strFileLog);
+            if (!"".Equals(strS))
+            {
+                MessageBox.Show(strS, "Creazione lista file", MessageBoxButtons.OK , MessageBoxImage.Exclamation);
+            }
+            lblStato.Text = "Stato: PRONTO!";
+            lblStato.Refresh();
+        }
+
+        private void chkEnableFileList_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkEnableFileList.Checked)
+                txtFileList.Text = MOD_MAIN.G_strFileList;
+            else
+                txtFileList.Text = "";
+        }
+
+        private void btnDir_Click(object sender, EventArgs e)
+        {
+            string clipboardPath = Clipboard.GetText();
+            if (!"".Equals(clipboardPath))
+            {
+                drv.Drive = clipboardPath.Substring(0, 2); //Correzione BUG rispestto a originale
+                dirRadice.Path = clipboardPath;
+                chkBlock.Checked = true;
+                MOD_MAIN.G_strFileList = clipboardPath + "\\FileList.txt";
+                strFileLog = clipboardPath + "\\klog.txt";
+            }
+        }
+
+        private void btnLogFile_Click(object sender, EventArgs e)
+        {
+            MOD_MAIN.G_strDirRoot = dirRadice.Path;
+            MOD_MAIN.G_strFileLog = dirRadice.Path + "\\klog.txt";
+            MessageBox.Show("creare nuova form LogFile per dir : " + dirRadice.Path);
+        }
+
+        private void EseguiConKLog()
+        {
+            string strNomeFile="", strS="", strIn="";
+            string strErr=""; long lngCount=0, i=0;
+            if ("".Equals(strFileLog))
+            {
+                MessageBox.Show("File log mancante", "Esegui crypt dei file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            //2. CaricaLogFile
+            strS = txtChiave.Text;
+            strS = MOD_KLOG.CaricaLogFile(strS, strFileLog);
+            if ("".Equals(strS))
+            {
+                MessageBox.Show("Chiave inserita non valida", "Esegui crypt dei file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            if (MOD_MAIN.G_bolErrLog)
+            {
+                MessageBox.Show("ORMATO LOG NON VALIDO", "Esegui crypt dei file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            //3. Generazione della lista di tutti i file
+            lblStato.Text = "Stato: Generazione della lista dei file da criptare....";
+            lblStato.Refresh();
+            lstFileK.Items.Clear();
+            strErr = MOD_FILE_LIST.Genera(1, dirRadice.Path, strFileLog);
+            if (! "".Equals(strErr))
+            {
+                MessageBox.Show(strErr, "Esegui crypt dei file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            //Criptatura di ogni file della lista
+            lngCount = MOD_FILE_LIST.GetSize();
+            for (i = 0; i < lngCount; i++)
+            {
+                strNomeFile = MOD_FILE_LIST.GetFile(i);
+                lstFileK.Items.Add(strNomeFile);
+            }
+            for (i = 0; i < lngCount; i++)
+            {
+                //3.1 Crpt del file(che cambia anche nome)
+                strNomeFile = MOD_FILE_LIST.GetFile(i);
+                //3.2 Conversione chiave da testo ad array di byte
+                if (i % 1000 == 0) Application.DoEvents();
+                lblStato.Text = "Stato: kritp di " + i.ToString() + "/" + lngCount.ToString();
+                lblStato.Refresh();
+                MOD_PRG_UTILS.Kriptp(strNomeFile, txtChiave.Text);
+            }
+            //4. SalvaLogFile
+            MOD_KLOG.SalvaLogFile(txtChiave.Text, strFileLog);
+            //5. Operazione Completata
+            MessageBox.Show("Operazione completata", "Esegui crypt dei file", MessageBoxButtons.OK, MessageBoxImage.Information);
+            lblStato.Text = "Stato: PRONTO!";
+            lblStato.Refresh();
+            lstFileK.Items.Clear();
+            if (!"".Equals(MOD_MAIN.G_strErr))
+            {
+                MOD_MAIN.G_strErr = "<?xml version=\"1.01\" encoding=\"UTF-8\"?><EXCEPTIONS DATETIME=\"" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "\">" + MOD_MAIN.G_strErr + "</EXCEPTIONS>";
+                MOD_UTILS_SO.ErrorLog(MOD_MAIN.G_strErr);
+            }
+        }
+
+        private void EseguiConListaKript()
+        {
+
+        }
+
+        private void txtChiave_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string strS = "";
+            if (e.KeyChar == ((char)13))
+            {
+                strS = txtChiave.Text;
+                strS = MOD_KLOG.CaricaLogFile(strS, strFileLog);
+                if ("".Equals(strS))
+                {
+                    MessageBox.Show("Chiave inserita non valida", "Esegui crypt dei file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
+                }
+                else
+                {
+                    MOD_KLOG.RigeneraLog(txtChiave.Text, dirRadice.Path, strFileLog, dirRadice.Path);
+                    EseguiConKLog();
+                }
+            }
+        }
+
+        private void btnVai_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

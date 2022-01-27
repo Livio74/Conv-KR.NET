@@ -1,3 +1,4 @@
 .vs
 /KR.NET/KRTest/obj/Release/*.cache
 /KR.NET/obj/Release/*.cache
+/KR.NET/bin/Debug/ErrorLog.xml

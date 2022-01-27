@@ -25,3 +25,4 @@ D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\obj\Debug\KR.NET.csproj.Gener
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\obj\Debug\KR.NET.csproj.CoreCompileInputs.cache
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\obj\Debug\KR.NET.exe
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\obj\Debug\KR.NET.pdb
+D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\obj\Debug\KR.NET.kr.resources

@@ -182,7 +182,54 @@ namespace KR.NET
 
         private void EseguiConListaKript()
         {
-
+            //1. Inizio
+            string strNomeFile = "", strS = "", strIn = "";
+            string strErr = "", strDir = "";
+            long i = 0, j = 0,  k = 0;
+            if (!MOD_UTILS_SO.ExistsFile(txtFileList.Text))
+            {
+                MessageBox.Show("Lista file non trovato", "Esegui crypt dei file con lista file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            i = 0; j = txtFileList.Text.LastIndexOf("\\");
+            if (j >= 0) strDir = txtFileList.Text.Substring(0, (int) j - 1);
+            //3: Crypt lista file
+            Encoding iso88591 = Encoding.GetEncoding("ISO-8859-1");
+            StreamReader streamFileLog = new StreamReader(txtFileList.Text, iso88591, false);
+            while (streamFileLog.Peek() >= 0)
+            {
+                strIn = streamFileLog.ReadLine();
+                //3.1 Crpt del file in un'altro
+                j = strIn.IndexOf("\t");
+                if (j < 0)
+                {
+                    strDir = strIn;
+                    if (strDir[strDir.Length - 1] != '\\') strDir += '\\';
+                } else
+                {
+                    //3.2 Conversione chiave da testo ad array di byte
+                    k = strIn.IndexOf('\t', (int) j + 1);
+                    if (k < 0)
+                    {
+                        //Aggiungo gestione assenza tab non gestita nel progetto originale
+                        MOD_MAIN.G_strErr = "<EXCEPTION ID = \"0\" IDREF=\"0\" DESCRIPTION=\"secondo tab non trovato\" SOURCE=\"EseguiConListaKript\"";
+                        MOD_MAIN.G_strErr += "\" DATETIME=\"" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "\">";
+                        MOD_MAIN.G_strErr += "<DETAILS><LINE>" + strIn + "</LINE></DETAILS></EXCEPTION>\r\n";
+                    }
+                    else
+                    {
+                        strNomeFile = strIn.Substring(0 , (int) k).Replace('\t', '\\');
+                        strS = strDir + strIn.Substring((int)k + 1);
+                        lblStato.Text = "Stato: kritp di " + i.ToString() + " numero File";
+                        lblStato.Refresh();
+                        MOD_PRG_UTILS.Kriptp(strNomeFile, txtChiave.Text, strS);
+                    }
+                }
+                i++;
+            }
+            streamFileLog.Close();
+            lblStato.Text = "Stato: PRONTO!";
+            lblStato.Refresh();
         }
 
         private void txtChiave_KeyPress(object sender, KeyPressEventArgs e)
@@ -206,7 +253,21 @@ namespace KR.NET
 
         private void btnVai_Click(object sender, EventArgs e)
         {
-
+            //1. Controlli di correttezza
+            if ("".Equals(txtChiave.Text))
+            {
+                MessageBox.Show("E' necessario inserire una chiave", "Esegui crypt programmato", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            if (!chkBlock.Checked)
+            {
+                MessageBox.Show("E' necessario effettuare lo sblocco", "Esegui crypt programmato", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            if ("".Equals(txtFileList.Text))
+                EseguiConKLog();
+            else
+                EseguiConListaKript();
         }
     }
 }

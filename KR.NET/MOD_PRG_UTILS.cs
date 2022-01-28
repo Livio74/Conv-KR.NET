@@ -202,7 +202,7 @@ namespace KR.NET
                 //TODO: Gestione errore con variabile globale stringa errore
             } catch (Exception e)
             {
-                MOD_MAIN.G_strErr = "<EXCEPTION ID = \"0\" IDREF=\"" + e.GetHashCode() + "\" DESCRIPTION=\"" + MOD_XML.ConvToXML(e.Message) + "\" SOURCE=\"";
+                MOD_MAIN.G_strErr += "<EXCEPTION ID = \"0\" IDREF=\"" + e.GetHashCode() + "\" DESCRIPTION=\"" + MOD_XML.ConvToXML(e.Message) + "\" SOURCE=\"";
                 MOD_MAIN.G_strErr += e.Source + "\" DATETIME=\"" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "\">";
                 MOD_MAIN.G_strErr += "<DETAILS><FILE>" + MOD_XML.ConvToXML(strNomeFile, 1) + "</FILE></DETAILS></EXCEPTION>\r\n";
             } finally

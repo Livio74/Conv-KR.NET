@@ -252,7 +252,7 @@
         private Microsoft.VisualBasic.Compatibility.VB6.DirListBox dirRadice;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtChiave;
+        public System.Windows.Forms.TextBox txtChiave;
         private System.Windows.Forms.Button btnVai;
         private System.Windows.Forms.Button btnLogFile;
         private System.Windows.Forms.Button btnDir;

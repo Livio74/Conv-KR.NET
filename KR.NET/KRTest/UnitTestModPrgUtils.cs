@@ -47,6 +47,7 @@ namespace KRTest
             MOD_PRG_UTILS.Kriptp(clearFilePathToElab, testKey, cryptedFilePathOut);
             Assert.IsTrue(TestUtils.FilesAreEqual(cryptedFilePathOut, cryptedFilePathExpected), "File " + cryptedFilePathOut + " are not equals " + cryptedFilePathExpected);
             File.Delete(cryptedFilePathOut);
+            File.Delete(clearFilePathToElab);
         }
 
         [TestMethod]

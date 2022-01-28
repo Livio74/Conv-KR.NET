@@ -221,9 +221,9 @@ namespace KR.NET
             lst.Items.Clear();
             for (int i = 0; i < intNumDir; i++)
             {
-                if ("".Equals(StatoK) || StatoK.Equals(strListaDir[i].Substring(strListaDir[i].Length - 2, strListaDir[i].Length - 1)))
+                if ("".Equals(StatoK) || StatoK.Equals(strListaDir[i].Substring(strListaDir[i].Length - 2, 1)))
                 {
-                    if ("".Equals(StatoE) || StatoE.Equals(strListaDir[i].Substring(strListaDir[i].Length - 1, strListaDir[i].Length)))
+                    if ("".Equals(StatoE) || StatoE.Equals(strListaDir[i].Substring(strListaDir[i].Length - 1, 1)))
                     {
                         lst.Items.Add(strListaDir[i]);
                     }
@@ -283,7 +283,10 @@ namespace KR.NET
                 {
                     if (strListaDir[i].Substring(0, strListaDir[i].Length - 3).Equals(strDir))
                     {
-                        strListaDir[i] = strListaDir[i].Substring(0, strListaDir[i].Length - 2) + strStatoK + strStatoE;
+                        if (!"".Equals(strStatoK))
+                            strListaDir[i] = strListaDir[i].Substring(0, strListaDir[i].Length - 2) + strStatoK + strListaDir[i].Substring(strListaDir[i].Length - 1);
+                        if (!"".Equals(strStatoE))
+                            strListaDir[i] = strListaDir[i].Substring(0, strListaDir[i].Length - 1) + strStatoE;
                     }
                 }
             }

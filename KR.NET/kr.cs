@@ -12,7 +12,6 @@ using System.Windows.Forms;
 using Application = System.Windows.Forms.Application;
 using MessageBox = System.Windows.MessageBox;
 using MessageBoxButtons = System.Windows.MessageBoxButton;
-using MessageBoxIcon = System.Windows.Forms.MessageBoxIcon;
 
 namespace KR.NET
 {
@@ -114,7 +113,8 @@ namespace KR.NET
         {
             MOD_MAIN.G_strDirRoot = dirRadice.Path;
             MOD_MAIN.G_strFileLog = dirRadice.Path + "\\klog.txt";
-            MessageBox.Show("creare nuova form LogFile per dir : " + dirRadice.Path);
+            LogFile logFileWnd = new LogFile(this);
+            logFileWnd.Show();
         }
 
         private void EseguiConKLog()

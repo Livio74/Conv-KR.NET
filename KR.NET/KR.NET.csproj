@@ -72,6 +72,12 @@
     <Compile Include="kr.Designer.cs">
       <DependentUpon>kr.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogFile.Designer.cs">
+      <DependentUpon>LogFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="MOD_MAIN.cs" />
     <Compile Include="MOD_FILE_LIST.cs" />
     <Compile Include="MOD_INVKEY.cs" />
@@ -83,6 +89,9 @@
     <Compile Include="STATICUTILS.cs" />
     <EmbeddedResource Include="kr.resx">
       <DependentUpon>kr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogFile.resx">
+      <DependentUpon>LogFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

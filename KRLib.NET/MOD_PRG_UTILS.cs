@@ -4,9 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KRLib.NET;
 
-namespace KR.NET
+namespace KRLib.NET
 {
     public class MOD_PRG_UTILS
     {
@@ -193,7 +192,7 @@ namespace KR.NET
                 if (outputFile == null)
                 {
                     File.Move(strNomeFile, strNomeFileK);
-                    MOD_UTILS_SO.SetFileDateTime(strNomeFileK, dtDataMod.ToString("dd/MM/yyyy HH:mm:ss"));
+                    ////MOD_UTILS_SO.SetFileDateTime(strNomeFileK, dtDataMod.ToString("dd/MM/yyyy HH:mm:ss"));
                 }
                 else
                 {

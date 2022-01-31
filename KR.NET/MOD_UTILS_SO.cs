@@ -5,6 +5,8 @@ using System.IO;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using KRLib.NET;
+
 
 // Conversione VB6 to C# di "D:\Root\Computername\Kudapc\e\DOCUMENTI\myPrograms\Visual Basic 6\Kripter\UTILS_SO.bas"
 // Ad eccezione di 

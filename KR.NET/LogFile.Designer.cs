@@ -31,7 +31,6 @@ namespace KR.NET
         {
             this.btnEsci = new System.Windows.Forms.Button();
             this.lstDir = new System.Windows.Forms.ListBox();
-            this.lstFiles = new System.Windows.Forms.ListBox();
             this.btnConferma = new System.Windows.Forms.Button();
             this.btnVisualizzaFiles = new System.Windows.Forms.Button();
             this.btnStato = new System.Windows.Forms.Button();
@@ -44,13 +43,15 @@ namespace KR.NET
             this.OptStato1 = new System.Windows.Forms.RadioButton();
             this.OptStato2 = new System.Windows.Forms.RadioButton();
             this.chkSubDirs = new System.Windows.Forms.CheckBox();
+            this.lstFiles = new Microsoft.VisualBasic.Compatibility.VB6.FileListBox();
             this.SuspendLayout();
             // 
             // btnEsci
             // 
-            this.btnEsci.Location = new System.Drawing.Point(668, 557);
+            this.btnEsci.Location = new System.Drawing.Point(668, 558);
+            this.btnEsci.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEsci.Name = "btnEsci";
-            this.btnEsci.Size = new System.Drawing.Size(146, 43);
+            this.btnEsci.Size = new System.Drawing.Size(147, 43);
             this.btnEsci.TabIndex = 0;
             this.btnEsci.Text = "Esci";
             this.btnEsci.UseVisualStyleBackColor = true;
@@ -61,24 +62,18 @@ namespace KR.NET
             this.lstDir.FormattingEnabled = true;
             this.lstDir.ItemHeight = 16;
             this.lstDir.Location = new System.Drawing.Point(12, 12);
+            this.lstDir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lstDir.Name = "lstDir";
             this.lstDir.Size = new System.Drawing.Size(800, 324);
             this.lstDir.TabIndex = 1;
-            // 
-            // lstFiles
-            // 
-            this.lstFiles.FormattingEnabled = true;
-            this.lstFiles.ItemHeight = 16;
-            this.lstFiles.Location = new System.Drawing.Point(12, 352);
-            this.lstFiles.Name = "lstFiles";
-            this.lstFiles.Size = new System.Drawing.Size(343, 180);
-            this.lstFiles.TabIndex = 2;
+            this.lstDir.DoubleClick += new System.EventHandler(this.lstDir_DoubleClick);
             // 
             // btnConferma
             // 
-            this.btnConferma.Location = new System.Drawing.Point(508, 557);
+            this.btnConferma.Location = new System.Drawing.Point(508, 558);
+            this.btnConferma.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConferma.Name = "btnConferma";
-            this.btnConferma.Size = new System.Drawing.Size(150, 43);
+            this.btnConferma.Size = new System.Drawing.Size(149, 43);
             this.btnConferma.TabIndex = 3;
             this.btnConferma.Text = "CONFERMA";
             this.btnConferma.UseVisualStyleBackColor = true;
@@ -86,18 +81,21 @@ namespace KR.NET
             // 
             // btnVisualizzaFiles
             // 
-            this.btnVisualizzaFiles.Location = new System.Drawing.Point(12, 557);
+            this.btnVisualizzaFiles.Location = new System.Drawing.Point(12, 558);
+            this.btnVisualizzaFiles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnVisualizzaFiles.Name = "btnVisualizzaFiles";
-            this.btnVisualizzaFiles.Size = new System.Drawing.Size(150, 43);
+            this.btnVisualizzaFiles.Size = new System.Drawing.Size(149, 43);
             this.btnVisualizzaFiles.TabIndex = 4;
             this.btnVisualizzaFiles.Text = "Visualizza File";
             this.btnVisualizzaFiles.UseVisualStyleBackColor = true;
+            this.btnVisualizzaFiles.Click += new System.EventHandler(this.btnVisualizzaFiles_Click);
             // 
             // btnStato
             // 
-            this.btnStato.Location = new System.Drawing.Point(168, 557);
+            this.btnStato.Location = new System.Drawing.Point(168, 558);
+            this.btnStato.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnStato.Name = "btnStato";
-            this.btnStato.Size = new System.Drawing.Size(150, 43);
+            this.btnStato.Size = new System.Drawing.Size(149, 43);
             this.btnStato.TabIndex = 5;
             this.btnStato.Text = "Cambia stato";
             this.btnStato.UseVisualStyleBackColor = true;
@@ -105,12 +103,14 @@ namespace KR.NET
             // 
             // Rigenera
             // 
-            this.Rigenera.Location = new System.Drawing.Point(324, 557);
+            this.Rigenera.Location = new System.Drawing.Point(324, 558);
+            this.Rigenera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Rigenera.Name = "Rigenera";
-            this.Rigenera.Size = new System.Drawing.Size(150, 43);
+            this.Rigenera.Size = new System.Drawing.Size(149, 43);
             this.Rigenera.TabIndex = 6;
             this.Rigenera.Text = "Rigenera log";
             this.Rigenera.UseVisualStyleBackColor = true;
+            this.Rigenera.Click += new System.EventHandler(this.Rigenera_Click);
             // 
             // chkVisualNE
             // 
@@ -118,6 +118,7 @@ namespace KR.NET
             this.chkVisualNE.Checked = true;
             this.chkVisualNE.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkVisualNE.Location = new System.Drawing.Point(376, 363);
+            this.chkVisualNE.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkVisualNE.Name = "chkVisualNE";
             this.chkVisualNE.Size = new System.Drawing.Size(138, 21);
             this.chkVisualNE.TabIndex = 7;
@@ -131,6 +132,7 @@ namespace KR.NET
             this.chkVisualE.Checked = true;
             this.chkVisualE.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkVisualE.Location = new System.Drawing.Point(376, 399);
+            this.chkVisualE.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkVisualE.Name = "chkVisualE";
             this.chkVisualE.Size = new System.Drawing.Size(128, 21);
             this.chkVisualE.TabIndex = 8;
@@ -144,6 +146,7 @@ namespace KR.NET
             this.chkVisualNK.Checked = true;
             this.chkVisualNK.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkVisualNK.Location = new System.Drawing.Point(376, 438);
+            this.chkVisualNK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkVisualNK.Name = "chkVisualNK";
             this.chkVisualNK.Size = new System.Drawing.Size(138, 21);
             this.chkVisualNK.TabIndex = 9;
@@ -157,6 +160,7 @@ namespace KR.NET
             this.chkVisualK.Checked = true;
             this.chkVisualK.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkVisualK.Location = new System.Drawing.Point(376, 479);
+            this.chkVisualK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkVisualK.Name = "chkVisualK";
             this.chkVisualK.Size = new System.Drawing.Size(128, 21);
             this.chkVisualK.TabIndex = 10;
@@ -167,7 +171,8 @@ namespace KR.NET
             // OptStato0
             // 
             this.OptStato0.AutoSize = true;
-            this.OptStato0.Location = new System.Drawing.Point(606, 362);
+            this.OptStato0.Location = new System.Drawing.Point(605, 362);
+            this.OptStato0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OptStato0.Name = "OptStato0";
             this.OptStato0.Size = new System.Drawing.Size(75, 21);
             this.OptStato0.TabIndex = 11;
@@ -178,6 +183,7 @@ namespace KR.NET
             // 
             this.OptStato1.AutoSize = true;
             this.OptStato1.Location = new System.Drawing.Point(605, 399);
+            this.OptStato1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OptStato1.Name = "OptStato1";
             this.OptStato1.Size = new System.Drawing.Size(76, 21);
             this.OptStato1.TabIndex = 12;
@@ -188,7 +194,8 @@ namespace KR.NET
             // 
             this.OptStato2.AutoSize = true;
             this.OptStato2.Checked = true;
-            this.OptStato2.Location = new System.Drawing.Point(606, 438);
+            this.OptStato2.Location = new System.Drawing.Point(605, 438);
+            this.OptStato2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OptStato2.Name = "OptStato2";
             this.OptStato2.Size = new System.Drawing.Size(125, 21);
             this.OptStato2.TabIndex = 13;
@@ -199,18 +206,30 @@ namespace KR.NET
             // chkSubDirs
             // 
             this.chkSubDirs.AutoSize = true;
-            this.chkSubDirs.Location = new System.Drawing.Point(606, 479);
+            this.chkSubDirs.Location = new System.Drawing.Point(605, 479);
+            this.chkSubDirs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkSubDirs.Name = "chkSubDirs";
-            this.chkSubDirs.Size = new System.Drawing.Size(205, 26);
+            this.chkSubDirs.Size = new System.Drawing.Size(164, 21);
             this.chkSubDirs.TabIndex = 14;
             this.chkSubDirs.Text = "Anche sotto directory";
             this.chkSubDirs.UseVisualStyleBackColor = true;
+            // 
+            // lstFiles
+            // 
+            this.lstFiles.FormattingEnabled = true;
+            this.lstFiles.Location = new System.Drawing.Point(12, 343);
+            this.lstFiles.Margin = new System.Windows.Forms.Padding(4);
+            this.lstFiles.Name = "lstFiles";
+            this.lstFiles.Pattern = "*.*";
+            this.lstFiles.Size = new System.Drawing.Size(304, 180);
+            this.lstFiles.TabIndex = 15;
             // 
             // LogFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(826, 606);
+            this.ClientSize = new System.Drawing.Size(827, 606);
+            this.Controls.Add(this.lstFiles);
             this.Controls.Add(this.chkSubDirs);
             this.Controls.Add(this.OptStato2);
             this.Controls.Add(this.OptStato1);
@@ -223,9 +242,9 @@ namespace KR.NET
             this.Controls.Add(this.btnStato);
             this.Controls.Add(this.btnVisualizzaFiles);
             this.Controls.Add(this.btnConferma);
-            this.Controls.Add(this.lstFiles);
             this.Controls.Add(this.lstDir);
             this.Controls.Add(this.btnEsci);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "LogFile";
             this.Text = "LogFile";
             this.Load += new System.EventHandler(this.LogFile_Load);
@@ -238,7 +257,6 @@ namespace KR.NET
 
         private System.Windows.Forms.Button btnEsci;
         private System.Windows.Forms.ListBox lstDir;
-        private System.Windows.Forms.ListBox lstFiles;
         private System.Windows.Forms.Button btnConferma;
         private System.Windows.Forms.Button btnVisualizzaFiles;
         private System.Windows.Forms.Button btnStato;
@@ -251,5 +269,6 @@ namespace KR.NET
         private System.Windows.Forms.RadioButton OptStato1;
         private System.Windows.Forms.RadioButton OptStato2;
         private System.Windows.Forms.CheckBox chkSubDirs;
+        private Microsoft.VisualBasic.Compatibility.VB6.FileListBox lstFiles;
     }
 }

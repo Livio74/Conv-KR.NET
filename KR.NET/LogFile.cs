@@ -155,5 +155,54 @@ namespace KR.NET
                 m_StatoK = "";
             MOD_KLOG.LoadIntoList(lstDir, m_StatoE, m_StatoK);
         }
+
+        private void btnVisualizzaFiles_Click(object sender, EventArgs e)
+        {
+            if (lstDir.SelectedIndex >= 0)
+            {
+                try
+                {
+                    string selectedDir = ((string)lstDir.SelectedItem);
+                    lstFiles.Path = selectedDir.Substring(0, selectedDir.Length - 3);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Log file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
+                }
+            }
+        }
+
+        private void lstDir_DoubleClick(object sender, EventArgs e)
+        {
+            btnVisualizzaFiles_Click(sender, e);
+            string Message = "Osserva la lista dei file:\r\n";
+            Message += "Scegli Sì se vuoi impostare lo stato directory a K\r\n";
+            Message += "No per lo stato a _\r\n";
+            Message += "Annulla se non lo vuoi impostare";
+            MessageBoxResult cryptStatus = MessageBox.Show(Message, "Log file", MessageBoxButtons.YesNoCancel, MessageBoxImage.Exclamation);
+            string selectedItem = (string)lstDir.SelectedItem;
+            if (MessageBoxResult.Yes.Equals(cryptStatus))
+            {
+                MOD_KLOG.SetNewStato(selectedItem.Substring(0, selectedItem.Length - 3), "K", "");
+            }
+            else if (MessageBoxResult.No.Equals(cryptStatus))
+            {
+                MOD_KLOG.SetNewStato(selectedItem.Substring(0, selectedItem.Length - 3), "_", "");
+            }
+            MOD_KLOG.LoadIntoList(lstDir, m_StatoE, m_StatoK);
+        }
+
+        private void Rigenera_Click(object sender, EventArgs e)
+        {
+            string strS = this.mainForm.txtChiave.Text;
+            if ("".Equals(strS))
+            {
+                MessageBox.Show("Chiave non valida", "Log file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            MOD_KLOG.RigeneraLog(strS, MOD_MAIN.G_strDirRoot, MOD_MAIN.G_strFileLog, MOD_MAIN.G_strDirRoot);
+            MessageBox.Show("Log rigenerato", "Log file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
+            MOD_KLOG.LoadIntoList(lstDir, m_StatoE, m_StatoK);
+        }
     }
 }

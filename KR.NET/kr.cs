@@ -177,7 +177,7 @@ namespace KR.NET
             if (!"".Equals(MOD_MAIN.G_strErr))
             {
                 MOD_MAIN.G_strErr = "<?xml version=\"1.01\" encoding=\"UTF-8\"?><EXCEPTIONS DATETIME=\"" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "\">" + MOD_MAIN.G_strErr + "</EXCEPTIONS>";
-                MOD_UTILS_SO.ErrorLog(MOD_MAIN.G_strErr);
+                MOD_UTILS_SO.ErrorLog(MOD_MAIN.G_strErr, Application.StartupPath);
             }
         }
 

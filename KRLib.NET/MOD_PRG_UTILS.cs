@@ -192,7 +192,7 @@ namespace KRLib.NET
                 if (outputFile == null)
                 {
                     File.Move(strNomeFile, strNomeFileK);
-                    ////MOD_UTILS_SO.SetFileDateTime(strNomeFileK, dtDataMod.ToString("dd/MM/yyyy HH:mm:ss"));
+                    MOD_UTILS_SO.SetFileDateTime(strNomeFileK, dtDataMod.ToString("dd/MM/yyyy HH:mm:ss"));
                 }
                 else
                 {

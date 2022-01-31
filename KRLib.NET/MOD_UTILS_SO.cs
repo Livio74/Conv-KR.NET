@@ -4,8 +4,6 @@ using System.Reflection;
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Forms;
-using KRLib.NET;
 
 
 // Conversione VB6 to C# di "D:\Root\Computername\Kudapc\e\DOCUMENTI\myPrograms\Visual Basic 6\Kripter\UTILS_SO.bas"
@@ -14,7 +12,7 @@ using KRLib.NET;
 // che per ora è 
 //   strOut = strOut + strListLV1(i) & vbTab & strListFD(j) + vbTab + strListFD(j) + vbCrLf
 
-namespace KR.NET
+namespace KRLib.NET
 {
     public class MOD_UTILS_SO
     {
@@ -40,16 +38,14 @@ namespace KR.NET
             }
         }
 
-        public static void ErrorLog(string strS)
+        public static void ErrorLog(string strS, string StartupPath)
         {
-            string appPath = Application.StartupPath;
-            File.WriteAllText(appPath + "\\ErrorLog.xml" , strS);
+            File.WriteAllText(StartupPath + "\\ErrorLog.xml" , strS);
         }
 
-        public static void WriteErrorLog(string strS)
+        public static void WriteErrorLog(string strS, string StartupPath)
         {
-            string appPath = Application.StartupPath;
-            File.AppendAllText(appPath + "\\ErrorLog.txt", strS);
+            File.AppendAllText(StartupPath + "\\ErrorLog.txt", strS);
         }
 
         public static string SalvaListaFile(string strFile , string strDir , string strChiave , string strFileLog)

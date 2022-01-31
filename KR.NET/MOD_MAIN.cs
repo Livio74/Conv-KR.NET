@@ -27,25 +27,19 @@ namespace KR.NET
         {
             G_strDirRoot = GetParam(1, args);
             G_strChiave = GetParam(2, args);
-            /*
             if ("".Equals(G_strDirRoot))
             {
-            */
                 G_strFileLog = "klog.txt";
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new kr());
-            /*
             } else
             {
                 G_strFileLog = G_strDirRoot + "\\klog.txt";
-                //caricare il secondo elemento dopo
-                string message = "Ecco i parametri passati : cartella " + G_strDirRoot;
-                if (!("".Equals(G_strChiave)))
-                    message += " , chiave : " + G_strChiave;
-                MessageBox.Show(message , "Parametri");
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new minKR());
             }
-            */
         }
 
         public static string getErrorMsg(string strErrCode)

@@ -27,3 +27,4 @@ D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\obj\Debug\KR.NET.exe
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\obj\Debug\KR.NET.pdb
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\obj\Debug\KR.NET.kr.resources
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\obj\Debug\KR.NET.LogFile.resources
+D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\obj\Debug\KR.NET.minKR.resources

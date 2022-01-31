@@ -152,7 +152,10 @@ namespace KR.NET
             intNum1 = intNumDir;
             intNumDir = 0;
             //2. Rigenera Log e controlla nei vecchi
-            if ("".Equals(strListaDirOld[0])) {
+            if (strListaDirOld[0] == null)
+            {
+                strDir = "";
+            } else if ("".Equals(strListaDirOld[0])) {
                 strDir = "";
             } else if (Kr_dirRadice.Equals(strListaDirOld[0].Substring(0 , strListaDirOld[0].Length - 3)))
             {

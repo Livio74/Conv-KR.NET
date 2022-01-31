@@ -44,7 +44,7 @@ namespace KR.NET
             if ("".Equals(strS))
             {
                 MessageBox.Show("Chiave inserita non valida", "Log file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
-                this.mainForm.txtChiave.Text = "";
+                ////this.mainForm.txtChiave.Text = ""; C'era un problema nel programma ma è giusto che non venga cancellata
                 return;
             }
             MOD_KLOG.LoadIntoList(lstDir, m_StatoE, m_StatoK);

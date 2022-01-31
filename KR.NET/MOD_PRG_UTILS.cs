@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KRLib.NET;
 
 namespace KR.NET
 {
@@ -202,9 +203,9 @@ namespace KR.NET
                 //TODO: Gestione errore con variabile globale stringa errore
             } catch (Exception e)
             {
-                main.G_strErr += "<EXCEPTION ID = \"0\" IDREF=\"" + e.GetHashCode() + "\" DESCRIPTION=\"" + MOD_XML.ConvToXML(e.Message) + "\" SOURCE=\"";
-                main.G_strErr += e.Source + "\" DATETIME=\"" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "\">";
-                main.G_strErr += "<DETAILS><FILE>" + MOD_XML.ConvToXML(strNomeFile, 1) + "</FILE></DETAILS></EXCEPTION>\r\n";
+                MOD_MAIN.G_strErr += "<EXCEPTION ID = \"0\" IDREF=\"" + e.GetHashCode() + "\" DESCRIPTION=\"" + MOD_XML.ConvToXML(e.Message) + "\" SOURCE=\"";
+                MOD_MAIN.G_strErr += e.Source + "\" DATETIME=\"" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "\">";
+                MOD_MAIN.G_strErr += "<DETAILS><FILE>" + MOD_XML.ConvToXML(strNomeFile, 1) + "</FILE></DETAILS></EXCEPTION>\r\n";
             } finally
             {
                 if (outputFile != null)

@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KRTest", "KRTest\KRTest.csproj", "{E4F14D77-E63A-414A-AAFD-5CFEA216B707}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KRLib.NET", "..\KRLib.NET\KRLib.NET.csproj", "{8C9B49AA-F0FF-4B45-94F3-E583271D4DB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{E4F14D77-E63A-414A-AAFD-5CFEA216B707}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4F14D77-E63A-414A-AAFD-5CFEA216B707}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4F14D77-E63A-414A-AAFD-5CFEA216B707}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C9B49AA-F0FF-4B45-94F3-E583271D4DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C9B49AA-F0FF-4B45-94F3-E583271D4DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C9B49AA-F0FF-4B45-94F3-E583271D4DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C9B49AA-F0FF-4B45-94F3-E583271D4DB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

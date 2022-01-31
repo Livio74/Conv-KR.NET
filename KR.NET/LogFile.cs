@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
 using MessageBoxButtons = System.Windows.MessageBoxButton;
+using KRLib.NET;
 
 namespace KR.NET
 {
@@ -40,7 +41,7 @@ namespace KR.NET
                 MessageBox.Show("Inserire la chiave", "Log file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            strS = MOD_KLOG.CaricaLogFile(strS, main.G_strFileLog);
+            strS = MOD_KLOG.CaricaLogFile(strS, MOD_MAIN.G_strFileLog);
             if ("".Equals(strS))
             {
                 MessageBox.Show("Chiave inserita non valida", "Log file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
@@ -99,7 +100,7 @@ namespace KR.NET
         private void btnConferma_Click(object sender, EventArgs e)
         {
             string strS = this.mainForm.txtChiave.Text;
-            MOD_KLOG.SalvaLogFile(strS, main.G_strFileLog);
+            MOD_KLOG.SalvaLogFile(strS, MOD_MAIN.G_strFileLog);
             MessageBox.Show("Salvato file Log", "Log file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
             this.Close();
         }
@@ -200,7 +201,7 @@ namespace KR.NET
                 MessageBox.Show("Chiave non valida", "Log file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            MOD_KLOG.RigeneraLog(strS, main.G_strDirRoot, main.G_strFileLog, main.G_strDirRoot);
+            MOD_KLOG.RigeneraLog(strS, MOD_MAIN.G_strDirRoot, MOD_MAIN.G_strFileLog, MOD_MAIN.G_strDirRoot);
             MessageBox.Show("Log rigenerato", "Log file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
             MOD_KLOG.LoadIntoList(lstDir, m_StatoE, m_StatoK);
         }

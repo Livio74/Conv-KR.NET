@@ -4,20 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KRLib.NET;
 
 namespace KR.NET
 {
     static class main
     {
-
-        public static string G_strErr;
-        public static bool G_bolEsisteLog;
-        public static bool G_bolErrLog;
-        public static long G_lng_NumFiles;
-        public static string G_strFileLog;
-        public static string G_strDirRoot;
-        public static string G_strFileList;
-        public static string G_strChiave;
 
         /// <summary>
         /// Punto di ingresso principale dell'applicazione.
@@ -25,34 +17,21 @@ namespace KR.NET
         [STAThread]
         static void Main(string[] args)
         {
-            G_strDirRoot = GetParam(1, args);
-            G_strChiave = GetParam(2, args);
-            if ("".Equals(G_strDirRoot))
+            MOD_MAIN.G_strDirRoot = GetParam(1, args);
+            MOD_MAIN.G_strChiave = GetParam(2, args);
+            if ("".Equals(MOD_MAIN.G_strDirRoot))
             {
-                G_strFileLog = "klog.txt";
+                MOD_MAIN.G_strFileLog = "klog.txt";
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new kr());
             } else
             {
-                G_strFileLog = G_strDirRoot + "\\klog.txt";
+                MOD_MAIN.G_strFileLog = MOD_MAIN.G_strDirRoot + "\\klog.txt";
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new minKR());
             }
-        }
-
-        public static string getErrorMsg(string strErrCode)
-        {
-            string strErr = "";
-            if ("OVERFLOW".Equals(strErrCode))
-            {
-                strErr = "Ci sono troppi file nella directory specificata";
-            } else
-            {
-                strErr = "ERROR CODE : " + strErrCode;
-            }
-            return strErr;
         }
 
         private static string GetParam(int v, string[] args)

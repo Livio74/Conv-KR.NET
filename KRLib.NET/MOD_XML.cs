@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KR.NET
+namespace KRLib.NET
 {
     public class MOD_XML
     {

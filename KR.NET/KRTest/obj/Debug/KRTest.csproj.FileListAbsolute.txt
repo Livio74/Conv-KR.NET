@@ -58,3 +58,5 @@ D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\obj\Debug\KRTest.cspro
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\obj\Debug\KRTest.csproj.CopyComplete
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\obj\Debug\KRTest.dll
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\obj\Debug\KRTest.pdb
+D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\bin\Debug\KRLib.NET.dll
+D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\bin\Debug\KRLib.NET.pdb

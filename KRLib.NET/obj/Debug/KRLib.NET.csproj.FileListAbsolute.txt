@@ -1,0 +1,6 @@
+D:\Root\Repositories\Git Client\Conv KR.NET\KRLib.NET\bin\Debug\KRLib.NET.dll
+D:\Root\Repositories\Git Client\Conv KR.NET\KRLib.NET\bin\Debug\KRLib.NET.pdb
+D:\Root\Repositories\Git Client\Conv KR.NET\KRLib.NET\obj\Debug\KRLib.NET.csproj.AssemblyReference.cache
+D:\Root\Repositories\Git Client\Conv KR.NET\KRLib.NET\obj\Debug\KRLib.NET.csproj.CoreCompileInputs.cache
+D:\Root\Repositories\Git Client\Conv KR.NET\KRLib.NET\obj\Debug\KRLib.NET.dll
+D:\Root\Repositories\Git Client\Conv KR.NET\KRLib.NET\obj\Debug\KRLib.NET.pdb

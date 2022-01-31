@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using KR.NET;
 using System.IO;
 using KRLib.NET;
 

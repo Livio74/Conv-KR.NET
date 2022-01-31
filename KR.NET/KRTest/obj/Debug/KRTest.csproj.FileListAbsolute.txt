@@ -46,11 +46,8 @@ D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\bin\Debug\it\Microsoft
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\bin\Debug\it\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\bin\Debug\KRTest.dll
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\bin\Debug\KRTest.pdb
-D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\bin\Debug\KR.NET.exe
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
-D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\bin\Debug\KR.NET.pdb
-D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\bin\Debug\KR.NET.exe.config
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\KRTest\obj\Debug\KRTest.csproj.AssemblyReference.cache

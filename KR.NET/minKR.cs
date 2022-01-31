@@ -36,8 +36,8 @@ namespace KR.NET
         private void minKR_Load(object sender, EventArgs e)
         {
             ManageControls(false);
-            if (! "".Equals(MOD_MAIN.G_strChiave))
-                txtChiave.Text = MOD_MAIN.G_strChiave;
+            if (! "".Equals(main.G_strChiave))
+                txtChiave.Text = main.G_strChiave;
         }
 
         private void btnVai_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace KR.NET
         {
             string strS = txtChiave.Text;
             ///strS = MOD_KLOG.CaricaLogFile(strS, MOD_MAIN.G_strFileLog); Non so come fa a funzionare nell'originale ma lo correggo
-            string strS1 = MOD_KLOG.CaricaLogFile(strS, MOD_MAIN.G_strFileLog);
+            string strS1 = MOD_KLOG.CaricaLogFile(strS, main.G_strFileLog);
             if ("".Equals(strS1))
             {
                 MessageBox.Show("Chiave inserita non corretta", "Esegui crypt dei file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
@@ -70,7 +70,7 @@ namespace KR.NET
             }
             else
             {
-                MOD_KLOG.RigeneraLog(strS, MOD_MAIN.G_strDirRoot, MOD_MAIN.G_strFileLog, MOD_MAIN.G_strDirRoot);
+                MOD_KLOG.RigeneraLog(strS, main.G_strDirRoot, main.G_strFileLog, main.G_strDirRoot);
                 EseguiKLog();
             }
         }
@@ -82,13 +82,13 @@ namespace KR.NET
             ManageControls(true);
             //2. CaricaLogFile
             strS = txtChiave.Text;
-            strS = MOD_KLOG.CaricaLogFile(strS, MOD_MAIN.G_strFileLog);
+            strS = MOD_KLOG.CaricaLogFile(strS, main.G_strFileLog);
             if ("".Equals(strS))
             {
                 MessageBox.Show("Chiave inserita non valida", "Esegui crypt dei file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
                 this.Close();
             }
-            if (MOD_MAIN.G_bolErrLog)
+            if (main.G_bolErrLog)
             {
                 MessageBox.Show("ORMATO LOG NON VALIDO", "Esegui crypt dei file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
                 this.Close();
@@ -96,7 +96,7 @@ namespace KR.NET
             //3. Generazione della lista di tutti i file
             lblStato.Text = "Stato: Generazione della lista dei file da criptare....";
             lblStato.Refresh();
-            strErr = MOD_FILE_LIST.Genera(1, MOD_MAIN.G_strDirRoot, MOD_MAIN.G_strFileLog);
+            strErr = MOD_FILE_LIST.Genera(1, main.G_strDirRoot, main.G_strFileLog);
             if (!"".Equals(strErr))
             {
                 MessageBox.Show(strErr, "Esegui crypt dei file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
@@ -120,15 +120,15 @@ namespace KR.NET
                 MOD_PRG_UTILS.Kriptp(strNomeFile, txtChiave.Text);
             }
             //4. SalvaLogFile
-            MOD_KLOG.SalvaLogFile(txtChiave.Text, MOD_MAIN.G_strFileLog);
+            MOD_KLOG.SalvaLogFile(txtChiave.Text, main.G_strFileLog);
             //5. Operazione Completata
             MessageBox.Show("Operazione completata", "Esegui crypt dei file", MessageBoxButtons.OK, MessageBoxImage.Information);
             lblStato.Text = "Stato: PRONTO!";
             lblStato.Refresh();
-            if (!"".Equals(MOD_MAIN.G_strErr))
+            if (!"".Equals(main.G_strErr))
             {
-                MOD_MAIN.G_strErr = "<?xml version=\"1.01\" encoding=\"UTF-8\"?><EXCEPTIONS DATETIME=\"" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "\">" + MOD_MAIN.G_strErr + "</EXCEPTIONS>";
-                MOD_UTILS_SO.ErrorLog(MOD_MAIN.G_strErr);
+                main.G_strErr = "<?xml version=\"1.01\" encoding=\"UTF-8\"?><EXCEPTIONS DATETIME=\"" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "\">" + main.G_strErr + "</EXCEPTIONS>";
+                MOD_UTILS_SO.ErrorLog(main.G_strErr);
             }
             Application.Exit();
         }

@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>KR.NET.MOD_MAIN</StartupObject>
+    <StartupObject>KR.NET.main</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic.Compatibility" />
@@ -84,7 +84,7 @@
     <Compile Include="minKR.Designer.cs">
       <DependentUpon>minKR.cs</DependentUpon>
     </Compile>
-    <Compile Include="MOD_MAIN.cs" />
+    <Compile Include="main.cs" />
     <Compile Include="MOD_FILE_LIST.cs" />
     <Compile Include="MOD_INVKEY.cs" />
     <Compile Include="MOD_KLOG.cs" />

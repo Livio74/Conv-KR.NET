@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace KR.NET
 {
-    static class MOD_MAIN
+    static class main
     {
 
         public static string G_strErr;

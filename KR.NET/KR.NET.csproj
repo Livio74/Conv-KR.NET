@@ -85,7 +85,6 @@
       <DependentUpon>minKR.cs</DependentUpon>
     </Compile>
     <Compile Include="main.cs" />
-    <Compile Include="MOD_INVKEY.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="kr.resx">
       <DependentUpon>kr.cs</DependentUpon>

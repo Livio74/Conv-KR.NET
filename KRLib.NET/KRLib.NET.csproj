@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MOD_FILE_LIST.cs" />
+    <Compile Include="MOD_INVKEY.cs" />
     <Compile Include="MOD_KLOG.cs" />
     <Compile Include="MOD_MAIN.cs" />
     <Compile Include="MOD_PRG_UTILS.cs" />

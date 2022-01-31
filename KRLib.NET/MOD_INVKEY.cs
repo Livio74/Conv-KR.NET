@@ -4,9 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KRLib.NET;
 
-namespace KR.NET
+namespace KRLib.NET
 {
     public class MOD_INVKEY
     {

@@ -65,6 +65,10 @@
     <None Include="test.runsettings" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\KRLib.NET\KRLib.NET.csproj">
+      <Project>{8c9b49aa-f0ff-4b45-94f3-e583271d4db2}</Project>
+      <Name>KRLib.NET</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KR.NET.csproj">
       <Project>{63ed52f9-805c-4243-9293-0879927f4ceb}</Project>
       <Name>KR.NET</Name>

@@ -1,4 +1,4 @@
-﻿using KR.NET;
+﻿using KRLib.NET;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

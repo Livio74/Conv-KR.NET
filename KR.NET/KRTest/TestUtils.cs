@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Linq;
 using System.Text;
+using KRLib.NET;
 
 namespace KRTest
 {

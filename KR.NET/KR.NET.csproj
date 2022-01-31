@@ -87,7 +87,6 @@
     <Compile Include="main.cs" />
     <Compile Include="MOD_FILE_LIST.cs" />
     <Compile Include="MOD_INVKEY.cs" />
-    <Compile Include="MOD_KLOG.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="kr.resx">
       <DependentUpon>kr.cs</DependentUpon>

@@ -1,0 +1,13 @@
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\bin\Debug\KRDE.exe.config
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\bin\Debug\KRDE.exe
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\bin\Debug\KRDE.pdb
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\bin\Debug\KRLib.NET.dll
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\bin\Debug\KRLib.NET.pdb
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\obj\Debug\KRDE.csproj.AssemblyReference.cache
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\obj\Debug\KRDE.frmDecrypt.resources
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\obj\Debug\KRDE.Properties.Resources.resources
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\obj\Debug\KRDE.csproj.GenerateResource.cache
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\obj\Debug\KRDE.csproj.CoreCompileInputs.cache
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\obj\Debug\KRDE.csproj.CopyComplete
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\obj\Debug\KRDE.exe
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\obj\Debug\KRDE.pdb

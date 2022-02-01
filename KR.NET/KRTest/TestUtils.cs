@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Linq;
 using System.Text;
 using KRLib.NET;
+using System.Security.AccessControl;
 
 namespace KRTest
 {
@@ -337,6 +338,34 @@ namespace KRTest
             }
             File.WriteAllLines(cryptFileDestination, cryptFileDestinationList);
             return true;
+        }
+
+        public static string getWorkTestRoot(TestContext testContext)
+        {
+            string strDirBase = (string)testContext.Properties["WorkTestRoot"];
+            if (!Directory.Exists(strDirBase))
+                Directory.CreateDirectory(strDirBase);
+            return strDirBase;
+        }
+
+        public static string getKlogDate(TestContext testContext)
+        {
+            return (string)testContext.Properties["klogDate"];
+        }
+
+        public static string getTestKey(TestContext testContext)
+        {
+            return (string)testContext.Properties["testKey"];
+        }
+
+        public static string getKlogKey(TestContext testContext)
+        {
+            return (string)testContext.Properties["klogKey"];
+        }
+
+        public static string getWorkTestCryptDir(TestContext testContext)
+        {
+            return getWorkTestRoot(testContext) + "\\CryptDir";
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <RunSettings>
   <TestRunParameters>
-    <Parameter name="WorkTestRoot" value="D:\Root\Working\Kudalpt2019\KRTest"/>
+    <Parameter name="WorkTestRoot" value="c:\KRTest"/>
     <Parameter name="klogDate" value="16/01/2022"/>
     <Parameter name="testKey" value="LIVIO"/>
     <Parameter name="klogKey" value="2B9P1812MaV8661P9N151"/>

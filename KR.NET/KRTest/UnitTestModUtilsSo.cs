@@ -21,12 +21,12 @@ namespace KRTest
         [TestInitialize]
         public void TestInitialize()
         {
-            strDirBase = (string)TestContext.Properties["WorkTestRoot"];
+            strDirBase = TestUtils.getWorkTestRoot(TestContext);
             strProjectDir = TestUtils.ProjectDir();
-            strDirBaseCrypt = strDirBase + "\\CryptDir";
-            dateKLog = (string)TestContext.Properties["klogDate"];
-            testKey = (string)TestContext.Properties["testKey"];
-            klogKey = (string)TestContext.Properties["klogKey"];
+            strDirBaseCrypt = TestUtils.getWorkTestCryptDir(TestContext);
+            dateKLog = TestUtils.getKlogDate(TestContext);
+            testKey = TestUtils.getTestKey(TestContext);
+            klogKey = TestUtils.getKlogKey(TestContext);
         }
 
         [TestMethod]

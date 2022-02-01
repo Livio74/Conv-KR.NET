@@ -13,16 +13,17 @@ namespace KRTest
         [TestMethod]
         public void First()
         {
-            string strDirBase = (string)TestContext.Properties["WorkTestRoot"];
+            string strDirBase = TestUtils.getWorkTestRoot(TestContext);
             Assert.AreNotEqual("", strDirBase, "E' possibile che non sia stato associato il corretto test setting file");
             string strProjectDir = TestUtils.ProjectDir();
-            string strDirBaseCrypt = strDirBase + "\\CryptDir";
-            string dateKLog = (string)TestContext.Properties["klogDate"];
-            string testKey = (string)TestContext.Properties["testKey"];
-            string klogKey = (string)TestContext.Properties["klogKey"];
+            string strDirBaseCrypt = TestUtils.getWorkTestCryptDir(TestContext);
+            string dateKLog = TestUtils.getKlogDate(TestContext);
+            string testKey = TestUtils.getTestKey(TestContext);
+            string klogKey = TestUtils.getKlogKey(TestContext);
             if (! Directory.Exists(strDirBaseCrypt)) {
                 //Copia di tutto il progetto escluso file generati
                 TestUtils.CopyDirectoryWithExclude(strProjectDir, strDirBaseCrypt + "\\KR.NET", ".vs,TestResults,packages,bin,obj,KRTest\\bin,KRTest\\obj");
+                TestUtils.CopyDirectoryWithExclude(strProjectDir, strDirBaseCrypt + "\\KRLib.NET", ".vs,TestResults,packages,bin,obj,KRTest\\bin,KRTest\\obj");
                 string strVB6ProjectDir = TestUtils.VB6ProjectDir();
                 TestUtils.CopyDirectory(strVB6ProjectDir, strDirBaseCrypt + "\\Kripter", true);
                 TestUtils.CopyDirectory(strDirBaseCrypt, strDirBase + "\\ClearDir", true);

@@ -14,13 +14,13 @@ namespace KRTest
         [TestMethod]
         public void TestAll_LoadAllFilesFromKLog()
         {
-            string strDirBase = (string)TestContext.Properties["WorkTestRoot"];
+            string strDirBase = TestUtils.getWorkTestRoot(TestContext);
             Assert.AreNotEqual("", strDirBase, "E' possibile che non sia stato associato il corretto test setting file");
             string strProjectDir = TestUtils.ProjectDir();
-            string strDirBaseCrypt = strDirBase + "\\CryptDir";
-            string dateKLog = (string)TestContext.Properties["klogDate"];
-            string testKey = (string)TestContext.Properties["testKey"];
-            string klogKey = (string)TestContext.Properties["klogKey"];
+            string strDirBaseCrypt = TestUtils.getWorkTestCryptDir(TestContext);
+            string dateKLog = TestUtils.getKlogDate(TestContext);
+            string testKey = TestUtils.getTestKey(TestContext);
+            string klogKey = TestUtils.getKlogKey(TestContext);
             string fileKey = MOD_KLOG.CaricaLogFile(testKey, strDirBaseCrypt + "\\klog.txt");
             Assert.AreNotEqual("", fileKey);
             File.Copy(strDirBaseCrypt + "\\klog.txt", strDirBase + "\\klog_SAVE.txt");
@@ -37,7 +37,12 @@ namespace KRTest
             string FileOut = strDirBase + "\\CryptDir_FileList.txt";
             string FileOutCfr = strDirBase + "\\FileList_CryptDir.txt";
             TestUtils.copyFileListByCryptFileList (strDirBase + "\\ClearDir\\KR.NET\\KRTest\\Resources\\CryptDir_FileList.txt", FileOutCfr, strDirBase + "\\CryptDir", 1);
-            Assert.IsTrue(TestUtils.CheckStringArrayWithTextFile(fileList , strDirBase + "\\FileList_CryptDir.txt") , TestUtils.LastMessage);
+            bool listIsEquals = TestUtils.CheckStringArrayWithTextFile(fileList, strDirBase + "\\FileList_CryptDir.txt");
+            if (!listIsEquals)
+            {
+                File.WriteAllLines(FileOut , fileList);
+            }
+            Assert.IsTrue(listIsEquals, TestUtils.LastMessage);
         }
     }
 }

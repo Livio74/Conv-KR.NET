@@ -37,7 +37,7 @@ namespace KRTest
             Assert.AreNotEqual("", strkey);
             MOD_KLOG.LoadIntoList(lst, "", "");
             createFileWithFSList(strDirBase + "\\klog_ALL_E.txt", "_E");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALL_E.txt") , TestUtils.LastMessage);
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALL_E.txt", strDirBase + "\\klog_ALL_E_Attuale.txt") , TestUtils.LastMessage);
         }
 
         [TestMethod]
@@ -48,25 +48,25 @@ namespace KRTest
             MOD_KLOG.CambiaStato("" , "" , "D");
             MOD_KLOG.LoadIntoList(lst, "", "");
             createFileWithFSList(strDirBase + "\\klog_ALLKD.txt", "KD");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLKD.txt"), TestUtils.LastMessage);
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLKD.txt", strDirBase + "\\klog_ALL_D_Attuale.txt"), TestUtils.LastMessage);
             MOD_KLOG.CambiaStato("D", "K", "E");
             MOD_KLOG.LoadIntoList(lst, "", "");
             createFileWithFSList(strDirBase + "\\klog_ALLKE.txt", "KE");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLKE.txt"), TestUtils.LastMessage);
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLKE.txt", strDirBase + "\\klog_ALL_E_Attuale.txt"), TestUtils.LastMessage);
             MOD_KLOG.CambiaStato("D", "K", "E");
             MOD_KLOG.LoadIntoList(lst, "", "");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLKE.txt"), TestUtils.LastMessage);
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLKE.txt", strDirBase + "\\klog_ALL_E_Attuale.txt"), TestUtils.LastMessage);
             MOD_KLOG.CambiaStato("D", "_", "E");
             MOD_KLOG.LoadIntoList(lst, "", "");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLKE.txt"), TestUtils.LastMessage);
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALLKE.txt", strDirBase + "\\klog_ALL_E_Attuale.txt"), TestUtils.LastMessage);
             MOD_KLOG.CambiaStato("", "", "D" , strDirBaseCrypt + "\\KR.NET\\KRTest");
             MOD_KLOG.LoadIntoList(lst, "", "");
             createFileWithFSList_status("klog_dir1.txt" , strDirBase + "\\klog_dir1.txt", "", "KE", "KD");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_dir1.txt"), TestUtils.LastMessage);
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_dir1.txt", strDirBase + "\\klog_dir1_Attuale.txt"), TestUtils.LastMessage);
             MOD_KLOG.CambiaStato("", "", "");
             MOD_KLOG.LoadIntoList(lst, "", "");
             createFileWithFSList_status("klog_dir1.txt", strDirBase + "\\klog_dir1_cambio.txt", "", "KD", "KE");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_dir1_cambio.txt"), TestUtils.LastMessage);
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_dir1_cambio.txt", strDirBase + "\\klog_dir1_cambio_Attuale.txt"), TestUtils.LastMessage);
         }
 
         [TestMethod]
@@ -85,7 +85,7 @@ namespace KRTest
             MOD_KLOG.SetStato(strDirBaseCrypt + "\\KR.NET\\KRTest");
             MOD_KLOG.LoadIntoList(lst, "", "");
             createFileWithFSList_status("klog_dir1.txt", strDirBase + "\\klog_SetStato.txt", "", "KE", "_E");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_SetStato.txt"), TestUtils.LastMessage);
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_SetStato.txt" , strDirBase + "\\klog_SetStato_Attuale.txt"), TestUtils.LastMessage);
         }
 
         [TestMethod]
@@ -100,7 +100,7 @@ namespace KRTest
             MOD_KLOG.SetNewStato(strDirBaseCrypt + "\\Kripter", "", "");
             MOD_KLOG.LoadIntoList(lst, "", "");
             createFileWithFSList_status("klog_dir1.txt", strDirBase + "\\klog_SetNewStato.txt", "", "_E", "KD");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_SetNewStato.txt"), TestUtils.LastMessage);
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_SetNewStato.txt", strDirBase + "\\klog_SetNewStatoAttuale.txt"), TestUtils.LastMessage);
         }
 
         [TestMethod]
@@ -114,7 +114,7 @@ namespace KRTest
             MOD_KLOG.RigeneraLog(testKey, strDirBaseCrypt, strDirBaseCrypt + "\\klog.txt", strDirBaseCrypt);
             MOD_KLOG.LoadIntoList(lst, "", "");
             createFileWithFSList_status("klog_ConProva.txt", strDirBase + "\\klog_ConProva.txt", "", "KE", "_E");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ConProva.txt"), TestUtils.LastMessage);
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ConProva.txt", strDirBase + "\\klog_ConProva_Attuale.txt"), TestUtils.LastMessage);
             File.Delete(strDirBaseCrypt + "\\klog.txt");
             File.Move(strDirBase + "\\klog_SAVE.txt" , strDirBaseCrypt + "\\klog.txt");
             File.Delete(dirProva + "\\Prova.txt");
@@ -131,11 +131,11 @@ namespace KRTest
             MOD_KLOG.LoadIntoList(lst, "D", "");
             Assert.AreEqual(0, lst.Items.Count);
             MOD_KLOG.LoadIntoList(lst, "E", "");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALL_E.txt"), TestUtils.LastMessage);
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALL_E.txt", strDirBase + "\\klog_ALL_E_Attuale.txt"), TestUtils.LastMessage);
             MOD_KLOG.LoadIntoList(lst, "", "K");
             Assert.AreEqual(0, lst.Items.Count);
             MOD_KLOG.LoadIntoList(lst, "", "_");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALL_E.txt"), TestUtils.LastMessage);
+            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ALL_E.txt", strDirBase + "\\klog_ALL_E_Attuale.txt"), TestUtils.LastMessage);
         }
 
         private void createFileWithFSList(string klogOut , string status)

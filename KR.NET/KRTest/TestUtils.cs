@@ -46,13 +46,16 @@ namespace KRTest
             return true;
         }
 
-        public static bool CheckListBoxWithTextFile(ListBox lst , string comparingFilePath)
+        public static bool CheckListBoxWithTextFile(ListBox lst , string comparingFilePath, string FileToSaveListBox)
         {
             string [] fileLines = File.ReadAllLines(comparingFilePath);
             string[] lstStringArray = lst.Items.OfType<string>().ToArray();
             string messageItemNotEqual = "element {0} not equals between ListBox element {1} and file line {2}";
             string messageCountNotEqual = "listBox elements count {0} not equals to file lines count {1}";
-            return Check2StringArraysEquals(lstStringArray, fileLines, messageItemNotEqual, messageCountNotEqual);
+            bool isEqual = Check2StringArraysEquals(lstStringArray, fileLines, messageItemNotEqual, messageCountNotEqual);
+            if (!isEqual)
+                saveStringArrayToFile(lstStringArray, FileToSaveListBox);
+            return isEqual;
         }
 
         public static bool CheckStringArrayWithTextFile(string[] stringArray , string comparingFilePath, string saveStringArrayFile, int length = -1)

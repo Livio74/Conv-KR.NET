@@ -1,7 +1,12 @@
 ﻿\
 \KR.NET
 \Kripter
+\KRLib.NET
 \KR.NET\KRTest
 \KR.NET\Properties
+\KRLib.NET\KRTest
+\KRLib.NET\Properties
 \KR.NET\KRTest\Properties
 \KR.NET\KRTest\Resources
+\KRLib.NET\KRTest\Properties
+\KRLib.NET\KRTest\Resources

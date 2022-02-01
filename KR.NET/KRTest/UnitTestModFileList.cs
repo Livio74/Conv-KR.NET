@@ -37,11 +37,7 @@ namespace KRTest
             string FileOut = strDirBase + "\\CryptDir_FileList.txt";
             string FileOutCfr = strDirBase + "\\FileList_CryptDir.txt";
             TestUtils.copyFileListByCryptFileList (strDirBase + "\\ClearDir\\KR.NET\\KRTest\\Resources\\CryptDir_FileList.txt", FileOutCfr, strDirBase + "\\CryptDir", 1);
-            bool listIsEquals = TestUtils.CheckStringArrayWithTextFile(fileList, strDirBase + "\\FileList_CryptDir.txt");
-            if (!listIsEquals)
-            {
-                File.WriteAllLines(FileOut , fileList);
-            }
+            bool listIsEquals = TestUtils.CheckStringArrayWithTextFile(fileList, strDirBase + "\\FileList_CryptDir.txt", FileOut);
             Assert.IsTrue(listIsEquals, TestUtils.LastMessage);
         }
     }

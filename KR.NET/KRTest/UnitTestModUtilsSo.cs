@@ -35,7 +35,8 @@ namespace KRTest
             string dirToList = strDirBase + "\\ClearDir\\KR.NET";
             string[] strListFD = new string[5000]; int intNumLV1 = 0;
             MOD_UTILS_SO.ListaFileEDirs(dirToList, strListFD, out intNumLV1);
-            bool isEqual = TestUtils.CheckStringArrayWithTextFile(strListFD, strDirBase + @"\\clearDir\KR.NET\KRTest\Resources\CleanDir_KR.NET.txt", intNumLV1);
+            string FileAndDirList = strDirBase + "\\FileAndDirList.txt";
+            bool isEqual = TestUtils.CheckStringArrayWithTextFile(strListFD, strDirBase + @"\\clearDir\KR.NET\KRTest\Resources\CleanDir_KR.NET.txt", FileAndDirList, intNumLV1);
             Assert.IsTrue(isEqual, TestUtils.LastMessage);
         }
 

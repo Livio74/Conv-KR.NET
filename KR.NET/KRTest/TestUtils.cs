@@ -55,12 +55,30 @@ namespace KRTest
             return Check2StringArraysEquals(lstStringArray, fileLines, messageItemNotEqual, messageCountNotEqual);
         }
 
-        public static bool CheckStringArrayWithTextFile(string[] stringArray , string comparingFilePath, int length = -1)
+        public static bool CheckStringArrayWithTextFile(string[] stringArray , string comparingFilePath, string saveStringArrayFile, int length = -1)
         {
             string[] fileLines = File.ReadAllLines(comparingFilePath);
             string messageItemNotEqual = "element {0} not equals between array element {1} and file line {2}";
             string messageCountNotEqual = "Array elements count {0} not equals to file lines count {1}";
-            return Check2StringArraysEquals(stringArray, fileLines, messageItemNotEqual, messageCountNotEqual, length);
+            bool isEqual = Check2StringArraysEquals(stringArray, fileLines, messageItemNotEqual, messageCountNotEqual, length);
+            if (!isEqual)
+            {
+                saveStringArrayToFile(stringArray, saveStringArrayFile, length);
+            }
+            return isEqual;
+        }
+
+        private static void saveStringArrayToFile(string[] stringArray, string saveStringArrayFile, int length = -1)
+        {
+            if (length < 0)
+                File.WriteAllLines(saveStringArrayFile, stringArray);
+            else
+            {
+                string[] stringArray2 = new string[length];
+                for (int i = 0; i < length; i++)
+                    stringArray2[i] = stringArray[i];
+                File.WriteAllLines(saveStringArrayFile, stringArray2);
+            }
         }
 
         public static bool TextFilesAreEqual(string sourceTextFile, string destinationTextFile, string encodingSourceString = "", string encodingDestinationString = "")
@@ -86,7 +104,7 @@ namespace KRTest
             return Check2StringArraysEquals(textFileLine1, textFileLine2, messageItemNotEqual, messageCountNotEqual);
         }
 
-        public static bool Check2StringArraysEquals(string[] stringArray1 , string[] stringArray2, string messageItemNotEqual, string messageCountNotEqual, int length1 = -1, int length2 = -1)
+        public static bool Check2StringArraysEquals(string[] stringArray1 , string[] stringArray2, string messageItemNotEqual, string messageCountNotEqual , int length1 = -1, int length2 = -1)
         {
             bool isEqual = false;
             if (length1 < 0) length1 = stringArray1.Length;

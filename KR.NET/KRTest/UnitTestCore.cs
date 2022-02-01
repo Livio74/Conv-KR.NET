@@ -24,6 +24,8 @@ namespace KRTest
                 //Copia di tutto il progetto escluso file generati
                 TestUtils.CopyDirectoryWithExclude(strProjectDir, strDirBaseCrypt + "\\KR.NET", ".vs,TestResults,packages,bin,obj,KRTest\\bin,KRTest\\obj");
                 TestUtils.CopyDirectoryWithExclude(strProjectDir, strDirBaseCrypt + "\\KRLib.NET", ".vs,TestResults,packages,bin,obj,KRTest\\bin,KRTest\\obj");
+                TestUtils.CopyDirectoryWithExclude(strProjectDir, strDirBaseCrypt + "\\KR_UTILS", ".vs,TestResults,packages,bin,obj,KRTest\\bin,KRTest\\obj");
+                TestUtils.CopyDirectoryWithExclude(strProjectDir, strDirBaseCrypt + "\\KRDE", ".vs,TestResults,packages,bin,obj,KRTest\\bin,KRTest\\obj");
                 string strVB6ProjectDir = TestUtils.VB6ProjectDir();
                 TestUtils.CopyDirectory(strVB6ProjectDir, strDirBaseCrypt + "\\Kripter", true);
                 TestUtils.CopyDirectory(strDirBaseCrypt, strDirBase + "\\ClearDir", true);

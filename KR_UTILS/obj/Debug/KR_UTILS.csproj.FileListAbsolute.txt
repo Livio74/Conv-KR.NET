@@ -1,0 +1,13 @@
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\bin\Debug\KR_UTILS.exe.config
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\bin\Debug\KR_UTILS.exe
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\bin\Debug\KR_UTILS.pdb
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\bin\Debug\KRLib.NET.dll
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\bin\Debug\KRLib.NET.pdb
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\obj\Debug\KR_UTILS.csproj.AssemblyReference.cache
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\obj\Debug\KR_UTILS.frmKrUtils.resources
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\obj\Debug\KR_UTILS.Properties.Resources.resources
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\obj\Debug\KR_UTILS.csproj.GenerateResource.cache
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\obj\Debug\KR_UTILS.csproj.CoreCompileInputs.cache
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\obj\Debug\KR_UTILS.csproj.CopyComplete
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\obj\Debug\KR_UTILS.exe
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\obj\Debug\KR_UTILS.pdb

@@ -3,3 +3,4 @@
 /KR.NET/obj/Release/*.cache
 /KR.NET/bin/Debug/ErrorLog.xml
 /KRDE/obj/Debug/*.cache
+/KR_UTILS/obj/Debug/*.cache

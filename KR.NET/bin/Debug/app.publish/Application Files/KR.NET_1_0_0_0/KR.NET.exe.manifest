@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="KR.NET.exe" version="1.0.0.0" publicKeyToken="6bd6759a965a1e20" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="KR.NET" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="KR.NET.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet version="1" class="System.Security.NamedPermissionSet" Name="LocalIntranet" Description="Default rights given to applications on the local intranet" Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- Opzioni manifesto di Controllo dell'account utente
+             Per modificare il livello di Controllo dell'account utente di Windows, sostituire il 
+             nodo requestedExecutionLevel con uno dei seguenti.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+            Se si specifica l'elemento requestedExecutionLevel, la funzionalità Virtualizzazione file system e registro di sistema verrà disabilitata. 
+            Rimuovere questo elemento se l'applicazione richiede questa virtualizzazione per
+            compatibilità con le versioni precedenti.
+        -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KR.NET.exe" size="31176">
+      <assemblyIdentity name="KR.NET" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>XYQHbwkRojvGunML17kfymFpOT3hq1TqpBRc1ywaD3s=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KRLib.NET.dll" size="17920">
+      <assemblyIdentity name="KRLib.NET" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>8n8OM1+M09AeJ/2V3ZVy5L9b21xXy5LovDkhgc3CRl4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="KR.NET.exe.config" size="189">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>R+Wg8QGvQVHX8T0ta/qbhH1bXkqY0fRnS3wBV3J0bN8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- Elenco delle versioni di Windows in cui è stata testata questa applicazione e
+           per cui è stato previsto l'uso. Rimuovere il commento dagli elementi appropriati per
+           fare in modo che Windows selezioni automaticamente l'ambiente più compatibile. -->
+      <!-- Windows Vista -->
+      <!--<supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}" />-->
+      <!-- Windows 7 -->
+      <!--<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}" />-->
+      <!-- Windows 8 -->
+      <!--<supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}" />-->
+      <!-- Windows 8.1 -->
+      <!--<supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}" />-->
+      <!-- Windows 10 -->
+      <!--<supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />-->
+    </application>
+  </compatibility>
+<publisherIdentity name="CN=KUDALPT2019\LFran" issuerKeyHash="2833c24a49ecc8bb5966d9d545f8725f17bec4ed" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>LIpP6Vcqosmc/E0NOELRNtXaBTdgZQxycRZke6au9RA=</DigestValue></Reference></SignedInfo><SignatureValue>R54l8gB1XTBh2ziN9g/Bdbwy2bJbheSdZZ03DikvRCVCgNhHKuvKAo/gRPdy526sHfkA1JVzm8/BdxrTNQ8dKVOXy+vhFNRH+4DCfX4V0dUNLE1ghkyAVVVEukJTnp1I21eGAAzGmpHHqzDxaBpoCtVNC/0bchKO8YplQ35iPEQ=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>pixeagWOLNYmrvp46o7FcELXzxGux2RhLHTanPStUqXQcCPmap4ys8z7VQbBetC4FGsWv36BsCbAThZRCEWhaORBaV+vExTcWxSsiZhNbLhcZvAEgolpFrLa71/AYtQYNchNIRXTU9D/ReDB1C1H6LDtW/tl6V2AC+uHPkCxP+U=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="10f5aea67b641671720c65603705dad536d142380d4dfc9cc9a22a57e94f8a2c" Description="" Url=""><as:assemblyIdentity name="KR.NET.exe" version="1.0.0.0" publicKeyToken="6bd6759a965a1e20" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=KUDALPT2019\LFran</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>EBdjIjMvW5FhXBNJ81F+DPJ9hobkrZXFcGX7yRwovxQ=</DigestValue></Reference></SignedInfo><SignatureValue>LVUJ/cLhguKLK4WJ57iiZEoSuOQybjnu5G1h7m1cIn0K1bfG0ZpESg2IQhgqGxha2VqRiXpN3TUI6ld5tTAH6NGELlbcUGncIKYwb0HihcMVYZ3RwLApwERrQIKTH8S7SW/mPb++S2/kbFpjksC+ykaNAEI08w8LDZ3O1Ag+dxA=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>pixeagWOLNYmrvp46o7FcELXzxGux2RhLHTanPStUqXQcCPmap4ys8z7VQbBetC4FGsWv36BsCbAThZRCEWhaORBaV+vExTcWxSsiZhNbLhcZvAEgolpFrLa71/AYtQYNchNIRXTU9D/ReDB1C1H6LDtW/tl6V2AC+uHPkCxP+U=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB3TCCAUagAwIBAgIQFlsZMvfIjrtFYQ1TBGLo/zANBgkqhkiG9w0BAQsFADAtMSswKQYDVQQDHiIASwBVAEQAQQBMAFAAVAAyADAAMQA5AFwATABGAHIAYQBuMB4XDTIyMDIwMzE2MDUxMVoXDTIzMDIwMzIyMDUxMVowLTErMCkGA1UEAx4iAEsAVQBEAEEATABQAFQAMgAwADEAOQBcAEwARgByAGEAbjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEApixeagWOLNYmrvp46o7FcELXzxGux2RhLHTanPStUqXQcCPmap4ys8z7VQbBetC4FGsWv36BsCbAThZRCEWhaORBaV+vExTcWxSsiZhNbLhcZvAEgolpFrLa71/AYtQYNchNIRXTU9D/ReDB1C1H6LDtW/tl6V2AC+uHPkCxP+UCAwEAATANBgkqhkiG9w0BAQsFAAOBgQBDXe2Cr8Bk5Lk1kjf62FQo/tbAwFN1Rh4RPBZeJ6ULEVRvNsWfnvvXq5No6TEpwD59YplcPkbVQV22qZIu/OGRC1v3K0dPy/QL3VwAXtFmK6uws4/axNhL4VtRZuqsg5+R6TgqGPIW+eQ/7la30sg511jXaNdjVcPYQZtvOTnsGQ==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

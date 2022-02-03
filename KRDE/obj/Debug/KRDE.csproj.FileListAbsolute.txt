@@ -11,3 +11,7 @@ D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\obj\Debug\KRDE.csproj.CoreCompi
 D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\obj\Debug\KRDE.csproj.CopyComplete
 D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\obj\Debug\KRDE.exe
 D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\obj\Debug\KRDE.pdb
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\bin\Debug\KRDE.exe.manifest
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\bin\Debug\KRDE.application
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\obj\Debug\KRDE.exe.manifest
+D:\Root\Repositories\Git Client\Conv KR.NET\KRDE\obj\Debug\KRDE.application

@@ -11,3 +11,7 @@ D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\obj\Debug\KR_UTILS.csproj.C
 D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\obj\Debug\KR_UTILS.csproj.CopyComplete
 D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\obj\Debug\KR_UTILS.exe
 D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\obj\Debug\KR_UTILS.pdb
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\bin\Debug\KR_UTILS.exe.manifest
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\bin\Debug\KR_UTILS.application
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\obj\Debug\KR_UTILS.exe.manifest
+D:\Root\Repositories\Git Client\Conv KR.NET\KR_UTILS\obj\Debug\KR_UTILS.application

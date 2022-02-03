@@ -31,3 +31,8 @@ D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\obj\Debug\KR.NET.minKR.resour
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\bin\Debug\KRLib.NET.dll
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\bin\Debug\KRLib.NET.pdb
 D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\obj\Debug\KR.NET.csproj.CopyComplete
+D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\bin\Debug\KR.NET.exe.manifest
+D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\bin\Debug\KR.NET.application
+D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\obj\Debug\KR.NET.TrustInfo.xml
+D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\obj\Debug\KR.NET.exe.manifest
+D:\Root\Repositories\Git Client\Conv KR.NET\KR.NET\obj\Debug\KR.NET.application

@@ -235,14 +235,35 @@ namespace KR.NET
 
         private void txtChiave_KeyPress(object sender, KeyPressEventArgs e)
         {
-            string strS = "";
             if (e.KeyChar == ((char)13))
+                Esegui();
+        }
+
+        private void btnVai_Click(object sender, EventArgs e)
+        {
+            Esegui();
+        }
+
+        private void Esegui()
+        {
+            //1. Controlli di correttezza
+            string chiave = txtChiave.Text;
+            if ("".Equals(chiave))
             {
-                strS = txtChiave.Text;
-                strS = MOD_KLOG.CaricaLogFile(strS, strFileLog);
+                MessageBox.Show("E' necessario inserire una chiave", "Esegui crypt", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            if (!chkBlock.Checked)
+            {
+                MessageBox.Show("E' necessario effettuare lo sblocco", "Esegui crypt", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            if ("".Equals(txtFileList.Text))
+            {
+                string strS = MOD_KLOG.CaricaLogFile(chiave, strFileLog);
                 if ("".Equals(strS))
                 {
-                    MessageBox.Show("Chiave inserita non valida", "Esegui crypt dei file", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
+                    MessageBox.Show("Chiave inserita non valida", "Esegui crypt", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
                 }
                 else
                 {
@@ -250,25 +271,9 @@ namespace KR.NET
                     EseguiConKLog();
                 }
             }
-        }
-
-        private void btnVai_Click(object sender, EventArgs e)
-        {
-            //1. Controlli di correttezza
-            if ("".Equals(txtChiave.Text))
-            {
-                MessageBox.Show("E' necessario inserire una chiave", "Esegui crypt programmato", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
-                return;
-            }
-            if (!chkBlock.Checked)
-            {
-                MessageBox.Show("E' necessario effettuare lo sblocco", "Esegui crypt programmato", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
-                return;
-            }
-            if ("".Equals(txtFileList.Text))
-                EseguiConKLog();
             else
                 EseguiConListaKript();
         }
+
     }
 }

@@ -111,7 +111,7 @@ namespace KRLib.NET
                 {
                     if (strDir.Length <= strListaDir[i].Length - 3)
                     {
-                        if (strListaDir[i].Substring(0, strDir.Length).Equals(strDir))
+                        if (strListaDir[i].Substring(0, strListaDir[i].Length - 3).Equals(strDir))
                         {
                             if (strListaDir[i][strListaDir[i].Length - 1] == 'E')
                             {

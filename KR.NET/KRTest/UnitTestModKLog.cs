@@ -83,6 +83,8 @@ namespace KRTest
             string strkey = MOD_KLOG.CaricaLogFile(testKey, strDirBaseCrypt + "\\klog.txt");
             Assert.AreNotEqual("", strkey);
             MOD_KLOG.SetStato(strDirBaseCrypt + "\\KR.NET\\KRTest");
+            MOD_KLOG.SetStato(strDirBaseCrypt + "\\KR.NET\\KRTest\\Properties");
+            MOD_KLOG.SetStato(strDirBaseCrypt + "\\KR.NET\\KRTest\\Resources");
             MOD_KLOG.LoadIntoList(lst, "", "");
             createFileWithFSList_status("klog_dir1.txt", strDirBase + "\\klog_SetStato.txt", "", "KE", "_E");
             Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_SetStato.txt" , strDirBase + "\\klog_SetStato_Attuale.txt"), TestUtils.LastMessage);

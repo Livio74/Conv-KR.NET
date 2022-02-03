@@ -46,5 +46,10 @@ namespace KR_UTILS
                 MessageBox.Show("file log KR non trovato", "Kr Utils", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
             }
         }
+
+        private void btnEsci_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

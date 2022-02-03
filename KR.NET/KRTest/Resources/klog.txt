@@ -6,17 +6,8 @@
 \KR_UTILS
 \KR.NET\KRTest
 \KR.NET\Properties
-\KRDE\KRTest
 \KRDE\Properties
-\KRLib.NET\KRTest
 \KRLib.NET\Properties
-\KR_UTILS\KRTest
 \KR_UTILS\Properties
 \KR.NET\KRTest\Properties
 \KR.NET\KRTest\Resources
-\KRDE\KRTest\Properties
-\KRDE\KRTest\Resources
-\KRLib.NET\KRTest\Properties
-\KRLib.NET\KRTest\Resources
-\KR_UTILS\KRTest\Properties
-\KR_UTILS\KRTest\Resources

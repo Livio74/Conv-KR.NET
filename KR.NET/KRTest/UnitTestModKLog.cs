@@ -136,6 +136,7 @@ namespace KRTest
             File.Delete(strDirBaseCrypt + "\\klog.txt");
             File.Move(strDirBase + "\\klog_SAVE.txt" , strDirBaseCrypt + "\\klog.txt");
             File.Delete(dirProva + "\\Prova.txt");
+            Directory.Delete(dirProva);
             Assert.IsTrue(isEqualCheckProva, CheckProvaMessage);
             Assert.IsTrue(isEqualCheckProvaDir2, CheckProvaMessageDir2);
         }

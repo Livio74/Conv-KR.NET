@@ -4,6 +4,7 @@ kr.Designer.cs
 KR.NET.csproj
 KR.NET.csproj.user
 KR.NET.sln
+KR.NET_TemporaryKey.pfx
 kr.resx
 Kritper.ICO
 KRTest

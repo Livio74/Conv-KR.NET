@@ -52,10 +52,10 @@ namespace KRTest
             {
                 fileList[i] = MOD_FILE_LIST.GetFile(i);
             }
-            string FileOut = strDirBase + "\\CryptDir_FileList.txt";
-            string FileOutCfr = strDirBase + "\\FileList_CryptDir.txt";
+            string FileOut = strDirBase + "\\CryptDir_FileList_Attuale.txt";
+            string FileOutCfr = strDirBase + "\\CryptDir_FileList_Expected.txt";
             TestUtils.copyFileListByCryptFileList (strDirBase + "\\ClearDir\\KR.NET\\KRTest\\Resources\\CryptDir_FileList.txt", FileOutCfr, strDirBase + "\\CryptDir", 1);
-            bool listIsEquals = TestUtils.CheckStringArrayWithTextFile(fileList, strDirBase + "\\FileList_CryptDir.txt", FileOut);
+            bool listIsEquals = TestUtils.CheckStringArrayWithTextFile(fileList, strDirBase + "\\CryptDir_FileList_Expected.txt", FileOut);
             Assert.IsTrue(listIsEquals, TestUtils.LastMessage);
             createFileWithFSList(strDirBase + "\\klog_ALL_E_Genera.txt", "_E");
             MOD_KLOG.LoadIntoList(lst, "", "");

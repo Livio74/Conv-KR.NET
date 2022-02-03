@@ -113,14 +113,31 @@ namespace KRTest
             string dirProva = strDirBaseCrypt + "\\Prova";
             Directory.CreateDirectory(dirProva);
             File.WriteAllText(dirProva + "\\Prova.txt", "File di Prova");
+            string newDir = strDirBaseCrypt + "_new";
+            if (!Directory.Exists(newDir))
+            {
+                TestUtils.CopyDirectory(strDirBaseCrypt, newDir, true);
+            } else
+            {
+                File.Delete(newDir + "\\klog.txt");
+                File.Copy(strDirBaseCrypt + "\\klog.txt", newDir + "\\klog.txt");
+            }
             MOD_KLOG.RigeneraLog(testKey, strDirBaseCrypt, strDirBaseCrypt + "\\klog.txt", strDirBaseCrypt);
             MOD_KLOG.LoadIntoList(lst, "", "");
             createFileWithFSList_status("klog_ConProva.txt", strDirBase + "\\klog_ConProva.txt", "", "KE", "_E");
-            Assert.IsTrue(TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ConProva.txt", strDirBase + "\\klog_ConProva_Attuale.txt"), TestUtils.LastMessage);
+            bool isEqualCheckProva = TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ConProva.txt", strDirBase + "\\klog_ConProva_Attuale.txt");
+            string CheckProvaMessage = TestUtils.LastMessage;
+            strkey = MOD_KLOG.CaricaLogFile(testKey, newDir + "\\klog.txt");
+            MOD_KLOG.RigeneraLog(testKey, newDir, newDir + "\\klog.txt", newDir);
+            MOD_KLOG.LoadIntoList(lst, "", "");
+            createFileWithFSListRoot_status(newDir, "klog_ConProva.txt", strDirBase + "\\klog_ConProvaDir2.txt", "", "KE", "_E");
+            bool isEqualCheckProvaDir2 = TestUtils.CheckListBoxWithTextFile(lst, strDirBase + "\\klog_ConProvaDir2.txt", strDirBase + "\\klog_ConProvaDir2_Attuale.txt");
+            string CheckProvaMessageDir2 = TestUtils.LastMessage;
             File.Delete(strDirBaseCrypt + "\\klog.txt");
             File.Move(strDirBase + "\\klog_SAVE.txt" , strDirBaseCrypt + "\\klog.txt");
             File.Delete(dirProva + "\\Prova.txt");
-            Directory.Delete(dirProva);
+            Assert.IsTrue(isEqualCheckProva, CheckProvaMessage);
+            Assert.IsTrue(isEqualCheckProvaDir2, CheckProvaMessageDir2);
         }
 
         [TestMethod]
@@ -153,6 +170,14 @@ namespace KRTest
             if (!File.Exists(klogOut))
             {
                 TestUtils.copyKLog(strDirBase + "\\ClearDir\\KR.NET\\KRTest\\Resources\\" + klogName, klogOut, strDirBaseCrypt, dateKLogToSet, status, "" , status2, status3, status4);
+            }
+        }
+
+        private void createFileWithFSListRoot_status(string dirRoot , string klogName, string klogOut, string dateKLogToSet, string status, string status2, string status3 = "", string status4 = "")
+        {
+            if (!File.Exists(klogOut))
+            {
+                TestUtils.copyKLog(strDirBase + "\\ClearDir\\KR.NET\\KRTest\\Resources\\" + klogName, klogOut, dirRoot, dateKLogToSet, status, "", status2, status3, status4);
             }
         }
     }

@@ -157,7 +157,7 @@ namespace KRLib.NET
                 strDir = "";
             } else if ("".Equals(strListaDirOld[0])) {
                 strDir = "";
-            } else if (Kr_dirRadice.Equals(strListaDirOld[0].Substring(0 , strListaDirOld[0].Length - 3)))
+            } else if (!Kr_dirRadice.Equals(strListaDirOld[0].Substring(0 , strListaDirOld[0].Length - 3)))
             {
                 strDir = strDirRadice;
             } else
@@ -190,7 +190,15 @@ namespace KRLib.NET
                         }
                         else if (strS.Equals(strListaDirOld[j].Substring(0, strListaDirOld[j].Length - 3)))
                         {
-                            strListaDir[intNumDir] = strListLV1[i] + strListaDirOld[j].Substring(strListaDirOld[j].Length - 2);
+                            if (intNumDir == 0)
+                            {
+                                strListaDir[intNumDir] = strListLV1[i] + ":" + strListaDirOld[j].Substring(strListaDirOld[j].Length - 2);
+
+                            }
+                            else
+                            {
+                                strListaDir[intNumDir] = strListLV1[i] + strListaDirOld[j].Substring(strListaDirOld[j].Length - 3);
+                            }
                         }
                     }
                     intNumDir++;

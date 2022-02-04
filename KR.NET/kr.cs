@@ -100,13 +100,23 @@ namespace KR.NET
         private void btnDir_Click(object sender, EventArgs e)
         {
             string clipboardPath = Clipboard.GetText();
-            if (!"".Equals(clipboardPath))
-            {
-                drv.Drive = clipboardPath.Substring(0, 2); //Correzione BUG rispestto a originale
-                dirRadice.Path = clipboardPath;
-                chkBlock.Checked = true;
-                MOD_MAIN.G_strFileList = clipboardPath + "\\FileList.txt";
-                strFileLog = clipboardPath + "\\klog.txt";
+            if (!"".Equals(clipboardPath)) {
+                if (Directory.Exists(clipboardPath))
+                {
+                    if (STATICUTILS.CheckSystemOrCriticalFolder(clipboardPath))
+                    {
+                        chkBlock.Checked = true;
+                    }
+                    else
+                    {
+                        chkBlock.Checked = false;
+                    }
+                    drv.Drive = clipboardPath.Substring(0, 2); //Correzione BUG rispestto a originale
+                    dirRadice.Path = clipboardPath;
+                    MOD_MAIN.G_strFileList = clipboardPath + "\\FileList.txt";
+                    strFileLog = clipboardPath + "\\klog.txt";
+                    txtChiave.Focus();
+                }
             }
         }
 

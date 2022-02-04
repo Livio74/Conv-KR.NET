@@ -76,6 +76,7 @@
             this.dirRadice.Name = "dirRadice";
             this.dirRadice.Size = new System.Drawing.Size(273, 229);
             this.dirRadice.TabIndex = 1;
+            this.dirRadice.DoubleClick += new System.EventHandler(this.dirRadice_DoubleClick);
             // 
             // label6
             // 

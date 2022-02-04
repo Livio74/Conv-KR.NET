@@ -253,9 +253,14 @@ namespace KR.NET
                 MessageBox.Show("E' necessario inserire una chiave", "Esegui crypt", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            if (!chkBlock.Checked)
+            if (chkBlock.Checked)
             {
                 MessageBox.Show("E' necessario effettuare lo sblocco", "Esegui crypt", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            if (STATICUTILS.CheckSystemOrCriticalFolder(dirRadice.Path))
+            {
+                MessageBox.Show("Non è possibile criptare una cartella di sistema o critica", "Esegui crypt", MessageBoxButtons.OK, MessageBoxImage.Exclamation);
                 return;
             }
             if ("".Equals(txtFileList.Text))
@@ -275,5 +280,9 @@ namespace KR.NET
                 EseguiConListaKript();
         }
 
+        private void dirRadice_DoubleClick(object sender, EventArgs e)
+        {
+            chkBlock.Checked = STATICUTILS.CheckSystemOrCriticalFolder(dirRadice.Path);
+        }
     }
 }

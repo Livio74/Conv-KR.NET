@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KR.NET.exe" size="31176">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KR.NET.exe" size="31688">
       <assemblyIdentity name="KR.NET" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MH2/mQYekIXKGWGspsEomak/gsVQymZMjk3loL3hr5Q=</dsig:DigestValue>
+        <dsig:DigestValue>jL1CPI1IDif370IaFXaZrsj7VcVNHIOFxYu4XG5kfSM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

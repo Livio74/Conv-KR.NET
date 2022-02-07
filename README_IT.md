@@ -18,6 +18,8 @@ Questo tra l'altro ha favorito la correzione di bug così che la creazione delle
 
 Essendo stata una conversione manuale sono stato positivamente soddisfatto di averlo fatto prima di aggiungere le form invece che dopo. Magari se si ha un tool affidabile (in futuro potrei provare [VB Migration Partner](https://www.vbmigration.com/)) aggiungerò dei test solamente dopo aver verificato le interfacce e scoperto dei bug.
 
+Il lancio dei test necessita innanzi tutto la creazione dell'ambiente di test che è una cartella contenente i progetti stessi in cui in una sotocartella questi sono stati criptati con l'eseguibile VB6 Questo test è il metodo First presente in [UnitTestCore.cs](KR.NET/KRTest/UnitTestCore.cs).
+
 Considerazioni di dettaglio sulla conversione
 ---------------------------------------------
 
@@ -36,3 +38,16 @@ Ho anche aggiunto un controllo che impedisce di decriptare cartelle importanti c
 - [commit](../../commit/808129a9b2228072f4e99fb187163571b3449264)
 - [commit](../../commit/b3ee31f7c9a6e21b99700a56d0fc2a330d789e94)
 - [commit](../../commit/a6355845d4b8f5da4443e5307f999db7d671f808)
+
+Note
+----
+
+Ho scelto di proposito di includere gli eseguibili e i file di installazione generati. Se non servono faccio sempre in tempo a rimuoverli.
+
+Istruzione per utilizzare il progetto e lanciare i test
+-------------------------------------------------------
+
+Il progetto è stato realizzato tramite Visual Studio 2019 , immagino che dovrebbe funzionare anche con versioni successive.
+Per utilizzarlo è quindi sufficiente , dopo aver installato visual studio , scaricare il repository e aprire [la soluzione](KR.NET/KR.NET.sln) contenente tutti i progetti convertiti.
+Una volta scaricato è possibile rebuildarlo e lanciare i test. Il lancio del test crea di default una cartella C:\KRTest configurata di default nel [file di configurazione](KR.NET/KRTest/test.runsettings) col parametro denominato "WorkTestRoot" che è quindi possibile cambiare a piacere.
+Il lancio dei test necessita prima il singolo lancio del metodo di test il metodo First pfresente nel test "UnitTestCore" e successivamente il lancio di tutta la suite per evitare che il secondo lancio possa non essere eseguito per primo.

@@ -1,5 +1,5 @@
 Conv-KR.NET project
-====================
+===================
 **If you want access to readme Italian translation click into [readme translation](README_IT.md)**
 
 It is a conversion project from VB6 to C # of a very old project called Kripter (or KR) which is used to encrypt every single file with an encryption algorithm with Exclusive Or. Being able to encrypt every single file could have been useful with backup utilities that make the difference between files; if I decrypt the folder I modify a file and encrypt again when I make the backup only that modified file is updated.
@@ -14,7 +14,7 @@ The VB6 project had the advantage that it was originally modularized using the m
 **Repository commits are in Italian so i could create a new project with English translations in the future.**
 
 Creation of the unit test [project] (KR.NET/KRTest)
--------------------------------------------------- -
+---------------------------------------------------
 
 Given the modularity of the VB6 source it was easy to create using [Microsoft Visual Studio Test] (https://docs.microsoft.com/it-it/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2022) a set of tests that could verify the correctness of each converted vb6 module.
 Among other things, this has favored the correction of bugs so that the creation of interfaces using the module functions was limited to the creation of the controls and the conversion of only the code relating to the events and functions / subroutines internal to the forms.
@@ -24,7 +24,7 @@ Having been a manual conversion I was positively pleased to have done it before 
 The launch of the tests requires first of all the creation of the test environment which is a folder containing the projects themselves in which these have been encrypted with the VB6 executable in a subfolder. This test is the First method found in [UnitTestCore.cs] (KR.NET/KRTest/UnitTestCore.cs).
 
 Detailed considerations on conversion
----------------------------------------------
+-------------------------------------
 
 The conversion was done in a punctual way, however some parts I had or wanted to put in place , in particular below the detail.
 
@@ -43,7 +43,7 @@ I also added a check that prevents from decrypting important folders like C:\Win
 - [commit] (../../commit/a6355845d4b8f5da4443e5307f999db7d671f808)
 
 Instruction for using the project and launching tests
--------------------------------------------------- -----
+-----------------------------------------------------
 
 The project was built via Visual Studio 2019, I guess it should work with later versions as well.
 Therefore it is sufficient, after installing visual studio, to download the repository and open [the solution](KR.NET/KR.NET.sln) containing all the converted projects.

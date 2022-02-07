@@ -29,3 +29,10 @@ Il progetto originale in certi casi utilizzava le winapi ma nel
 In generale ho corretto alcuni bug che avevo trovato senza però stravolgere la funzione corretta come ad esempio nel [commit](commit/6919f24654d41988616fe7c44ca119fb7fd5b189).
 
 Verso la fine del progetto tutti i moduli VB6 convertiti li ho dovuti necessariamente portare in un progetto di libreria poichè i vari nel progetto VB6 ci sono più VBP che li usano. Questo quindi è stato l'unico modo per non doverli duplicare. I commit in questione iniziano tutti per **Conversione di progetto KR Livio : Aggiunta Libreria classi con moduli**. 
+
+Ho aggiunto alcune parti specifiche per il progetto che non erano incluse nel procedimento di conversione; queste modifiche erano necessarie per poter rendere il progetto KR.NET utilizzabile senza problemi , in particolare per il checkbox di blocco che impedisce di eseguire la criptatura se non è volutamente deselezionato , vedi [commit](https://github.com/Livio74/Conv-KR.NET/commit/39d820a07a5e0dcb66f7c948b561a8f9c122bada).
+Ho anche aggiunto un controllo che impedisce di decriptare cartelle importanti come C:\Windows ecc, di seguito i commit:
+- [commit](../../commit/a2e7d78e0ac3ca9c018a64eecb1fb1105c9fd631)
+- [commit](../../commit/808129a9b2228072f4e99fb187163571b3449264)
+- [commit](../../commit/b3ee31f7c9a6e21b99700a56d0fc2a330d789e94)
+- [commit](../../commit/a6355845d4b8f5da4443e5307f999db7d671f808)
